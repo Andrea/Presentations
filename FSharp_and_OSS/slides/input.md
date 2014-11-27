@@ -3,8 +3,12 @@
 - author : Andrea Magnorsky
 - theme : solarized
 - transition : default
+- background : fsharp_logo.png
 
 ***
+
+
+## MTUG Dublin
 ## F# and Open Source
 
 ### Andrea Magnorsky
@@ -23,15 +27,15 @@ Available on Steam Early Access
 
 
 
-<iframe width="750" height="500" src="//www.youtube.com/embed/sEPPbZdKBzM" frameborder="0" allowfullscreen></iframe>
+<iframe width="853" height="480" src="//www.youtube.com/embed/sEPPbZdKBzM?rel=0" frameborder="0" allowfullscreen></iframe>
 
 ---
 ***
 
-### F# and Open Source
+### F# OSS and you
 ####
 
-- Open sourced 4 years ago. [Announced by Don Syme](http://blogs.msdn.com/b/dsyme/archive/2010/11/04/announcing-the-f-compiler-library-source-code-drop.aspx)
+- F# Open sourced 4 years ago. [Announced by Don Syme](http://blogs.msdn.com/b/dsyme/archive/2010/11/04/announcing-the-f-compiler-library-source-code-drop.aspx)
 - F# Software Foundation at [fsharp.org](http://fsharp.org/)
 - User groups growth 
 - 100+ pull requests for F# 4.0
@@ -42,111 +46,175 @@ Available on Steam Early Access
 ---
 ***
 
-### Big wins!
+### Latest announcements, Big wins !
 
 - Great for language adoption
 - Visual Studio community with extensions
 - CLR in a package FTW
 
 ***
+#### Some examples
 
-### Why you should care?
-
-#### F# (with tooltips)
-
-    let a = 5
-    let factorial x = [1..x] |> List.reduce (*)
-    let c = factorial a
+Light syntax, POCOs 
 
 ---
 
 #### C#
 
     [lang=cs]
-    using System;
-
-    class Program
+    public class Person
     {
-        static void Main()
+        public Person(string name, int age)
         {
-            Console.WriteLine("Hello, world!");
+            _name = name;
+            _age = age;
+        }
+
+        private readonly string _name;
+        private readonly int _age;
+
+        public string Name
+        {
+            get { return _name; }
+        }
+
+        public int Age
+        {
+            get { return _age; }
         }
     }
 
 ---
 
-#### JavaScript
+#### F# 
 
-    [lang=js]
-    function copyWithEvaluation(iElem, elem) {
-        return function (obj) {
-            var newObj = {};
-            for (var p in obj) {
-                var v = obj[p];
-                if (typeof v === "function") {
-                    v = v(iElem, elem);
-                }
-                newObj[p] = v;
-            }
-            if (!newObj.exactTiming) {
-                newObj.delay += exports._libraryDelay;
-            }
-            return newObj;
-        };
+    type Person( name:string, age:int) =
+
+    /// Full name
+    member person.Name = name
+
+    /// Age in years
+    member person.Age = age
+
+
+---
+
+
+***
+
+#### Some examples
+
+Testing
+
+---
+
+#### C#
+
+    [lang=cs]
+    using NUnit.Framework;
+
+    [TestFixture]
+    public class MathTest
+    {
+        [Test]
+        public void TwoPlusTwoShouldEqualFour()
+        {
+            Assert.AreEqual(2 + 2, 4);
+        }
     }
 
 
 ---
 
-#### Haskell
- 
-    [lang=haskell]
-    recur_count k = 1 : 1 : zipWith recurAdd (recur_count k) (tail (recur_count k))
-            where recurAdd x y = k * x + y
+#### F# 
 
-    main = do
-      argv <- getArgs
-      inputFile <- openFile (head argv) ReadMode
-      line <- hGetLine inputFile
-      let [n,k] = map read (words line)
-      printf "%d\n" ((recur_count k) !! (n-1))
+    module MathTest =
 
-*code from [NashFP/rosalind](https://github.com/NashFP/rosalind/blob/master/mark_wutka%2Bhaskell/FIB/fib_ziplist.hs)*
+    open NUnit.Framework
+
+    let [<Test>] ``2 + 2 should equal 4``() =
+        Assert.AreEqual(2 + 2, 4)
+
+
+
+---
+#### FsCheck 
+
+    module MathTest =
+
+    open FsCheck.Nunit
+
+    [<Property>]
+    let ``Given a, a + a should equal a * 2`` ( a: int) =
+        a + a = 2 * a
+
+
+You can use FsCheck from F# and C#.
 
 ---
 
-### SQL
 
-    [lang=sql]
-    select *
-    from
-    (select 1 as Id union all select 2 union all select 3) as X
-    where Id in (@Ids1, @Ids2, @Ids3)
-
-*sql from [Dapper](https://code.google.com/p/dapper-dot-net/)*
 
 ***
 
-** F is for Fun
+#### Some examples
 
-$ \Pr(A|B)=\frac{\Pr(B|A)\Pr(A)}{\Pr(B|A)\Pr(A)+\Pr(B|\neg A)\Pr(\neg A)} $
+C# <-> F# Interop
+
+---
+
+#### C#
+
+    [lang=cs]
+    using Breakout;
+
+    public class SuperScore : Component
+    {
+        [Test]
+        public void TwoPlusTwoShouldEqualFour()
+        {
+            Assert.AreEqual(2 + 2, 4);
+        }
+    }
+
+
+---
+
+#### F# 
+
+    module MathTest =
+
+    open NUnit.Framework
+
+    let [<Test>] ``2 + 2 should equal 4``() =
+        Assert.AreEqual(2 + 2, 4)
+
+
+
+---
+
+
 
 ***
-** F# is for Fun
 
-$ \Pr(A|B)=\frac{\Pr(B|A)\Pr(A)}{\Pr(B|A)\Pr(A)+\Pr(B|\neg A)\Pr(\neg A)} $
+
+**Like games?** Dublin GameCraft on the 6th of December @ Microsoft
+
+F# and games workshop from 10am to noon.
+
+<img src="images/gamecraft-logo.png" alt="GC" style="width: 200px;"/>
+
+
+**Functional Kats** Monthly meetup 
+![FK](images/fk.jpeg)  
+
 
 ***
 
-### The Reality of a Developer's Life 
+### Thanks :D
 
-**When I show my boss that I've fixed a bug:**
-  
-![When I show my boss that I've fixed a bug](http://www.topito.com/wp-content/uploads/2013/01/code-07.gif)
-  
-**When your regular expression returns what you expect:**
-  
-![When your regular expression returns what you expect](http://www.topito.com/wp-content/uploads/2013/01/code-03.gif)
-  
-*from [The Reality of a Developer's Life - in GIFs, Of Course](http://server.dzone.com/articles/reality-developers-life-gifs)*
+![onikira](images/onikira.jpg)
+
+- @SilverSpoon 
+- [roundcrisis.com](roundcrisis.com)
 

@@ -184,11 +184,9 @@ Use namespaces in F# or prefix with global::YourModuleName
 and the F# side
 
     namespace Calculator
-
     module Calc =
 
         open System
-
         let add numbers delimiter =    
             // Do stuff to add numbers            
 

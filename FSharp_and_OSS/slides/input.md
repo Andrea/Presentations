@@ -3,10 +3,11 @@
 - author : Andrea Magnorsky
 - theme : solarized
 - transition : default
-- background : fsharp_logo.png
 
 ***
-
+<div style=".state-background {
+    background-image: images/fsharp_logo.png;
+} ">
 
 ## MTUG Dublin
 ## F# and Open Source
@@ -18,6 +19,7 @@ Digital Furnace Games ␣ ▀ ␣ BatCat Games ␣ ▀ ␣ GameCraft Foundation
 - @SilverSpoon 
 - [roundcrisis.com](roundcrisis.com)
 
+
 ---
 
 #### Working on OniKira: Demon Killer 
@@ -27,7 +29,7 @@ Available on Steam Early Access
 
 
 
-<iframe width="853" height="480" src="//www.youtube.com/embed/sEPPbZdKBzM?rel=0" frameborder="0" allowfullscreen></iframe>
+<iframe width="853" height="480" src="//www.youtube.com/embed/8OH31zfRlDs?rel=0" frameborder="0" allowfullscreen></iframe>
 
 ---
 ***
@@ -39,6 +41,8 @@ Available on Steam Early Access
 - F# Software Foundation at [fsharp.org](http://fsharp.org/)
 - User groups growth 
 - 100+ pull requests for F# 4.0
+
+<img src="images/fsharp_logo.png" alt="fs" style="width: 200px;"/>
 
 ---
 ###
@@ -163,24 +167,36 @@ C# <-> F# Interop
 
 ---
 
-#### C#
+#### C# consuming F# code
+
+Use namespaces in F# or prefix with global::YourModuleName
 
     [lang=cs]
-    using Breakout;
-
-    public class SuperScore : Component
+    using System;
+    class Program
     {
-        [Test]
-        public void TwoPlusTwoShouldEqualFour()
+        static void Main(string[] args)
         {
-            Assert.AreEqual(2 + 2, 4);
+            var s = Calculator.Calc.add("4 4", "+");
+            Console.WriteLine("The sum is {0}", s);
         }
     }
+and the F# side
+
+    namespace Calculator
+
+    module Calc =
+
+        open System
+
+        let add numbers delimiter =    
+            // Do stuff to add numbers            
+
 
 
 ---
 
-#### F# 
+#### F# consuming C# code
 
     module MathTest =
 
@@ -218,3 +234,4 @@ F# and games workshop from 10am to noon.
 - @SilverSpoon 
 - [roundcrisis.com](roundcrisis.com)
 
+</div>

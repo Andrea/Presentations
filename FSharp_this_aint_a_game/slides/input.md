@@ -147,9 +147,9 @@ They are active because reasons
     let (|Hold100ms|) (keyboard:KeyboardInput) = 
         keyboard.KeyPressedFor(Key.I, 100)  
 
-                match DualityApp.Keyboard width        
-                | SpaceKey true & Hold100ms false -> playerGo Jump
-                | SpaceKey true & Hold100ms true -> playerGo DoubleJump
+    match DualityApp.Keyboard width        
+    | SpaceKey true & Hold100ms false -> playerGo Jump
+    | SpaceKey true & Hold100ms true -> playerGo DoubleJump
 
 ---
 ***
@@ -222,107 +222,57 @@ or
 
 ---
 ***
-#### C#
+#### Fake
 
-    [lang=cs]
-    public class Person
-    {
-        public Person(string name, int age)
-        {
-            _name = name;
-            _age = age;
-        }
+* It's mature.
+* Builds for .net and mono, it's cross platform. 
+* No need to know F# to use it.
+* Integrates with CI Server.
 
-        private readonly string _name;
-        private readonly int _age;
+---
+### Hello world!
 
-        public string Name
-        {
-            get { return _name; }
-        }
+    // include Fake lib
+    #r @"tools\FAKE\tools\FakeLib.dll"
+    open Fake 
+    Target "Foo" (fun _ ->
+        trace "Hello World from Foo"
+    )
+    
+    Target "Bar" (fun _ -> 
+        trace "Hello World from Bar"
+    )
+    "Bar"
+      ==> "Foo"
+    
+    RunTargetOrDefault "Foo"
 
-        public int Age
-        {
-            get { return _age; }
-        }
-    }
+---
+### Real world
+
+---
+***
+### The party piece
+##
+
+##Compiler.Services
+    
+---
+## 
+
+* File watcher
+* Code in any editor :)
+* Compiler Services call to fsc
+* Future -> live coding
 
 ---
 
-#### F# 
-
-    type Person( name:string, age:int) =
-
-    /// Full name
-    member person.Name = name
-
-    /// Age in years
-    member person.Age = age
-
-
----
+<img src="images/fcs.png" alt="fs" style="width: 950px;"/>
 
 
 ***
 
-#### Some examples
-
-Testing
-
----
-
-#### C#
-
-    [lang=cs]
-    using NUnit.Framework;
-
-    [TestFixture]
-    public class MathTest
-    {
-        [Test]
-        public void TwoPlusTwoShouldEqualFour()
-        {
-            Assert.AreEqual(2 + 2, 4);
-        }
-    }
-
-
----
-
-#### F# 
-
-    module MathTest =
-
-    open NUnit.Framework
-
-    let [<Test>] ``2 + 2 should equal 4``() =
-        Assert.AreEqual(2 + 2, 4)
-
-
-
----
-#### FsCheck 
-
-    module MathTest =
-
-    open FsCheck.Nunit
-
-    [<Property>]
-    let ``Given a, a + a should equal a * 2`` ( a: int) =
-        a + a = 2 * a
-
-
-You can use FsCheck from F# and C#.
-
----
-
-
-
-***
-
-#### Some examples
-
-C# <-> F# Interop
+#### Interop
 
 ---
 
@@ -365,9 +315,6 @@ and the F# side
 
 
 ---
-
-
-
 ***
 
 

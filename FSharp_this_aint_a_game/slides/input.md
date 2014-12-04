@@ -31,31 +31,55 @@ Available on Steam Early Access
 <iframe width="853" height="480" src="//www.youtube.com/embed/8OH31zfRlDs?rel=0" frameborder="0" allowfullscreen></iframe>
 
 ---
-***
 
-### F# OSS and you
-####
+#### Working on OniKira: Demon Killer 
 
-- F# Open sourced 4 years ago. [Announced by Don Syme](http://blogs.msdn.com/b/dsyme/archive/2010/11/04/announcing-the-f-compiler-library-source-code-drop.aspx)
-- F# Software Foundation at [fsharp.org](http://fsharp.org/)
-- User groups growth 
-- 100+ pull requests for F# 4.0
+Available on Steam Early Access
 
-<img src="images/fsharp_logo.png" alt="fs" style="width: 200px;"/>
+![](images/onikira.jpg)
 
 ---
-###
+
+***
+
+### Why?
+
+![tar pit](images/tarpit.jpg)
+
+[Out of the tar pit - Mosley, Marks 2006](https://github.com/papers-we-love/papers-we-love/blob/master/design/out-of-the-tar-pit.pdf)
+
+<small>pic src http://en.wikipedia.org/wiki/McKittrick_Tar_Pits </small>
+
+---
+
+### Complexity causes
+
+* State
+* Code volume
+* Flow of control
+
+---
+
+
+***
+
+### F# 
+
+<img src="images/fsharp_logo.png" alt="fs" style="width: 250px;"/>
+
+* Functional first
+* .net Interop
+* Concise
+* Type system
+* OSS
+* Divine learning curve
+
+---
+### 
 <iframe width="1024" height="768" src="//fsharp.org" frameborder="0" allowfullscreen></iframe>
+
 ---
-***
 
-### Latest announcements, Big wins !
-
-- Great for language adoption
-- Visual Studio community with extensions
-- CLR in a package FTW
-
-***
 
     // one-liners
     [1..100] |> List.sum |> printfn "sum=%d"
@@ -77,6 +101,70 @@ Available on Steam Early Access
     let worker = Worker jdoe
 
 Visit **F# for Fun and Profit** for more examples
+
+---
+#### What we use
+
+![pattern-matching](images/pm.png)
+
+---
+
+    match msg with                
+    | :? ActorDiedMessage as actorMessage ->                      
+        match actorMessage.GameObject.GetComponent<CharacterController>() with 
+        | null -> ()
+        | characterController -> 
+            if ( characterController.IsOnGround() = false ) then 
+                PlatformHelper.UnlockAchievement GameAchivement.AirKill
+                this.GameObj.GetComponent<ScriptComponent>().DisposeLater()
+    | _ -> ()
+
+---
+
+### Active Patterns
+
+They are active because reasons
+
+---
+
+    let (|LeftKey|RightKey|OtherKey|) (keyboard:KeyboardInput) = 
+        if keyboard.KeyPressed(Key.Left) then LeftKey
+        elif keyboard.KeyPressed(Key.Right) then RightKey
+        else OtherKey "Hi, you pressed a key...well that is interesting :D"
+
+    interface ICmpUpdatable with
+        member this.OnUpdate()=        
+            match DualityApp.Keyboard with            
+            | LeftKey  -> playerGo Left
+            | RightKey-> playerGo Right
+            | OtherKey s-> ()
+
+---
+
+    let (|RightKey|) (keyboard:KeyboardInput) = 
+        keyboard.KeyPressed(Key.Right), "Test from right something" 
+
+    let (|LeftKey|) (keyboard:KeyboardInput) = 
+        keyboard.KeyPressed(Key.Left)
+
+    let (|Hold100ms|) (keyboard:KeyboardInput) = 
+        keyboard.KeyPressedFor(Key.I, 100)
+
+    interface ICmpUpdatable with
+        member this.OnUpdate()=        
+            match DualityApp.Keyboard with
+            | LeftKey true & RightKey (wasPressed, stringy) -> () //the left and not the right
+            | LeftKey  -> 
+                let leftWall = Scene.Current.FindGameObject("LeftWall")
+                if leftWall.Transform.Pos.X + HalfWidth leftWall.RigidBody <= this.GameObj.Transform.Pos.X - HalfWidth this.GameObj.RigidBody  then
+                    this.GameObj.Transform.MoveBy(-Vector2.UnitX * 10.0f)                  
+            | RightKey->
+                 let rightWall = Scene.Current.FindGameObject("RightWall")
+                 if (this.GameObj.Transform.Pos.X + HalfWidth this.GameObj.RigidBody <= rightWall.Transform.Pos.X - HalfWidth rightWall.RigidBody) then
+               RigidBody ) then
+                    this.GameObj.Transform.MoveBy(Vector2.UnitX * 10.0f)
+            | OtherKey s-> ()
+
 
 ***
 #### Some examples

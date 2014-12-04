@@ -141,38 +141,87 @@ They are active because reasons
 
 ---
 
-    let (|RightKey|) (keyboard:KeyboardInput) = 
-        keyboard.KeyPressed(Key.Right), "Test from right something" 
-
-    let (|LeftKey|) (keyboard:KeyboardInput) = 
-        keyboard.KeyPressed(Key.Left)
+    let (|SpaceKey|) (keyboard:KeyboardInput) = 
+        keyboard.KeyPressed(Key.Space)
 
     let (|Hold100ms|) (keyboard:KeyboardInput) = 
-        keyboard.KeyPressedFor(Key.I, 100)
+        keyboard.KeyPressedFor(Key.I, 100)  
 
-    interface ICmpUpdatable with
-        member this.OnUpdate()=        
-            match DualityApp.Keyboard with
-            | LeftKey true & RightKey (wasPressed, stringy) -> () //the left and not the right
-            | LeftKey  -> 
-                let leftWall = Scene.Current.FindGameObject("LeftWall")
-                if leftWall.Transform.Pos.X + HalfWidth leftWall.RigidBody <= this.GameObj.Transform.Pos.X - HalfWidth this.GameObj.RigidBody  then
-                    this.GameObj.Transform.MoveBy(-Vector2.UnitX * 10.0f)                  
-            | RightKey->
-                 let rightWall = Scene.Current.FindGameObject("RightWall")
-                 if (this.GameObj.Transform.Pos.X + HalfWidth this.GameObj.RigidBody <= rightWall.Transform.Pos.X - HalfWidth rightWall.RigidBody) then
-               RigidBody ) then
-                    this.GameObj.Transform.MoveBy(Vector2.UnitX * 10.0f)
-            | OtherKey s-> ()
+                match DualityApp.Keyboard width        
+                | SpaceKey true & Hold100ms false -> playerGo Jump
+                | SpaceKey true & Hold100ms true -> playerGo DoubleJump
 
+---
+***
+### REPL
+
+#### Now: exploration
+#### Future: Live coding
 
 ***
-#### Some examples
+### Ecosystem: What we use now
 
-Light syntax, POCOs 
+* FsCheck
+* Fake
+* Compiler Services
 
 ---
 
+### Future
+
+* Ferop 
+* Paket           
+
+---
+***
+### Property Testing with FsCheck
+
+>Why write tests, when you can generate them
+
+---
+### FsCheck
+
+
+* QuickCheck [paper](http://www.cs.tufts.edu/~nr/cs257/archive/john-hughes/quick.pdf) by Koen Claessen and John Hughes 
+* Superb article by Scot Wlashin on [Property based testing ](http://fsharpforfunandprofit.com/posts/property-based-testing/) as part of the F# advent calendar.
+* Can be used from C# 
+* Small library
+* Can run stand alone or integrates with NUnit and xUnit
+
+---
+
+### What is a property?
+
+> x + x = 2 * x 
+
+or
+
+> List.rev(List.rev list) = list
+
+---
+
+
+    [<Property>]
+    let ``When adding x to x then result is double x``(x:int)=
+        x + x = 2*x
+
+---
+
+    let preconditionMaxHealth maxHealth = maxHealth > 0
+
+    [<Property(Verbose = true)>]    
+    let ``Health should never be higher than max`` (x:int)(maxHealth:int)=        
+        let healthComponent = initedHealth
+        healthComponent.MaxHealth <- maxHealth
+        healthComponent.IncreaseHealth x
+        preconditionMaxHealth maxHealth ==>  (healthComponent.MaxHealth >= healthComponent.Health)
+
+---
+
+<img src="images/fscheck.png" alt="fs" style="width: 950px;"/>
+
+---
+***
 #### C#
 
     [lang=cs]

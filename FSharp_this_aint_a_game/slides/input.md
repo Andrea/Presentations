@@ -11,7 +11,7 @@
 
 ### Andrea Magnorsky
 
-Digital Furnace Games ␣ ▀ ␣ BatCat Games ␣ ▀ ␣ GameCraft Foundation
+Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 
 - @SilverSpoon 
 - [roundcrisis.com](roundcrisis.com)
@@ -53,14 +53,26 @@ Available on Steam Early Access
 ### Complexity causes
 
 * State
-* Code volume
 * Flow of control
+* Code volume
+
 
 ---
 
-***
+![](images/catCry.jpg)
 
-### F# 
+---
+
+# Simple is hard
+
+---
+***
+###
+
+<iframe width="800" height="600" src="//www.youtube.com/embed/DN43sCyEanA" frameborder="0" allowfullscreen></iframe>
+
+---
+### So we tried F# 
 
 <img src="images/fsharp_logo.png" alt="fs" style="width: 250px;"/>
 
@@ -143,7 +155,7 @@ Visit **F# for Fun and Profit** for more examples and knowledge
     let (|Hold100ms|) (keyboard:KeyboardInput) = 
         keyboard.KeyPressedFor(Key.I, 100)  
 
-    match DualityApp.Keyboard width        
+    match DualityApp.Keyboard with        
     | SpaceKey true & Hold100ms false -> playerGo Jump
     | SpaceKey true & Hold100ms true -> playerGo DoubleJump
 
@@ -239,16 +251,6 @@ and the F# side
 >Why write tests, when you can generate them
 
 ---
-### FsCheck
-
-
-* QuickCheck [paper](http://www.cs.tufts.edu/~nr/cs257/archive/john-hughes/quick.pdf) by Koen Claessen and John Hughes 
-* Superb article by Scot Wlashin on [Property based testing ](http://fsharpforfunandprofit.com/posts/property-based-testing/) as part of the F# advent calendar.
-* Can be used from C# 
-* Small library
-* Can run stand alone or integrates with NUnit and xUnit
-
----
 
 ### What is a property?
 
@@ -257,6 +259,16 @@ and the F# side
 or
 
 > List.rev(List.rev list) = list
+
+---
+### FsCheck
+
+
+* QuickCheck [paper](http://www.cs.tufts.edu/~nr/cs257/archive/john-hughes/quick.pdf) by Koen Claessen and John Hughes 
+* Superb article by Scott Wlaschin on [Property based testing ](http://fsharpforfunandprofit.com/posts/property-based-testing/) ``as part of the F# advent calendar``.
+* Can be used from C# 
+* Small library
+* Can run stand alone or integrates with NUnit and xUnit
 
 ---
 
@@ -342,10 +354,21 @@ or
 * [Tryfsharp.org](http://Tryfsharp.org)
 * F# for fun and profit
 * Community for F# c4f# 
-* Progressive F# tutorials and F# Exchange (17th April - London)
 
-**Functional Kats** Monthly meetup 
-![FK](images/fk.jpeg)  
+``Books``
+* Expert F# 
+* Real World Functional programming
+* [More Books](http://fsharp.org/about/learning.html)
+
+---
+
+## Events
+
+- Progressive F# tutorials
+- F# Exchange (17th April - London)
+
+- User groups 
+ ![FK](images/fk.jpeg)  
 
 
 ***
@@ -356,7 +379,6 @@ or
 
 - @SilverSpoon 
 - [roundcrisis.com](roundcrisis.com)
-
 
 
 ***

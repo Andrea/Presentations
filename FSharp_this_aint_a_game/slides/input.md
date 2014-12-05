@@ -5,9 +5,7 @@
 - transition : default
 
 ***
-<div style=".state-background {
-    background-image: images/fsharp_logo.png;
-} ">
+
 
 ## F#, this aint a game
 
@@ -60,7 +58,6 @@ Available on Steam Early Access
 
 ---
 
-
 ***
 
 ### F# 
@@ -96,11 +93,11 @@ Available on Steam Early Access
       | Worker of Person
       | Manager of Employee list
 
-    // type inference
-    let jdoe = {First="John";Last="Doe"}
-    let worker = Worker jdoe
+    let square x = x * x
+    let triple x = x * 3
+    let tripleSquared  = square >> triple
 
-Visit **F# for Fun and Profit** for more examples
+Visit **F# for Fun and Profit** for more examples and knowledge
 
 ---
 #### What we use
@@ -109,21 +106,46 @@ Visit **F# for Fun and Profit** for more examples
 
 ---
 
-    match msg with                
-    | :? ActorDiedMessage as actorMessage ->                      
-        match actorMessage.GameObject.GetComponent<CharacterController>() with 
+    let rec fibonacci n =
+        match n with
+        | 0 -> 0
+        | 1 -> 1
+        | _ -> fibonacci (n - 1) + fibonacci (n - 2)
+
+---
+
+
+    let unlockAchievement gameObject achivement=
+        match gameObject.GetComponent<CharacterController>() with 
         | null -> ()
-        | characterController -> 
-            if ( characterController.IsOnGround() = false ) then 
-                PlatformHelper.UnlockAchievement GameAchivement.AirKill
+        | character -> 
+            if (not character.IsOnGround()) then 
+                PlatformHelper.UnlockAchievement achivement
                 this.GameObj.GetComponent<ScriptComponent>().DisposeLater()
+
+    match msg with                
+    | :? ActorDiedMessage as diedMessage -> 
+               unlockAchievement diedMessage.GameObj GameAchivement.AirKill
     | _ -> ()
+
 
 ---
 
 ### Active Patterns
 
-They are active because reasons
+![](images/swarm.jpg)
+
+---
+
+    let (|SpaceKey|) (keyboard:KeyboardInput) = 
+        keyboard.KeyPressed(Key.Space)
+
+    let (|Hold100ms|) (keyboard:KeyboardInput) = 
+        keyboard.KeyPressedFor(Key.I, 100)  
+
+    match DualityApp.Keyboard width        
+    | SpaceKey true & Hold100ms false -> playerGo Jump
+    | SpaceKey true & Hold100ms true -> playerGo DoubleJump
 
 ---
 
@@ -139,20 +161,58 @@ They are active because reasons
             | RightKey-> playerGo Right
             | OtherKey s-> ()
 
+
 ---
 
-    let (|SpaceKey|) (keyboard:KeyboardInput) = 
-        keyboard.KeyPressed(Key.Space)
+***
 
-    let (|Hold100ms|) (keyboard:KeyboardInput) = 
-        keyboard.KeyPressedFor(Key.I, 100)  
 
-    match DualityApp.Keyboard width        
-    | SpaceKey true & Hold100ms false -> playerGo Jump
-    | SpaceKey true & Hold100ms true -> playerGo DoubleJump
+# Interop
+<small>Check out the design guidelines</small>
+
+---
+
+#### C# consuming F# code
+
+Use namespaces in F# or prefix with global::YourModuleName
+
+    [lang=cs]
+    using System;
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var s = Calculator.Calc.add("4 4", "+");
+            Console.WriteLine("The sum is {0}", s);
+        }
+    }
+and the F# side
+
+    namespace Calculator
+    module Calc =
+
+        open System
+        let add numbers delimiter =    
+            // Do stuff to add numbers            
+
+
+
+---
+
+#### F# consuming C# code
+
+    module MathTest =
+
+    open NUnit.Framework
+
+    let [<Test>] ``2 + 2 should equal 4``() =
+        Assert.AreEqual(2 + 2, 4)
+
+
 
 ---
 ***
+
 ### REPL
 
 #### Now: exploration
@@ -224,6 +284,7 @@ or
 ***
 #### Fake
 
+* Use from any .net language
 * It's mature.
 * Builds for .net and mono, it's cross platform. 
 * No need to know F# to use it.
@@ -258,12 +319,15 @@ or
 ##Compiler.Services
     
 ---
-## 
+## Duality.Scripting
 
 * File watcher
 * Code in any editor :)
 * Compiler Services call to fsc
 * Future -> live coding
+
+
+[repo](https://github.com/BraveSirAndrew/DualityScripting)
 
 ---
 
@@ -272,58 +336,13 @@ or
 
 ***
 
-#### Interop
-
----
-
-#### C# consuming F# code
-
-Use namespaces in F# or prefix with global::YourModuleName
-
-    [lang=cs]
-    using System;
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            var s = Calculator.Calc.add("4 4", "+");
-            Console.WriteLine("The sum is {0}", s);
-        }
-    }
-and the F# side
-
-    namespace Calculator
-    module Calc =
-
-        open System
-        let add numbers delimiter =    
-            // Do stuff to add numbers            
-
-
-
----
-
-#### F# consuming C# code
-
-    module MathTest =
-
-    open NUnit.Framework
-
-    let [<Test>] ``2 + 2 should equal 4``() =
-        Assert.AreEqual(2 + 2, 4)
-
-
-
----
-***
-
-
-**Like games?** Dublin GameCraft on the 6th of December @ Microsoft
-
-F# and games workshop from 10am to noon.
-
-<img src="images/gamecraft-logo.png" alt="GC" style="width: 200px;"/>
-
+## Resources
+* [Fsharp.org](http://Fsharp.org)
+* Fsharp Koans
+* [Tryfsharp.org](http://Tryfsharp.org)
+* F# for fun and profit
+* Community for F# c4f# 
+* Progressive F# tutorials and F# Exchange (17th April - London)
 
 **Functional Kats** Monthly meetup 
 ![FK](images/fk.jpeg)  
@@ -338,4 +357,15 @@ F# and games workshop from 10am to noon.
 - @SilverSpoon 
 - [roundcrisis.com](roundcrisis.com)
 
-</div>
+
+
+***
+### Links
+
+* [Pipe and function composition](http://theburningmonk.com/2011/09/fsharp-pipe-forward-and-pipe-backward/)
+* [Why F#](http://fsharpforfunandprofit.com/why-use-fsharp/)
+* [Why F# and FP in general](http://www.roundcrisis.com/2014/05/10/why-fsharp/)
+* [F# Pattern matching for beginners](http://hestia.typepad.com/flatlander/2010/07/f-pattern-matching-for-beginners-part-6-active-patterns.html)
+* [F# Component design](http://fsharp.org/specs/component-design-guidelines/fsharp-design-guidelines-v14.pdf)
+* [Duality Scripting](http://www.roundcrisis.com/2014/04/21/Fsharp-scripting-for-the-game-engine/) 
+

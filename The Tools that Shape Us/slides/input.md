@@ -9,7 +9,7 @@
 
 ## The tools that shape us
 
-### Andrea Magnorsky @ dev@Lodz 
+### Andrea Magnorsky @ λ Days 
 
 Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 
@@ -231,14 +231,7 @@ and the F# side
 
 * FsCheck
 * Fake
-* Compiler Services
-
----
-
-### Future
-
-* Ferop 
-* Paket           
+* Compiler Services  
 
 ---
 ***
@@ -290,7 +283,7 @@ or
 
 ---
 ***
-### Fake
+### Fake : F# Make
 
 * Use from any .net language
 * It's mature.
@@ -323,6 +316,8 @@ or
 ***
 
 ## Compiler.Services
+
+Use compiler service to compile a file into an assembly that is inmediately consumed by the game engine Duality. 
     
 ---
 ## Duality.Scripting

@@ -1,15 +1,5 @@
-Version 1
 
-
-## Practical Mon...keys: computational expression, monoids, monads and why you should care.
-
-You heard it before and you will hear it again, a Monad is a monoid in the category of endofunctors, we all laugh, except that some of us laugh more nervously than others :D.  So, actually What is a monoid and what are they good for? How about Monads? they are supposed to be good for error checking and turning apples into bananas. If this sounds confusing then maybe this talk is for you, if you laughed then maybe this talk is Just for you :D 
-In this talk we well go over examples of problems and how these functional programming constructs help solving them and then generalizing
-
-
-Version 2
-
-## 
+#Computation expression in context : a history of the otter king
 
 
 I heard that computation expressions are kind of like monads, I heard that monads are like burritos or space suits and that they are pretty much magical, I also heard that they are monoids in the category of endofunctors... 
@@ -31,8 +21,6 @@ getChildren -> string -> gameObject list
 Disclaimer : some of the content of this talk is incorrect and some pictures I show have absolutely nothing to do with what I will be talking about
 so ask questions if confused ;).
 
-
-
 I started of doing what I assume most of us do when I heard first about monads, I went and search and learned absolutely nothing about it in the hour or so I spent reading about it. I do remember tho that this person, Philip Wadler 
 
 ![wadler](https://dreamsongs.com/OOPSLA2007/Photos/Impressions%20Pix/wadler.gif)
@@ -50,9 +38,21 @@ So I read more things and still I knew I didn't get it, but the good news is tha
 
 In reality the thing that truly helped me understand monads was to start by trying to understand what is monoid and why you should care.
 
-lets say you have a pair of vectors that represents a position and an operation *move* that takes 
+lets say you want to add two colours, lets say those are RGBA ...
 
-let 
+```Fhsarp
+
+    let intMax : Monoid<int> = 
+        {
+            neutral = Int32.MinValue
+            op = (max)
+        }
+
+    type T = int
+    let M = intMax
+    let Z = M.neutral
+    let (++) = M.op
+```
 
 I have to admit that here I took a detour and went to the amazing F# for fun and profit and the [series on Monoids][3] as well as Carsten Koning recent posts on understanding monoids [1][http://gettingsharper.de/2015/03/03/understanding-monoids-using-f/] and [2][http://gettingsharper.de/2015/03/04/more-on-monoids-in-f-exploiting-static-constraints/] 
 

@@ -40,7 +40,7 @@ In reality the thing that truly helped me understand monads was to start by tryi
 
 lets say you want to add two colours, lets say those are RGBA ...
 
-```Fhsarp
+```FSharp
 
     let intMax : Monoid<int> = 
         {

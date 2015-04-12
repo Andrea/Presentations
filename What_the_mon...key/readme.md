@@ -24,7 +24,7 @@ so ask questions if confused ;).
 I started of doing what I assume most of us do when I heard first about monads, I went and read a couple of posts and learned absolutely nothing about it. 
 Interestingly, the first person to describe monads was Eugenio Moggi, he published a  paper called ["Notions of computation and monads"](http://www.disi.unige.it/person/MoggiE/ftp/ic91.pdf) this paper is maths heavy tho I am sure some of you will be interested in looking at this.
 
-![Moggi](https://upload.wikimedia.org/wikipedia/commons/8/8e/Eugenio_Moggi.jpg) 
+![Moggi](http://upload.wikimedia.org/wikipedia/commons/8/8e/Eugenio_Moggi.jpg) 
 
 I do remember tho that this other person, Philip Wadler
 

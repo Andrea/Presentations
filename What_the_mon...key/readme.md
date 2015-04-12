@@ -24,16 +24,17 @@ so ask questions if confused ;).
 I started of doing what I assume most of us do when I heard first about monads, I went and read a couple of posts and learned absolutely nothing about it. 
 Interestingly, the first person to describe monads was Eugenio Moggi, he published a  paper called ["Notions of computation and monads"](http://www.disi.unige.it/person/MoggiE/ftp/ic91.pdf) this paper is maths heavy tho I am sure some of you will be interested in looking at this.
 
+![Moggi](https://upload.wikimedia.org/wikipedia/commons/8/8e/Eugenio_Moggi.jpg) 
+
 I do remember tho that this other person, Philip Wadler
 
 ![wadler](https://dreamsongs.com/OOPSLA2007/Photos/Impressions%20Pix/wadler.gif)
-`source : https://dreamsongs.com/OOPSLA2007/Impressions.html
+'source : https://dreamsongs.com/OOPSLA2007/Impressions.html
 
 there was an interesting common pattern, he looked at error handling, state (in a pure language) and generating output and he made a link between that common pattern and category theory.. and he kept working at it and realized a bunch of other things, like for example that there are these three rules that this patter have in common...
 
 
 
-![Moggi](http://en.wikipedia.org/wiki/Eugenio_Moggi#/media/File:Eugenio_Moggi.jpg)
 
 So I read more things and still I knew I didn't get it, but the good news is that Haskell syntax did look less daunting and *bind* and *return* were things that needed to be there for monads to be a thing, or was it, this familiarity helped a bit when I returned to the papers [Comprehending Monads][1] and [Monads for functional programming][2] the funny thing is that I was looking forward to understand monads, surely it feels like this
 

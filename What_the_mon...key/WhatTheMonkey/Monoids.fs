@@ -1,37 +1,12 @@
 ﻿namespace MonoidsExamples
 
-
 type Monoid<'a> = 
     {
         neutral : 'a
         op      : 'a -> 'a -> 'a
     }
 
-module ``intMax with check``=
-
-    open FsCheck.NUnit
-    open System
-        
-    let intMax : Monoid<int> = 
-        {
-            neutral = Int32.MinValue
-            op = (max)
-        }
-
-    type T = int
-    let M = intMax
-    let Z = M.neutral
-    let (++) = M.op
-
-    [<Property>]
-    let `` Z is the neutral element``(v:T) =
-        Z ++ v = v && v ++ Z = v
-
-    [<Property>]
-    let ``The operation is commutative``(a:T, b:T, c:T)=
-        a ++( b ++ c) = (a ++ b ++ c)
-
-module ``colour adding with check``=
+module ``Colour adding with check``=
 
     open FsCheck.NUnit
     open System
@@ -80,3 +55,28 @@ module ``colour adding with check``=
     let ``The operation is commutative``(a:T, b:T, c:T)=
         a ++( b ++ c) = (a ++ b ++ c)
 
+
+
+module ``intMax with check``=
+
+    open FsCheck.NUnit
+    open System
+        
+    let intMax : Monoid<int> = 
+        {
+            neutral = Int32.MinValue
+            op = (max)
+        }
+
+    type T = int
+    let M = intMax
+    let Z = M.neutral
+    let (++) = M.op
+
+    [<Property>]
+    let `` Z is the neutral element``(v:T) =
+        Z ++ v = v && v ++ Z = v
+
+    [<Property>]
+    let ``The operation is commutative``(a:T, b:T, c:T)=
+        a ++( b ++ c) = (a ++ b ++ c)

@@ -5,21 +5,11 @@
 I heard that computation expressions are kind of like monads, I heard that monads are like burritos or space suits and that they are pretty much magical, I also heard that they are monoids in the category of endofunctors... 
 As a writer of code that all sounds awesome, and I (and I am sure you too) want to know and understand what those terms actually mean, and most importantly why we should care about them, What are their practical uses?. So, in this talk we are going to attempt to do just that. Failure is possible but the attempt is valuable. It's a lot to chew so make sure you had your tea/coffee.
 
-
------------------
-
-A problem
-
-gameObject 
-
-getChildren -> string -> gameObject list
-
-
-
------------
-
-Disclaimer : some of the content of this talk is incorrect and some pictures I show have absolutely nothing to do with what I will be talking about
+------------
+Disclaimer : Some of the content of this talk is incorrect and some pictures I show here have absolutely nothing to do with what I will be talking about
 so ask questions if confused ;).
+------------
+
 
 I started of doing what I assume most of us do when I heard first about monads, I went and read a couple of posts and learned absolutely nothing about it. 
 Interestingly, the first person to describe monads was Eugenio Moggi, he published a  paper called ["Notions of computation and monads"](http://www.disi.unige.it/person/MoggiE/ftp/ic91.pdf) this paper is maths heavy tho I am sure some of you will be interested in looking at this.
@@ -29,19 +19,27 @@ Interestingly, the first person to describe monads was Eugenio Moggi, he publish
 I do remember tho that this other person, Philip Wadler
 
 ![wadler](https://dreamsongs.com/OOPSLA2007/Photos/Impressions%20Pix/wadler.gif)
-'source : https://dreamsongs.com/OOPSLA2007/Impressions.html
+`source : https://dreamsongs.com/OOPSLA2007/Impressions.html
 
-there was an interesting common pattern, he looked at error handling, state (in a pure language) and generating output and he made a link between that common pattern and category theory.. and he kept working at it and realized a bunch of other things, like for example that there are these three rules that this patter have in common...
+Some  maybe-not-useful-right-away things about monads
+
+* There is a strong link between monads and category theory
+* Monads have 3 monadic laws that every monad must satisfy
 
 
+So I read more things and still I knew I didn't get it, but the good news is that Haskell syntax did look less daunting and *bind* and *return* were things that needed to be there for monads to be a thing, or was it, this familiarity helped a bit when I returned to the papers [Comprehending Monads][1] and [Monads for functional programming][2] 
 
+As I was waiting for the aha moment to come to me, I imagined understanding monads would feel like being there to see this
 
-So I read more things and still I knew I didn't get it, but the good news is that Haskell syntax did look less daunting and *bind* and *return* were things that needed to be there for monads to be a thing, or was it, this familiarity helped a bit when I returned to the papers [Comprehending Monads][1] and [Monads for functional programming][2] the funny thing is that I was looking forward to understand monads, surely it feels like this
 
 ![yes](http://i.imgur.com/rGkpZ5U.jpg)
 ![yes](http://i.imgur.com/HhEDPde.jpg)
 
-![super-squirrel](http://data1.blog.de/blog/c/cheer-up/img/Super-Squirrel_01.jpg)
+or to be like this:
+
+![super-otter](http://fc03.deviantart.net/fs71/i/2010/183/5/e/Super_Otter_by_LordFirekaze.jpg)
+
+however it was a little different... 
 
 ### Monoids
 

@@ -6,19 +6,17 @@ type Monoid<'a> =
         op      : 'a -> 'a -> 'a
     }
 
-module Examples = 
+module ``Check monoid axioms for list``=
     let listM<'l> : Monoid<List<'l>> = 
         {
             neutral = []
             op      = fun a b -> a @ b
         }
 
-module ``Check monoid axioms``=
-
     open FsCheck.NUnit
 
     type T = List<int>
-    let M = Examples.listM<int>
+    let M = listM<int>
     let Z = M.neutral
     let (++) = M.op
 
@@ -30,30 +28,17 @@ module ``Check monoid axioms``=
     let ``The operation is commutative``(a:T, b:T, c:T)=
         a ++( b ++ c) = (a ++ b ++ c)
 
-module  ``check proof`` =
-    
-    let rec concat (ls : 'a list)(ls' : 'a list) =
-        match ls with
-        | [] -> ls'
-        | (l::ls) -> l :: concat ls ls'
-module ``more proofs`` =
-    let intPlus : Monoid<int> = 
-        {
-            neutral = 0
-            op = (+)
-        }
+module  ``Check monoid axioms for  int multiplication`` =
 
     let intMult : Monoid<int> = 
         {
             neutral = 1
             op = (*)
         }
-module `` check int mult `` =
-
     open FsCheck.NUnit
 
     type T = int
-    let M = ``more proofs``.intMult
+    let M = intMult
     let Z = M.neutral
     let (++) = M.op
 
@@ -65,12 +50,18 @@ module `` check int mult `` =
     let ``The operation is commutative``(a:T, b:T, c:T)=
         a ++( b ++ c) = (a ++ b ++ c)
 
-module `` check int plus `` =
+module `` Check monoid axioms for  int addition `` =
 
     open FsCheck.NUnit
 
+    let intPlus : Monoid<int> = 
+        {
+            neutral = 0
+            op = (+)
+        }
+
     type T = int
-    let M = ``more proofs``.intPlus
+    let M = intPlus
     let Z = M.neutral
     let (++) = M.op
 
@@ -82,7 +73,7 @@ module `` check int plus `` =
     let ``The operation is commutative``(a:T, b:T, c:T)=
         a ++( b ++ c) = (a ++ b ++ c)
 
-module ``bool proofs`` =
+module ``Check monoid axioms for  bool`` =
     let binCon : Monoid<bool> =
         {
             neutral = true
@@ -101,6 +92,8 @@ module ``functions``=
             op = (>>)
         }
 
+        //uh oh!! :D
+
 module ``stringys``=
     let stringies : Monoid<string> =
         {
@@ -108,7 +101,7 @@ module ``stringys``=
             op = (+)
         }
 
-module `` string is a monoid `` =
+module ``String is a monoid   or is it? `` =
 
     open FsCheck.NUnit
     open FsCheck

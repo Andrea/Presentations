@@ -54,6 +54,7 @@
     <Compile Include="Monoids.fs" />
     <Compile Include="Monad.fs" />
     <Compile Include="FsCheckAddin.fs" />
+    <Compile Include="ComputationExpression.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsCheck">

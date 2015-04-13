@@ -59,6 +59,13 @@ module ``colour adding with check``=
             neutral = neutral
             op = (add)
         }
+    let c1 = {neutral with g=254uy}
+    let c2 = {neutral with r=254uy}
+    let (+++) = add
+    let x = c1 +++ c2 +++ {c2 with a=254uy}
+    let l = [c1; c2 ; neutral]
+            |> List.reduce (+++)
+
 
     type T = Colour
     let M = colourAdd

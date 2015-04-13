@@ -43,22 +43,16 @@ module ``colour adding with check``=
             b: byte
             a: byte                            
         } 
-    let neutral = 
-        { 
-            r = 0uy
-            g = 0uy
-            b = 0uy
-            a = 0uy
+    let neutral = { r = 0uy; g = 0uy;b = 0uy;a = 0uy}
+    
+    let add (c:Colour) (c1:Colour): Colour =        
+        {
+            r = c.r + c1.r
+            g = c.g + c1.g
+            b = c.b + c1.b
+            a = c.a + c1.a
         }
-    let add (c:Colour) (c1:Colour): Colour =
-        let r = 
-            {
-                r = c.r + c1.r
-                g = c.g + c1.g
-                b = c.b + c1.b
-                a = c.a + c1.a
-            }
-        r
+        
 
     let colourAdd : Monoid<Colour> = 
         {

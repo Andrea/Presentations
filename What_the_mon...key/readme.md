@@ -96,36 +96,72 @@ closure is super useful because you can chain together multiple objects using th
 identity means you can re
 
 
-> I have to admit that here I took a detour and went to the amazing F# for fun and profit and the [series on Monoids][3] as well as Carsten Koning recent > posts on understanding monoids [1][http://gettingsharper.de/2015/03/03/understanding-monoids-using-f/] and [2][http://gettingsharper.de/2015/03/04/more-on-monoids-in-f-exploiting-static-constraints/] 
+> I have to admit that here I took a detour and went to the amazing F# for fun and profit and the [series on Monoids][3] as well as Carsten Koning recent > posts on understanding monoids [1](http://gettingsharper.de/2015/03/03/understanding-monoids-using-f/) and [2](http://gettingsharper.de/2015/03/04/more-on-monoids-in-f-exploiting-static-constraints/)
 
 
-#### Why this concept 
+#### Why ??
 
-This is a typical example of a concept that is general, very useful and just has terrible marketing :D, monoid can be quite a scary name for trying to work 
+This is a typical example of a concept that is general, very useful and just has terrible marketing :D?, the name monoid can be quite  scary  for something simple to think about but hard to express.
 
-
+So why are these concepts important, what do they give you?
 
 Because of closures-> We can convert pairwise operations into operations that work on collections
-Because of associativity ->  Divide and conquer algorithms
+Because of associativity -> We can implement divide and conquer algorithms that are great for
                               Parallelization
                               Incrementalism
-Because of identity -> you can actually perform certain of the above
+Because of identity -> we can actually perform certain of the above
 
-If you have ever done map reduce, then this should make a lot of sense :) 
+If you have ever done map reduce, then this should feel pretty familiar
+
+Lets see this code again 
 
 
+```FSharp
+
+type Monoid<'a> = 
+    {
+        neutral : 'a
+        op      : 'a -> 'a -> 'a
+    }
+
+        
+    let intMax : Monoid<int> = 
+        {
+            neutral = Int32.MinValue
+            op = (max)
+        }
+
+    type T = int
+    let M = intMax
+    let Z = M.neutral
+    let (++) = M.op
+
+    [<Property>]
+    let `` Z is the neutral element``(v:T) =
+        Z ++ v = v && v ++ Z = v
+
+    [<Property>]
+    let ``The operation is commutative``(a:T, b:T, c:T)=
+        a ++( b ++ c) = (a ++ b ++ c)
+
+```
+With just that you can define a monoid type, create an implementation and have a bunch of properties that prove that the implementation is actually a monoid. 
+
+![fixer](https://cuteoverload.files.wordpress.com/2014/09/yqd337k.jpg?w=720&h=479)
 
 ### Monads
 
+I would love to explain the concept of monads without talking about 
 
-No need for types
-No need to understand category theory 
+* types
+* category theory 
 
+however, I am going to go half way there 
 
 
 ### Computation expressions or workflows
 
-Computation expressions have been available in F# since 2007 and they are fully documented in the [F# language specification][]
+Computation expressions have been available in F# since 2007 and they are fully documented in the [F# language specification][4]
 
 ![win](http://fc09.deviantart.net/fs71/i/2010/082/f/8/King_Otter_by_Pee_reviver.jpg)
 
@@ -136,13 +172,15 @@ Computation expressions have been available in F# since 2007 and they are fully 
 * [Beyond Foundations of F# - Workflows](http://www.infoq.com/articles/pickering-fsharp-workflow)
 * [Monads, Arrows and idioms](http://homepages.inf.ed.ac.uk/wadler/topics/monads.html) there is a bunch of papers here.
 * [Why a monad is like a writing desk](http://www.infoq.com/presentations/Why-is-a-Monad-Like-a-Writing-Desk) Video 
-* [Understanding Monoids][3] F# for fun and profit 
+* [Understanding Monoids][3] F# for fun and profit series on monoids
 * [Syntax Matters: Writing abstract computations in F#](http://tomasp.net/academic/papers/computation-zoo/syntax-matters.pdf) paper by Tomas Petricek and Don Syme about computation expression
 * [Monads explained from a maths point of view](https://www.youtube.com/watch?v=9fohXBj2UEI) Video
 * [Comprehending Monads][1] P.Wadler paper
 * [Monads for functional programming][2]P.Wadler paper
+* [F# language specification][4]
 
 
 [1]:(http://ncatlab.org/nlab/files/WadlerMonads.pdf)
 [2]:(http://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf)
 [3]:(http://fsharpforfunandprofit.com/posts/monoids-without-tears/#series-toc)
+[4]:http://fsharp.org/specs/language-spec/

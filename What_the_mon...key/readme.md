@@ -6,8 +6,10 @@ I heard that computation expressions are kind of like monads, I heard that monad
 As a writer of code that all sounds awesome, and I (and I am sure you too) want to know and understand what those terms actually mean, and most importantly why we should care about them, What are their practical uses?. So, in this talk we are going to attempt to do just that. Failure is possible but the attempt is valuable. It's a lot to chew so make sure you had your tea/coffee.
 
 ------------
+
 Disclaimer : Some of the content of this talk is incorrect and some pictures I show here have absolutely nothing to do with what I will be talking about
 so ask questions if confused ;).
+
 ------------
 
 
@@ -16,7 +18,7 @@ Interestingly, the first person to describe monads was Eugenio Moggi, he publish
 
 ![Moggi](http://upload.wikimedia.org/wikipedia/commons/8/8e/Eugenio_Moggi.jpg) 
 
-I do remember tho that this other person, Philip Wadler
+I do remember tho that this other person, Philip Wadler, who made monads popular(?) widely known
 
 ![wadler](https://dreamsongs.com/OOPSLA2007/Photos/Impressions%20Pix/wadler.gif)
 `source : https://dreamsongs.com/OOPSLA2007/Impressions.html
@@ -39,7 +41,6 @@ or to be like this:
 
 ![super-otter](http://fc03.deviantart.net/fs71/i/2010/183/5/e/Super_Otter_by_LordFirekaze.jpg)
 
-however it was a little different... 
 
 ### Monoids
 
@@ -166,6 +167,7 @@ Computation expressions have been available in F# since 2007 and they are fully 
 ### Resources list
 
 * [Abstraction, intuition, and the “monad tutorial fallacy”](https://byorgey.wordpress.com/2009/01/12/abstraction-intuition-and-the-monad-tutorial-fallacy/)
+* [The "What are monads?" fallacy](http://two-wrongs.com/the-what-are-monads-fallacy)
 * [Some Details on F# Computation Expressions](http://blogs.msdn.com/b/dsyme/archive/2007/09/22/some-details-on-f-computation-expressions-aka-monadic-or-workflow-syntax.aspx)
 * [Beyond Foundations of F# - Workflows](http://www.infoq.com/articles/pickering-fsharp-workflow)
 * [Monads, Arrows and idioms](http://homepages.inf.ed.ac.uk/wadler/topics/monads.html) there is a bunch of papers here.
@@ -176,6 +178,8 @@ Computation expressions have been available in F# since 2007 and they are fully 
 * [Comprehending Monads][1] P.Wadler paper
 * [Monads for functional programming][2]P.Wadler paper
 * [F# language specification][4]
+* [Try Joinads F# research extension for concurrent, parallel and asynchronous programming.](http://tryjoinads.org/index.html?computations/home.html)
+
 
 
 [1]:(http://ncatlab.org/nlab/files/WadlerMonads.pdf)

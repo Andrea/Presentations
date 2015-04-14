@@ -1,6 +1,47 @@
 ﻿namespace WhatTheMonkey
 
-module MonadSamples =
+module DivideTowerResistance =
+    let random = new System.Random()    
+    let division a b c d=
+        match b with
+        | 0 -> None
+        | _ -> match c with
+               | 0 -> None
+               | _ -> match d with
+                      | 0 -> None
+                      | _ -> Some (((a/b)/c)/d)
+
+    let divide a b =
+        match b with
+        | 0 -> None
+        | _ -> Some (a/b )
+    
+    type MaybeBuilder() =
+        member __.Bind(value, func) =
+            match value with
+            | Some value -> func value
+            | None -> None
+        member __.Return value = Some value
+        member this.ReturnFrom value = this.Bind(value, this.Return)
+
+    let maybe  = MaybeBuilder()
+
+    let divideM a b c d=
+        maybe{
+            let! x = divide a b
+            let! y = divide x c
+            let! z = divide y d
+            return z
+        }
+
+    let sumSpecial a b = 
+        match random.Next 10 with
+        | z when z > 5 -> None
+        | _ -> Some a + b 
+
+   
+
+module CalculateResistance =
 
     type Result = Success of float | DivByZero
 
@@ -27,16 +68,9 @@ module MonadSamples =
                 }
 module GameObjectChildren =
 
-    type GameObject = string
-    type Result2 = Success of GameObject | NullValue
+    
+    
 
-    type MaybeBuilder() =
-        member __.Bind(value, func) =
-            match value with
-            | Some value -> func value
-            | None -> None
-        member __.Return value = Some value
-        member this.ReturnFrom value = this.Bind(value, this.Return)
 
-    let maybe = MaybeBuilder()
 
+    

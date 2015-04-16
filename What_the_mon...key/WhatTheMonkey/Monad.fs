@@ -1,76 +1,126 @@
 ﻿namespace WhatTheMonkey
-
-module DivideTowerResistance =
-    let random = new System.Random()    
-    let division a b c d=
-        match b with
-        | 0 -> None
-        | _ -> match c with
-               | 0 -> None
-               | _ -> match d with
-                      | 0 -> None
-                      | _ -> Some (((a/b)/c)/d)
-
-    let divide a b =
-        match b with
-        | 0 -> None
-        | _ -> Some (a/b )
     
-    type MaybeBuilder() =
-        member __.Bind(value, func) =
+type MaybeBuilder() = 
+        
+        member __.Bind(value, func) = 
             match value with
             | Some value -> func value
             | None -> None
+        
         member __.Return value = Some value
         member this.ReturnFrom value = this.Bind(value, this.Return)
+    
 
-    let maybe  = MaybeBuilder()
+module DivideTowerResistance = 
+    let random = new System.Random()
+    
+    let division a b c d = 
+        match b with
+        | 0 -> None
+        | _ -> 
+            match c with
+            | 0 -> None
+            | _ -> 
+                match d with
+                | 0 -> None
+                | _ -> Some(((a / b) / c) / d)
+    
+    let divide a b = 
+        match b with
+        | 0 -> None
+        | _ -> Some(a / b)
+    let maybe = MaybeBuilder()
 
-    let divideM a b c d=
-        maybe{
-            let! x = divide a b
-            let! y = divide x c
-            let! z = divide y d
-            return z
-        }
-
+    let divisionM a b c d = maybe { let! x = divide a b
+                                    let! y = divide x c
+                                    let! z = divide y d
+                                    return z }
+    
     let sumSpecial a b = 
         match random.Next 10 with
         | z when z > 5 -> None
-        | _ -> Some a + b 
+        | _ -> Some a + b
 
-   
-
-module CalculateResistance =
-
-    type Result = Success of float | DivByZero
-
+module CalculateResistance = 
+    type Result = 
+        | Success of float
+        | DivByZero
+    
     let divide x y = 
         match y with
         | 0.0 -> DivByZero
-        | _ -> Success (x/y)
-
-    type DefineBuilder () = 
-        member this.Bind(x:Result, rest:(float -> Result)) =
+        | _ -> Success(x / y)
+    
+    type DefineBuilder() = 
+        
+        member this.Bind(x : Result, rest : float -> Result) = 
             match x with
             | Success(x) -> rest x
             | DivByZero -> DivByZero
-        member this.Return (x:'a) = x
-
+        
+        member this.Return(x : 'a) = x
+    
     let definer = DefineBuilder()
+    let totalResistance r1 r2 r3 = definer { let! x = divide 1.0 r1
+                                             let! y = divide 1.0 r2
+                                             let! z = divide 1.0 r3
+                                             return divide 1.0 (x + y + z) }
 
-    let totalResistance r1 r2 r3 =
-        definer {
-                    let! x = divide 1.0 r1
-                    let! y = divide 1.0 r2
-                    let! z = divide 1.0 r3
-                    return divide 1.0 (x+y+z)
-                }
-module GameObjectChildren =
-
+module InventoryExample = 
+    open System.Collections.Generic
     
+    type ProductId = string    
+    type Price = float
     
+    type Inventory() = 
+        let inv = new Dictionary<ProductId, Price>()
+        member this.Stock (id : ProductId) (price : Price) = inv.Add(id, price)
+        member this.Price(id : ProductId) = 
+            try 
+                Some(inv.[id])
+            with :? KeyNotFoundException -> None
 
+    let maybe = MaybeBuilder()
 
-
+    let (|@|) p1 p2 = maybe { 
+        let! v1 = p1
+        let! v2 = p2
+        return! Some(v1 + v2) }
     
+    let reporter priceSum  = 
+        match priceSum with
+        | Some(p) -> printfn "Total price: %g." p
+        | None -> printfn "One or more id not found."    
+    
+    let inventory = new Inventory()
+    
+    inventory.Stock "MyWidget" 10.3
+    inventory.Stock "Gizmos" 4.34
+    inventory.Stock "Foo1000" 8.12
+
+    //Sum prices
+    inventory.Price("MyWidget") |@| inventory.Price("Gizmos") |> reporter
+    
+    //A further step, price sum pipelining
+    inventory.Price("MyWidget")
+    |> (|@|) (inventory.Price("Gizmos"))
+    |> (|@|) (inventory.Price("Foo1000"))
+    |> reporter
+    
+    //A failing computation
+    inventory.Price("MyWidget")
+    |> (|@|) (inventory.Price("Gizmos"))
+    |> (|@|) (inventory.Price("DoesNotExist"))
+    |> reporter    
+    
+    let sumAndReport (inventory : Inventory) ids = 
+        let basket = List.map (fun pid -> inventory.Price(pid)) ids
+        List.reduce (fun p1 p2 -> p1 |@| p2) basket |> reporter
+
+// Example from https://alfredodinapoli.wordpress.com/2012/04/02/humbly-simple-f-maybe-monad-application-scenario/
+// but using local Maybe definition 
+
+
+
+module EitherExamples = 
+

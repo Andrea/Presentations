@@ -11,7 +11,7 @@ type MaybeBuilder() =
         member this.ReturnFrom value = this.Bind(value, this.Return)
     
 
-module DivideTowerResistance = 
+module ``divide `` = 
     let random = new System.Random()
     
     let division a b c d = 
@@ -36,10 +36,7 @@ module DivideTowerResistance =
                                     let! z = divide y d
                                     return z }
     
-    let sumSpecial a b = 
-        match random.Next 10 with
-        | z when z > 5 -> None
-        | _ -> Some a + b
+
 
 module CalculateResistance = 
     type Result = 
@@ -65,6 +62,8 @@ module CalculateResistance =
                                              let! y = divide 1.0 r2
                                              let! z = divide 1.0 r3
                                              return divide 1.0 (x + y + z) }
+
+// Example from Programming F# 3    
 
 module InventoryExample = 
     open System.Collections.Generic

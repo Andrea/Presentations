@@ -66,7 +66,7 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 
 ---
 
-Some not-useful-right-away info
+Some ``not-useful-right-away`` info
 
 * There is a strong link between monads and category theory 
 * Monads have 3 monadic laws that every monad must satisfy: 
@@ -151,6 +151,24 @@ Some not-useful-right-away info
 
 ---
 
+Oh, yes and you can property check that your type is a monoid!!
+
+
+    type T = Colour
+
+    let M = colourAdd
+    let Z = M.neutral
+    let (++) = M.op
+
+    [<Property>]
+    let `` Z is the neutral element`` (v : T) = 
+        Z ++ v = v && v ++ Z = v
+
+    [<Property>]
+    let ``The operation is commutative`` (a : T, b : T, c : T) = 
+        a ++ (b ++ c) = (a ++ b ++ c)
+
+---
 Enjoy my favourite picture (of myself)
 
 ![fixer](https://cuteoverload.files.wordpress.com/2014/09/yqd337k.jpg?w=720&h=479)
@@ -230,19 +248,72 @@ The king will help...
             return z
         }
 
-' So what is happening here 
+' what is happening here ?
 ' Monads apply a function that returns a wrapped value to a wrapped value. Monads have a function >>= (pronounced “bind”) to do this.
----
-
-How about another one?
 
 ---
 
+How about another example ?
+
+EITHER 
+
+---
+
+oh, oh! and you can also property check a monad (tho a little harder to read than the monoids)
+
+open FsCheck
+open FsCheck.NUnit
+
+[<Test>]
+let ``monad laws``() =
+    let ret (x: int) = choose.Return x
+    let n = sprintf "Choice : monad %s"
+    let inline (>>=) m f = choose.Bind(m,f)
+    fsCheck "left identity" <| 
+        fun f a -> ret a >>= f = f a
+    fsCheck "right identity" <| 
+        fun x -> x >>= ret = x
+    fsCheck "associativity" <| 
+        fun f g v ->
+            let a = (v >>= f) >>= g
+            let b = v >>= (fun x -> f x >>= g)
+            a = b
+
+
+
+---
+
+# Why learn this?
+
+' Because understanding the abstraction and having a common language is worth it
 
 
 ***
 
 ## Computation Expressions
+
+> Most monads are computation expressions, not all computation expressions are monads
+
+
+' you can do more with them 
+' Computation expressions reuse the normal syntax of the F# language, so you can write code 
+' using standard constructs like let, for and try .. with, but with a ' different semantics,
+' functors (using a research extension), monoids, additive monads, computations constructed using monad transformers and more.
+' limitations : cant write code that is polimorphic over the type of the computation  (can be done but not idiomatic)
+' In Haskell, they are fundamental part of the language and you need them all the time. In F#, they are only used when you actually want to write some concrete 
+' computation with non-standard behaviour. 
+' syntax matters
+
+---
+ 
+### Computation expressions or workflows
+
+Computation expressions have been available in F# since 2007 and they are fully documented in the [F# language specification][4]
+
+---
+
+![win](images/otter_king.jog.jpg)
+
 
 ***
 

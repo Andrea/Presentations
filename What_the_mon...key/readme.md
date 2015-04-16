@@ -8,7 +8,7 @@ As a writer of code that all sounds awesome, and I (and I am sure you too) want 
 ------------
 
 Disclaimer : Some of the content of this talk is incorrect and some pictures I show here have absolutely nothing to do with what I will be talking about
-so ask questions if confused ;).
+so ask questions if confused ;)... it might still make no sense
 
 ------------
 
@@ -21,7 +21,7 @@ Interestingly, the first person to describe monads was Eugenio Moggi, he publish
 I do remember tho that this other person, Philip Wadler, who made monads popular(?) widely known
 
 ![wadler](https://dreamsongs.com/OOPSLA2007/Photos/Impressions%20Pix/wadler.gif)
-`source : https://dreamsongs.com/OOPSLA2007/Impressions.html
+>source : https://dreamsongs.com/OOPSLA2007/Impressions.html
 
 Some  maybe-not-useful-right-away things about monads
 
@@ -41,10 +41,11 @@ or to be like this:
 
 ![super-otter](http://fc03.deviantart.net/fs71/i/2010/183/5/e/Super_Otter_by_LordFirekaze.jpg)
 
+Truth is, you probably wont leave here with understanding but I do want to give you an idea of how these concepts work together.
 
 ### Monoids
 
-In reality the thing that truly helped me understand monads was to start by trying to understand what is monoid and how they can help in your programming life.
+In reality the thing that truly helped me begin to understand monads was to start by trying to understand monoids and how they can help in your programming life.
 
 ![scared-otter](http://wereblog.com/wp-content/uploads/2014/06/otter.png)
 
@@ -162,7 +163,7 @@ however, I am going to go half way there
 
 Computation expressions have been available in F# since 2007 and they are fully documented in the [F# language specification][4]
 
-![win](http://fc09.deviantart.net/fs71/i/2010/082/f/8/King_Otter_by_Pee_reviver.jpg)
+![win](images/otter_king.jpg)
 
 ### Resources list
 

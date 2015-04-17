@@ -120,6 +120,3 @@ module InventoryExample =
 // but using local Maybe definition 
 
 
-
-module EitherExamples = 
-

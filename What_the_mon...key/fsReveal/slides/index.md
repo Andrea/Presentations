@@ -74,6 +74,12 @@ Some ``not-useful-right-away`` info
         - Right identity and 
         - Associativity
 
+---
+
+## Monads eh? talk to the otter king
+
+![meh](images/otter_notimpressed.jpg)
+
 
 ***
 
@@ -153,7 +159,6 @@ Some ``not-useful-right-away`` info
 
 Oh, yes and you can property check that your type is a monoid!!
 
-
     type T = Colour
 
     let M = colourAdd
@@ -168,10 +173,11 @@ Oh, yes and you can property check that your type is a monoid!!
     let ``The operation is commutative`` (a : T, b : T, c : T) = 
         a ++ (b ++ c) = (a ++ b ++ c)
 
+
 ---
 Enjoy my favourite picture (of myself)
 
-![fixer](https://cuteoverload.files.wordpress.com/2014/09/yqd337k.jpg?w=720&h=479)
+![fixer](images/otter_fixer.jpg)
 
 The king will help...
 
@@ -192,7 +198,7 @@ The king will help...
 
 ' It all seemed pretty strange to me and I wound up understanding less and less
 
-![scared-otter](http://wereblog.com/wp-content/uploads/2014/06/otter.png)
+![scared-otter](images\otter_surprised.png)
 
 
 ---
@@ -253,31 +259,29 @@ The king will help...
 
 ---
 
-How about another example ?
-
-EITHER 
+## lets decompose that a little bit
 
 ---
 
-oh, oh! and you can also property check a monad (tho a little harder to read than the monoids)
+' oh, oh! and you can also property check a monad (tho a little harder to read than the monoids)
 
-open FsCheck
-open FsCheck.NUnit
+    open FsCheck
+    open FsCheck.NUnit
 
-[<Test>]
-let ``monad laws``() =
-    let ret (x: int) = choose.Return x
-    let n = sprintf "Choice : monad %s"
-    let inline (>>=) m f = choose.Bind(m,f)
-    fsCheck "left identity" <| 
-        fun f a -> ret a >>= f = f a
-    fsCheck "right identity" <| 
-        fun x -> x >>= ret = x
-    fsCheck "associativity" <| 
-        fun f g v ->
-            let a = (v >>= f) >>= g
-            let b = v >>= (fun x -> f x >>= g)
-            a = b
+    [<Test>]
+    let ``monad laws``() =
+        let ret (x: int) = choose.Return x
+        let n = sprintf "Choice : monad %s"
+        let inline (>>=) m f = choose.Bind(m,f)
+        fsCheck "left identity" <| 
+            fun f a -> ret a >>= f = f a
+        fsCheck "right identity" <| 
+            fun x -> x >>= ret = x
+        fsCheck "associativity" <| 
+            fun f g v ->
+                let a = (v >>= f) >>= g
+                let b = v >>= (fun x -> f x >>= g)
+                a = b
 
 
 
@@ -310,7 +314,38 @@ let ``monad laws``() =
 
 Computation expressions have been available in F# since 2007 and they are fully documented in the [F# language specification][4]
 
+* Abstract computations
+* Handling of effects
+
+' monads, monoids, additive monads
+' expressions can have effects 
+
 ---
+
+## async
+
+    open System
+
+    let sleepWorkflow  = async{
+        printfn "Starting sleep workflow at %O" DateTime.Now.TimeOfDay
+        do! Async.Sleep 2000
+        printfn "Finished sleep workflow at %O" DateTime.Now.TimeOfDay
+        }
+
+    Async.RunSynchronously sleepWorkflow      
+
+
+---
+
+## cloud
+
+    let job =
+        cloud { 
+            return sprintf "run in the cloud on worker '%s' " Environment.MachineName }
+        |> runtime.CreateProcess
+
+---
+
 
 ![win](images/otter_king.jog.jpg)
 

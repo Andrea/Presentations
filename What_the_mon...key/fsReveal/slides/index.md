@@ -62,7 +62,6 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 ' purity vs impurity and how when trying to keep pure certain things become harder than they would be in imperative code
 ' F# is an impure language
 ' Pure language: it has referential transparency, so, you can replace any expression with its value without changing the meaning of the program. 
-' ss
 
 ---
 
@@ -139,24 +138,6 @@ Some ``not-useful-right-away`` info
 
 ---
 
-![working](images/working.jpg)
-
-
-' This is a typical example of a concept that is general, very useful and just has terrible marketing :D?, the name monoid can be quite  scary  for something 
-' simple to think about but hard to express.
-
-' So why are these concepts important, what do they give you?
-
-' Because of closures-> We can convert pairwise operations into operations that work on collections
-' Because of associativity -> We can implement divide and conquer algorithms that are great for
-'                               Parallelization
-'                               Incrementalism
-' Because of identity -> we can actually perform certain of the above
-
-' If you have ever done map reduce, then this should feel pretty familiar
-
----
-
 Oh, yes and you can property check that your type is a monoid!!
 
     type T = Colour
@@ -172,6 +153,18 @@ Oh, yes and you can property check that your type is a monoid!!
     [<Property>]
     let ``The operation is commutative`` (a : T, b : T, c : T) = 
         a ++ (b ++ c) = (a ++ b ++ c)
+
+---
+
+![working](images/working.jpg)
+
+
+' Because of closures-> We can convert pairwise operations into operations that work on collections
+' Because of associativity -> We can implement divide and conquer algorithms that are great for
+'                               Parallelization
+'                               Incrementalism
+' Because of identity -> we can actually perform certain of the above
+
 
 
 ---
@@ -283,8 +276,6 @@ The king will help...
                 let b = v >>= (fun x -> f x >>= g)
                 a = b
 
-
-
 ---
 
 # Why learn this?
@@ -298,15 +289,9 @@ The king will help...
 
 > Most monads are computation expressions, not all computation expressions are monads
 
+---
 
-' you can do more with them 
-' Computation expressions reuse the normal syntax of the F# language, so you can write code 
-' using standard constructs like let, for and try .. with, but with a ' different semantics,
-' functors (using a research extension), monoids, additive monads, computations constructed using monad transformers and more.
-' limitations : cant write code that is polimorphic over the type of the computation  (can be done but not idiomatic)
-' In Haskell, they are fundamental part of the language and you need them all the time. In F#, they are only used when you actually want to write some concrete 
-' computation with non-standard behaviour. 
-' syntax matters
+## let, for and try .. with, but with a different semantics
 
 ---
  
@@ -317,8 +302,6 @@ Computation expressions have been available in F# since 2007 and they are fully 
 * Abstract computations
 * Handling of effects
 
-' monads, monoids, additive monads
-' expressions can have effects 
 
 ---
 
@@ -344,10 +327,12 @@ Computation expressions have been available in F# since 2007 and they are fully 
             return sprintf "run in the cloud on worker '%s' " Environment.MachineName }
         |> runtime.CreateProcess
 
----
 
+***
+- data-background : images/otter_king.jog.jpg
+- data-background-size : 500px
 
-![win](images/otter_king.jog.jpg)
+## It doesn't matter what things are
 
 
 ***
@@ -360,6 +345,7 @@ Computation expressions have been available in F# since 2007 and they are fully 
 * [Monads, Arrows and idioms](http://homepages.inf.ed.ac.uk/wadler/topics/monads.html) there is a bunch of papers here.
 * [Why a monad is like a writing desk](http://www.infoq.com/presentations/Why-is-a-Monad-Like-a-Writing-Desk) Video 
 * [Understanding Monoids][3] F# for fun and profit series on monoids
+* [Understanding Monoids using F#](http://gettingsharper.de/2015/03/03/understanding-monoids-using-f/) From gettingsharp-er :)
 * [Syntax Matters: Writing abstract computations in F#](http://tomasp.net/academic/papers/computation-zoo/syntax-matters.pdf) paper by Tomas Petricek and Don Syme about computation expressions
 * [Monads explained from a maths point of view](https://www.youtube.com/watch?v=9fohXBj2UEI) Video
 * [Comprehending Monads][1] P.Wadler paper

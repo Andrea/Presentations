@@ -43,8 +43,8 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 
 ### Monads 
 
-' I started of doing what I assume most of us do when I heard first about monads, I went and read a couple of posts and learned absolutely nothing about it. 
-' Interestingly, the first person to describe monads for programming was Eugenio Moggi, he published a  paper called ["Notions of computation and monads"](http://www.disi.unige.'it/person/MoggiE/ftp/ic91.pdf) this paper is maths heavy tho I am sure some of you will be interested in looking at this.
+' read -> learned absolutely nothing about it. 
+' first person to describe monads for functional programming was Eugenio Moggi, paper called ["Notions of computation and monads"](http://www.disi.unige.'it/person/MoggiE/ftp/ic91.pdf) this paper is maths heavy tho I am sure some of you will be interested in looking at this.
 
 
 ![Moggi](images/Eugenio_Moggi.jpg) 

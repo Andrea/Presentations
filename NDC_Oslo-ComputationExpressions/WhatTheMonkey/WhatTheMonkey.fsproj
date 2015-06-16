@@ -64,8 +64,6 @@
     <Compile Include="Monad.fs" />
     <Compile Include="ComputationExpression.fs" />
     <Compile Include="FsCheckAddin.fs" />
-    <None Include="Scripts\load-references.fsx" />
-    <None Include="Scripts\load-project.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsCheck">

@@ -94,7 +94,7 @@ Some ``not-useful-right-away`` info
 
     type Colour = { r: byte; g: byte; b: byte; a: byte }
 
-    let add c1 c2 = {
+    let addTwo c1 c2 = {
         r = c1.r + c2.r
         g = c1.g + c2.g
         b = c1.b + c2.b
@@ -136,7 +136,7 @@ Some ``not-useful-right-away`` info
     let c2 = { neutral with r = 254uy }
 
     let l = [ c1; c2; neutral ]
-            |> List.reduce (+++)
+            |> List.reduce (addTwo)
 
 
 ---
@@ -265,6 +265,9 @@ The king will help...
 
 ---
 
+' de sugarize the comp expression
+
+---
 ' oh, oh! and you can also property check a monad (tho a little harder to read than the monoids)
 
     open FsCheck
@@ -290,7 +293,9 @@ The king will help...
 # Why learn this?
 
 ' Because understanding the abstraction and having a common language is worth it
-
+' enables pure FP to represent non functions such as IO, state 
+' control side effect (via the type system)
+' metaprogramming (haskell, c++ via templates)
 
 ***
 
@@ -333,16 +338,24 @@ Computation expressions have been available in F# since 2007 and they are fully 
 
     let job =
         cloud { 
-            return sprintf "run in the cloud on worker '%s' " Environment.MachineName }
+            return sprintf 
+            "run in the cloud on worker '%s' " Environment.MachineName }
         |> runtime.CreateProcess
 
 
 ***
 - data-background : images/otter_king.jog.jpg
-- data-background-size : 500px
+- data-background-size : 600px
+
+---
 
 ## It doesn't matter what things are
 
+***
+
+#### the otter king in his human form
+
+![Nathan](images/nathan.png)
 
 ***
 
@@ -351,9 +364,9 @@ Computation expressions have been available in F# since 2007 and they are fully 
 * [Abstraction, intuition, and the “monad tutorial fallacy”](https://byorgey.wordpress.com/2009/01/12/abstraction-intuition-and-the-monad-tutorial-fallacy/)
 * [The "What are monads?" fallacy](http://two-wrongs.com/the-what-are-monads-fallacy)
 * [Beyond Foundations of F# - Workflows](http://www.infoq.com/articles/pickering-fsharp-workflow)
-* [Monads, Arrows and idioms](http://homepages.inf.ed.ac.uk/wadler/topics/monads.html) there is a bunch of papers here.
+* [Monads, Arrows and idioms](http://homepages.inf.ed.ac.uk/wadler/topics/monads.html)  papers here.
 * [Why a monad is like a writing desk](http://www.infoq.com/presentations/Why-is-a-Monad-Like-a-Writing-Desk) Video 
-* [Understanding Monoids][3] F# for fun and profit series on monoids
+* [Understanding Monoids][3] F# for fun and profit on monoids
 * [Understanding Monoids using F#](http://gettingsharper.de/2015/03/03/understanding-monoids-using-f/) From gettingsharp-er :)
 * [Syntax Matters: Writing abstract computations in F#](http://tomasp.net/academic/papers/computation-zoo/syntax-matters.pdf) paper by Tomas Petricek and Don Syme about computation expressions
 * [Monads explained from a maths point of view](https://www.youtube.com/watch?v=9fohXBj2UEI) Video

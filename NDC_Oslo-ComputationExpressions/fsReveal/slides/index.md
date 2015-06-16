@@ -1,7 +1,7 @@
 - title : Computation expressions in context
 - description : Monoids, monads and computation expressions
 - author : Andrea Magnorsky
-- theme : moon
+- theme : simple
 - transition : default
 
 ***
@@ -10,7 +10,7 @@
 
 ##  Computation expressions in context : a history of the otter king
 
-### NDC Oslo
+### NDC Oslo 2015
 
 ***
 
@@ -232,9 +232,6 @@ The king will help...
 
 ### 2. ???
 
----
-### 3. profit
-
     type MaybeBuilder() =
         member __.Bind(value, func) =
             match value with
@@ -245,6 +242,8 @@ The king will help...
             this.Bind(value, this.Return)
 
 ---
+
+### 3. profit
 
     let maybe  = MaybeBuilder()
 
@@ -357,6 +356,33 @@ Computation expressions have been available in F# since 2007 and they are fully 
 
 ![Nathan](images/nathan.png)
 
+
+***
+## Vote! 
+
+![Nathan](images/red-yellow-green.jpg)
+
+
+---
+
+### Next talks suggestion
+
+* Mark Seemann “Type Driven Development” 
+* José Valim “Idioms for building distributed fault-tolerant applications w/ Elixir” 
+* Mathias Brandewinder “Crunching through big data with MBrace, Azure and F#”
+
+And many more :D
+
+***
+
+### Thanks :D
+
+![onikira](images/onikira.jpg)
+
+- @SilverSpoon 
+- [roundcrisis.com](roundcrisis.com)
+
+
 ***
 
 ### Resources 
@@ -382,15 +408,3 @@ Computation expressions have been available in F# since 2007 and they are fully 
 [2]:(http://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf)
 [3]:(http://fsharpforfunandprofit.com/posts/monoids-without-tears/#series-toc)
 [4]:http://fsharp.org/specs/language-spec/
-
-***
-
-### Thanks :D
-
-![onikira](images/onikira.jpg)
-
-- @SilverSpoon 
-- [roundcrisis.com](roundcrisis.com)
-
-
-***

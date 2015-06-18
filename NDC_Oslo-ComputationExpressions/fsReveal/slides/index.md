@@ -92,6 +92,14 @@ Some ``not-useful-right-away`` info
 
 ---
 
+## Monoids
+
+* Closures  $  a' \rightarrow  a' \rightarrow  a'  $ (example  int -> int -> int   )
+* Identity   $ x + I  = x $
+* Associativity  $ x + (y + z) = (x + y ) + z $
+
+---
+
     type Colour = { r: byte; g: byte; b: byte; a: byte }
 
     let addTwo c1 c2 = {
@@ -106,14 +114,6 @@ Some ``not-useful-right-away`` info
         for i in colours do
             res <- add res i
         res
-
----
-
-## Monoids
-
-* Closures  $  a' \rightarrow  a' \rightarrow  a'  $ (example  int -> int -> int   )
-* Identity   $ x + I  = x $
-* Associativity  $ x + (y + z) = (x + y ) + z $
 
 ---
 
@@ -137,7 +137,6 @@ Some ``not-useful-right-away`` info
 
     let l = [ c1; c2; neutral ]
             |> List.reduce (addTwo)
-
 
 ---
 
@@ -238,8 +237,6 @@ The king will help...
             | Some value -> func value
             | None -> None
         member __.Return value = Some value
-        member this.ReturnFrom value = 
-            this.Bind(value, this.Return)
 
 ---
 
@@ -263,8 +260,12 @@ The king will help...
 ## lets decompose that a little bit
 
 ---
-
+### Magic?, Illusion Michael
 ' de sugarize the comp expression
+ 
+ ``Bind applies``
+
+ ``return converts to wrapped``
 
 ---
 ' oh, oh! and you can also property check a monad (tho a little harder to read than the monoids)
@@ -333,7 +334,7 @@ Computation expressions have been available in F# since 2007 and they are fully 
 
 ---
 
-## cloud
+## mbrace 
 
     let job =
         cloud { 
@@ -369,7 +370,9 @@ Computation expressions have been available in F# since 2007 and they are fully 
 
 * Mark Seemann “Type Driven Development” 
 * José Valim “Idioms for building distributed fault-tolerant applications w/ Elixir” 
+* Jeremie Chassing "Functional event sourcing"
 * Mathias Brandewinder “Crunching through big data with MBrace, Azure and F#”
+
 
 And many more :D
 

@@ -44,6 +44,10 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
             return x + y + z
         }
 
+' Block of code  that represent a computaion with a non standard aspect
+' build your own
+' code inside the block is reinterpreted using a compution builder
+
 ---
 
 ![builder](images/otter-builder.jpg)
@@ -131,6 +135,8 @@ Some ``not-useful-right-away`` info
 
 ![meh](images/otter_notimpressed.jpg)
 
+' lots of noise many monads tutorials
+' f# not a pure language
 
 ***
 
@@ -160,9 +166,6 @@ Some ``not-useful-right-away`` info
         b = c1.b + c2.b
         a = c1.a + c2.a
     }
-    let addColours'  colours =
-        colours
-        |> List.reduce (addTwo)
 ---
 
     type Monoid<'a> =
@@ -382,6 +385,22 @@ Computation expressions have been available in F# since 2007 and they are fully 
             "run in the cloud on worker '%s' " Environment.MachineName }
         |> runtime.CreateProcess
 
+
+---
+
+## Common problems
+
+* Can be hard to debug
+* Operator overuse 
+
+' nesting of expression
+
+***
+
+## Working with CE
+
+* ROP
+* Chessie
 
 ***
 - data-background : images/otter_king.jog.jpg

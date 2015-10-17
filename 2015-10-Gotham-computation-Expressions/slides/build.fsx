@@ -9,10 +9,10 @@
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
-let gitOwner = "Andrea"
+let gitOwner = "myGitUser"
 let gitHome = "https://github.com/" + gitOwner
 // The name of the project on GitHub
-let gitProjectName = "Presentations"
+let gitProjectName = "MyProject"
 
 open FsReveal
 open Fake
@@ -23,11 +23,6 @@ open Suave
 open Suave.Web
 open Suave.Http
 open Suave.Http.Files
-open Suave.Sockets
-open Suave.Sockets.Control
-open Suave.Sockets.AsyncSocket
-open Suave.WebSocket
-open Suave.Utils
 
 let outDir = __SOURCE_DIRECTORY__ @@ "output"
 let slidesDir = __SOURCE_DIRECTORY__ @@ "slides"
@@ -36,11 +31,11 @@ Target "Clean" (fun _ ->
     CleanDirs [outDir]
 )
 
-let fsiEvaluator =
+let fsiEvaluator = 
     let evaluator = FSharp.Literate.FsiEvaluator()
-    evaluator.EvaluationFailed.Add(fun err ->
+    evaluator.EvaluationFailed.Add(fun err -> 
         traceImportant <| sprintf "Evaluating F# snippet failed:\n%s\nThe snippet evaluated:\n%s" err.StdErr err.Text )
-    evaluator
+    evaluator 
 
 let copyStylesheet() =
     try
@@ -52,17 +47,17 @@ let copyPics() =
     try
       CopyDir (outDir @@ "images") (slidesDir @@ "images") (fun f -> true)
     with
-    | exn -> traceImportant <| sprintf "Could not copy picture: %s" exn.Message
+    | exn -> traceImportant <| sprintf "Could not copy picture: %s" exn.Message    
 
-let generateFor (file:FileInfo) =
+let generateFor (file:FileInfo) = 
     try
         copyPics()
         let rec tryGenerate trials =
             try
                 FsReveal.GenerateFromFile(file.FullName, outDir, fsiEvaluator = fsiEvaluator)
-            with
+            with 
             | exn when trials > 0 -> tryGenerate (trials - 1)
-            | exn ->
+            | exn -> 
                 traceImportant <| sprintf "Could not generate slides for: %s" file.FullName
                 traceImportant exn.Message
 
@@ -73,38 +68,23 @@ let generateFor (file:FileInfo) =
     | :? FileNotFoundException as exn ->
         traceImportant <| sprintf "Could not copy file: %s" exn.FileName
 
-let refreshEvent = new Event<_>()
-
-let handleWatcherEvents (events:FileChange seq) =
-    for e in events do
-        let fi = fileInfo e.FullPath
-        traceImportant <| sprintf "%s was changed." fi.Name
-        match fi.Attributes.HasFlag FileAttributes.Hidden || fi.Attributes.HasFlag FileAttributes.Directory with
-        | true -> ()
-        | _ -> generateFor fi
-    refreshEvent.Trigger()
-
-let socketHandler (webSocket : WebSocket) =
-  fun cx -> socket {
-    while true do
-      let! refreshed =
-        Control.Async.AwaitEvent(refreshEvent.Publish)
-        |> Suave.Sockets.SocketOp.ofAsync
-      do! webSocket.send Text (UTF8.bytes "refreshed") true
-  }
+let handleWatcherEvents (e:FileSystemEventArgs) =
+    let fi = fileInfo e.FullPath 
+    traceImportant <| sprintf "%s was changed." fi.Name
+    match fi.Attributes.HasFlag FileAttributes.Hidden || fi.Attributes.HasFlag FileAttributes.Directory with
+            | true -> ()
+            | _ -> generateFor fi
 
 let startWebServer () =
-    let serverConfig =
+    let serverConfig = 
         { defaultConfig with
            homeFolder = Some (FullName outDir)
         }
     let app =
-      choose [
-        Applicatives.path "/websocket" >>= handShake socketHandler
         Writers.setHeader "Cache-Control" "no-cache, no-store, must-revalidate"
         >>= Writers.setHeader "Pragma" "no-cache"
         >>= Writers.setHeader "Expires" "0"
-        >>= browseHome ]
+        >>= browseHome
     startWebServerAsync serverConfig app |> snd |> Async.Start
     Process.Start "http://localhost:8083/index.html" |> ignore
 
@@ -116,9 +96,12 @@ Target "GenerateSlides" (fun _ ->
 )
 
 Target "KeepRunning" (fun _ ->
-    use watcher = !! (slidesDir + "/**/*.*") |> WatchChanges (fun changes ->
-         handleWatcherEvents changes
-    )
+    use watcher = new FileSystemWatcher(FullName slidesDir,"*.*")
+    watcher.EnableRaisingEvents <- true
+    watcher.IncludeSubdirectories <- true
+    watcher.Changed.Add(handleWatcherEvents)
+    watcher.Created.Add(handleWatcherEvents)
+    watcher.Renamed.Add(handleWatcherEvents)
 
     startWebServer ()
 
@@ -126,6 +109,7 @@ Target "KeepRunning" (fun _ ->
 
     System.Console.ReadKey() |> ignore
 
+    watcher.EnableRaisingEvents <- false
     watcher.Dispose()
 )
 
@@ -149,5 +133,5 @@ Target "ReleaseSlides" (fun _ ->
 
 "GenerateSlides"
   ==> "ReleaseSlides"
-
+  
 RunTargetOrDefault "KeepRunning"

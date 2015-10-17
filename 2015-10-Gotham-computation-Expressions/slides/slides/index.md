@@ -1,7 +1,7 @@
 - title : Computation expressions in context
 - description : Monoids, monads and computation expressions
 - author : Andrea Magnorsky
-- theme : simple
+- theme : league
 - transition : default
 
 ***
@@ -10,7 +10,7 @@
 
 ##  Computation expressions in context
 
-### F# Gotham 2015
+### F# Gotham - October 2015 
 
 ***
 - data-background: images/onikira-poster.png
@@ -23,6 +23,75 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 - [roundcrisis.com](roundcrisis.com)
 
 
+***
+
+- data-background: images/otter-question.jpg 
+
+' introduce comp expressions 
+
+## Computation Expressions
+
+***
+
+
+    let maybe = new MaybeBuilder()
+    let addNUmbers  =
+        maybe {
+            let x = 12
+            let! y = Some 11
+            let! z = Some 30
+            return x + y + z
+        }
+
+---
+
+![builder](images/otter-builder.jpg)
+
+---
+
+## async
+
+    open System
+
+    let sleepWorkflow  = async{
+        printfn "Starting at %O" DateTime.Now.TimeOfDay
+        do! Async.Sleep 2000
+        printfn "Finished at %O" DateTime.Now.TimeOfDay
+        }
+
+    Async.RunSynchronously sleepWorkflow      
+
+
+---
+
+## mbrace
+
+    let job =
+        cloud {
+            return sprintf
+            "run on worker '%s' " Environment.MachineName }
+        |> runtime.CreateProcess
+
+---
+
+    let makeJob i =
+        cloud {
+            if i % 8 = 0 then failwith "fail"
+            let primes = Sieve.getPrimes 1000000
+            return sprintf 
+            "calculated %d primes %A on machine '%s'" 
+                primes.Length 
+                primes 
+                Environment.MachineName
+        }
+
+    let jobs2 =  
+        [ for i in 1 .. 10 ->
+             makeJob i |> cluster.CreateProcess ]
+
+
+[example source](http://www.m-brace.net/starterkit/HandsOnTutorial/3-cloud-parallel-cpu-intensive.html)
+        
 ***
 
 ###Disclaimer : Some pictures I show here have absolutely nothing to do with what I will be talking about
@@ -219,7 +288,7 @@ The king will help...
 
 ---
 
-### 2. ???
+### 2. Write the Builder
 
     type MaybeBuilder() =
         member __.Bind(value, func) =
@@ -230,7 +299,7 @@ The king will help...
 
 ---
 
-### 3. profit
+### 3. Profit
 
     let maybe  = MaybeBuilder()
 
@@ -259,9 +328,6 @@ The king will help...
 
 ---
 ' oh, oh! and you can also property check a monad (tho a little harder to read than the monoids)
-
-    open FsCheck
-    open FsCheck.NUnit
 
     [<Test>]
     let ``monad laws``() =
@@ -345,29 +411,18 @@ Computation expressions have been available in F# since 2007 and they are fully 
 
 #### the otter king in his human form
 
-![Nathan](images/nathan.png)
+![Nathan](images/nathan.jpg)
 
 
 ***
-## Vote!
 
-![Nathan](images/red-yellow-green.jpg)
+## Events and User Groups
 
-
----
-
-### Next talks suggestion
-
-* Mark Seemann “Type Driven Development”
-* José Valim “Idioms for building distributed fault-tolerant applications w/ Elixir”
-* Jeremie Chassing "Functional event sourcing"
-* Mathias Brandewinder “Crunching through big data with MBrace, Azure and F#”
-
-
-And many more :D
+* [NYC F# User Group](http://www.meetup.com/nyc-fsharp/) 
+* [Code Mesh (London)](http://Codemesh.io) My favourite conference 2-4th November 
+* [Lambda days (Krakow)](http://www.lambdadays.org/) February 2016 - Cracking F# content coming this way 
 
 ***
-
 ### Thanks :D
 
 ![onikira](images/onikira.jpg)
@@ -388,13 +443,18 @@ And many more :D
 * [Understanding Monoids][3] F# for fun and profit on monoids
 * [Understanding Monoids using F#](http://gettingsharper.de/2015/03/03/understanding-monoids-using-f/) From gettingsharp-er :)
 * [Syntax Matters: Writing abstract computations in F#](http://tomasp.net/academic/papers/computation-zoo/syntax-matters.pdf) paper by Tomas Petricek and Don Syme about computation expressions
-* [Monads explained from a maths point of view](https://www.youtube.com/watch?v=9fohXBj2UEI) Video
-* [Comprehending Monads][1] P.Wadler paper
 * [Monads for functional programming][2] P.Wadler paper
+
+---
+
+### Resources
+
 * [F# language specification][4]
 * [Try Joinads F# research extension for concurrent, parallel and asynchronous programming.](http://tryjoinads.org/index.html?computations/home.html)
 * [Functors Applicatives and monads in pictures](http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html)
-
+* [Monads explained from a maths point of view](https://www.youtube.com/watch?v=9fohXBj2UEI) Video
+* [Comprehending Monads][1] P.Wadler paper
+* [More freedom from side effects](http://www.davesquared.net/2013/11/freedom-from-side-effects-fsharp.html) 
 
 
 [1]:(http://ncatlab.org/nlab/files/WadlerMonads.pdf)

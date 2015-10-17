@@ -8,6 +8,7 @@
 - data-background : images/fsharp.png
 - data-background-size : 900px
 
+' change back image?
 ##  Computation expressions in context
 
 ### F# Gotham - October 2015 
@@ -19,8 +20,8 @@
 
 Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 
-- @SilverSpoon
-- [roundcrisis.com](roundcrisis.com)
+> @SilverSpoon
+> [roundcrisis.com](roundcrisis.com)
 
 
 ***
@@ -92,25 +93,18 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 
 [example source](http://www.m-brace.net/starterkit/HandsOnTutorial/3-cloud-parallel-cpu-intensive.html)
         
-***
-
-###Disclaimer : Some pictures I show here have absolutely nothing to do with what I will be talking about
-###so ask questions if confused ;)... it might still make no sense, but that is ok.
-
 
 ***
 
-### Monads
-
-' read -> learned absolutely nothing about it.
+' read -> maths heavy
 ' first person to describe monads for functional programming was Eugenio Moggi, paper called ["Notions of computation and monads"](http://www.disi.unige.'it/person/MoggiE/ftp/ic91.pdf) this paper is maths heavy tho I am sure some of you will be interested in looking at this.
 
-
+### Notions of computation and monads (1991)
 ![Moggi](images/Eugenio_Moggi.jpg)
 
 ---
 
-' I do remember tho that this other person, Philip Wadler, who made monads popular(?) widely known.
+' Philip Wadler, these papers made monads in programming widely known.
 
 ### Comprehending Monads (1990)
 ### Monads for functional programming (1995)
@@ -133,7 +127,7 @@ Some ``not-useful-right-away`` info
 
 ---
 
-## Monads eh? talk to the otter king
+## Monads eh?
 
 ![meh](images/otter_notimpressed.jpg)
 
@@ -142,12 +136,11 @@ Some ``not-useful-right-away`` info
 
 ## Monoids
 
-' helped understand monads was to start by trying to understand monoids, the reason for that is that they made me think about program flow  
+' understand monoids, the reason for that is that they made me think about program flow  
 ' why bother?
 
 * Convert pairwise operations into work in collections
 * Parallelization and Incrementalism
-
 
 ---
 
@@ -167,13 +160,9 @@ Some ``not-useful-right-away`` info
         b = c1.b + c2.b
         a = c1.a + c2.a
     }
-    let addColours'  (colours: Colour list) =
-        //MUTABLE OMG!!
-        let mutable res = { r = 0uy; g = 0uy;b = 0uy;a = 0uy}
-        for i in colours do
-            res <- addTwo res i
-        res
-
+    let addColours'  colours =
+        colours
+        |> List.reduce (addTwo)
 ---
 
     type Monoid<'a> =
@@ -182,24 +171,24 @@ Some ``not-useful-right-away`` info
 
 ---
 
-    let neutral = { r = 0uy; g = 0uy; b = 0uy; a = 0uy }
+    let black = { r = 0uy; g = 0uy; b = 0uy; a = 0uy }
 
     let colourAdd : Monoid<Colour> = {
-        neutral = neutral
+        neutral = black
         op = (addTwo)
     }
 
 ---
 
-    let c1 = { neutral with g = 254uy }
-    let c2 = { neutral with r = 254uy }
+    let c1 = { black with g = 254uy }
+    let c2 = { black with r = 254uy }
 
-    let l = [ c1; c2; neutral ]
+    let l = [ c1; c2; black ]
             |> List.reduce (addTwo)
 
 ---
 
-Oh, yes and you can property check that your type is a monoid!!
+' Oh, yes and you can property check that your type is a monoid!!
 
     type T = Colour
 
@@ -215,10 +204,10 @@ Oh, yes and you can property check that your type is a monoid!!
     let ``The op is associative`` (a : T, b : T, c : T) =
         a ++ (b ++ c) = (a ++ b ++ c)
 
+
 ---
 
-![working](images/working.jpg)
-
+![fixer](images/otter_fixer.jpg)
 
 ' Because of closures-> We can convert pairwise operations into operations that work on collections
 ' Because of associativity -> We can implement divide and conquer algorithms that are great for
@@ -228,12 +217,9 @@ Oh, yes and you can property check that your type is a monoid!!
 
 
 
----
-Enjoy my favourite picture (of myself)
+***
 
-![fixer](images/otter_fixer.jpg)
-
-The king will help...
+- data-background : images/working.jpg
 
 ***
 
@@ -322,10 +308,7 @@ The king will help...
 ### Magic?, Illusion Michael
 ' de sugarize the comp expression
 
- ``Bind applies``
-
- ``return converts to wrapped``
-
+ 
 ---
 ' oh, oh! and you can also property check a monad (tho a little harder to read than the monoids)
 
@@ -347,6 +330,7 @@ The king will help...
 ---
 
 # Why learn this?
+' how many of you read about DDD's ubiquitous language?
 
 ' Because understanding the abstraction and having a common language is worth it
 ' enables pure FP to represent non functions such as IO, state

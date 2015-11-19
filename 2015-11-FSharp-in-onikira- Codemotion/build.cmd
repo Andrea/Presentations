@@ -1,12 +1,12 @@
 @echo off
 cls
 
-rem .paket\paket.bootstrapper.exe prerelease
+.paket\paket.bootstrapper.exe
 if errorlevel 1 (
   exit /b %errorlevel%
 )
 
-rem .paket\paket.exe restore -v
+.paket\paket.exe restore -v
 if errorlevel 1 (
   exit /b %errorlevel%
 )

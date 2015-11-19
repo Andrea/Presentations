@@ -5,9 +5,14 @@
 - transition : default
 
 ***
-
+- data-background : images/fsharp.png
+- data-background-size : 900px
 
 ## F# in Onikira
+
+### CodeMotion Milan 2015
+
+---
 
 ### Andrea Magnorsky
 

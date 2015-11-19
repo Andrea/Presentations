@@ -5,8 +5,8 @@
 - transition : default
 
 ***
-- data-background : images/fsharp.png
-- data-background-size : 900px
+- data-background : images/4-3cover.jpg
+- data-background-size : 800px
 
 ## F# in Onikira
 
@@ -24,24 +24,18 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 
 ---
 
-#### Working on OniKira: Demon Killer
-
-Available on Steam, soon on FUZE
-
-
+## Working on OniKira: Demon Killer
 
 
 <iframe width="853" height="480" src="//www.youtube.com/embed/8OH31zfRlDs?rel=0" frameborder="0" allowfullscreen></iframe>
 
 ---
 
-#### Working on OniKira: Demon Killer
+## OniKira: Demon Killer
 
-Available on Steam Early Access
+Available on Steam
 
 ![](images/onikira.jpg)
-
----
 
 ***
 
@@ -70,13 +64,8 @@ Available on Steam Early Access
 
 # Simple is hard
 
----
+
 ***
-###
-
-<iframe width="800" height="600" src="//www.youtube.com/embed/DN43sCyEanA" frameborder="0" allowfullscreen></iframe>
-
----
 ### So we tried F#
 
 <img src="images/fsharp_logo.png" alt="fs" style="width: 250px;"/>
@@ -131,20 +120,18 @@ Visit **F# for Fun and Profit** for more examples and knowledge
 
 ---
 
-
-    let unlockAchievement gameObject achivement=
-        match gameObject.GetComponent<CharacterController>() with
-        | null -> ()
-        | character ->
-            if (not character.IsOnGround()) then
-                PlatformHelper.UnlockAchievement achivement
-                this.GameObj.GetComponent<ScriptComponent>().DisposeLater()
+    let unlockAchievement gameObj achivement=
+      match gameObj.GetComponent<CharacterController>() with
+      | null -> ()
+      | character ->
+        if (not character.IsOnGround()) then
+          PlatformHelper.UnlockAchievement achivement
+          this.GameObj.GetComponent<ScriptComponent>().DisposeLater()
 
     match msg with                
     | :? ActorDiedMessage as diedMessage ->
-               unlockAchievement diedMessage.GameObj GameAchivement.AirKill
+          unlockAchievement diedMessage.GameObj AirKill
     | _ -> ()
-
 
 ---
 
@@ -179,10 +166,7 @@ Visit **F# for Fun and Profit** for more examples and knowledge
             | OtherKey s-> ()
 
 
----
-
 ***
-
 
 # Interop
 <small>Check out the design guidelines</small>
@@ -210,9 +194,7 @@ and the F# side
 
         open System
         let add numbers delimiter =    
-            // Do stuff to add numbers            
-
-
+            // Do stuff to add numbers             
 
 ---
 
@@ -227,7 +209,6 @@ and the F# side
 
 
 
----
 ***
 
 ### REPL

@@ -22,14 +22,11 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 - [roundcrisis.com](roundcrisis.com)
 
 
----
+***
+- data-background : images/onikira-poster.png
 
-## Working on OniKira: Demon Killer
 
-
-<iframe width="853" height="480" src="//www.youtube.com/embed/8OH31zfRlDs?rel=0" frameborder="0" allowfullscreen></iframe>
-
----
+***
 
 ## OniKira: Demon Killer
 
@@ -137,7 +134,7 @@ Visit **F# for Fun and Profit** for more examples and knowledge
 
 ### Active Patterns
 
-![](images/swarm.jpg)
+![ap](images/swarm.jpg)
 
 ---
 
@@ -208,7 +205,6 @@ and the F# side
         Assert.AreEqual(2 + 2, 4)
 
 
-
 ***
 
 ### REPL
@@ -230,7 +226,6 @@ and the F# side
 * Ferop
 * Paket           
 
----
 ***
 ### Property Testing with FsCheck
 
@@ -269,18 +264,18 @@ or
 
     [<Property(Verbose = true)>]    
     let ``Health should never be higher than max`` (x:int)(maxHealth:int)=        
-        let healthComponent = initedHealth
+        let healthComponent = initialiseHealth
         healthComponent.MaxHealth <- maxHealth
         healthComponent.IncreaseHealth x
-        preconditionMaxHealth maxHealth ==>  (healthComponent.MaxHealth >= healthComponent.Health)
+        preconditionMaxHealth maxHealth ==>
+          (healthComponent.MaxHealth >= healthComponent.Health)
 
 ---
 
 <img src="images/fscheck.png" alt="fs" style="width: 950px;"/>
 
----
 ***
-#### Fake
+## Fake
 
 * Use from any .net language
 * It's mature.
@@ -309,13 +304,12 @@ or
 ---
 ### Real world
 
----
+
 ***
-### The party piece
-##
 
 ##Compiler.Services
 
+' explain what is compiler services
 ---
 ## Duality.Scripting
 
@@ -335,14 +329,18 @@ or
 ***
 
 ## Resources
-* [Fsharp.org](http://Fsharp.org)
-* Fsharp Koans
-* [Tryfsharp.org](http://Tryfsharp.org)
-* F# for fun and profit
-* Community for F# c4f#
 
-``Books``
+* F# for fun and profit
+* [Fsharp.org](http://Fsharp.org)
+* F# Koans
+* [Tryfsharp.org](http://Tryfsharp.org)
+* Community for F#
+
+---
+## Books
+
 * Expert F#
+* Programming F#
 * Real World Functional programming
 * [More Books](http://fsharp.org/about/learning.html)
 
@@ -350,11 +348,12 @@ or
 
 ## Events
 
-- Progressive F# tutorials
-- F# Exchange (17th April - London)
+![FK](images/fk.jpeg)  
 
 - User groups
- ![FK](images/fk.jpeg)  
+- Progressive F# tutorials - London 7-8 Dec
+- Lambda Days - Krakow - 18-19 February
+- F# Exchange - London - 18th April
 
 
 ***
@@ -363,7 +362,7 @@ or
 
 ![onikira](images/onikira.jpg)
 
-- @SilverSpoon
+- twitter: **@SilverSpoon**
 - [roundcrisis.com](roundcrisis.com)
 
 

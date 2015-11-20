@@ -32,13 +32,23 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 
 Available on Steam, coming soon to consoles...
 
-![](images/onikira.jpg)
+<iframe width="853" height="480" src="//www.youtube.com/embed/8OH31zfRlDs?rel=0" frameborder="0" allowfullscreen></iframe>
+
+---
+## Duality
+
+![Duality](images/duality.png)
+
+* 2D Game Engine
+* .net
+* OSS
 
 ***
 
 ### Why?
 
 ![tar pit](images/tarpit.jpg)
+
 
 [Out of the tar pit - Mosley, Marks 2006](https://github.com/papers-we-love/papers-we-love/blob/master/design/out-of-the-tar-pit.pdf)
 
@@ -63,7 +73,7 @@ Available on Steam, coming soon to consoles...
 
 
 ***
-### So we tried F#
+#  F#
 
 <img src="images/fsharp_logo.png" alt="fs" style="width: 250px;"/>
 
@@ -80,19 +90,15 @@ Available on Steam, coming soon to consoles...
 
 ---
 
-
-    // one-liners
     [1..100] |> List.sum |> printfn "sum=%d"
 
     // no curly braces, semicolons or parentheses
     let square x = x * x
     let sq = square 42
 
-    // simple types in one line
-    type Person = {First:string; Last:string}
+    type Person = {First:string; Last:string} // simple types in one line
 
-    // complex types in a few lines
-    type Employee =
+    type Employee =  // complex types in a few lines
       | Worker of Person
       | Manager of Employee list
 
@@ -168,13 +174,12 @@ Visit **F# for Fun and Profit** for more examples and knowledge
 ***
 
 # Interop
-<small>Check out the design guidelines</small>
+* <small>Check out the design guidelines</small>
+* <small>Use namespaces in F# or prefix with global::YourModuleName</small>
 
 ---
 
 #### C# consuming F# code
-
-Use namespaces in F# or prefix with global::YourModuleName
 
     [lang=cs]
     using System;
@@ -186,6 +191,7 @@ Use namespaces in F# or prefix with global::YourModuleName
             Console.WriteLine("The sum is {0}", s);
         }
     }
+
 and the F# side
 
     namespace Calculator
@@ -217,16 +223,11 @@ and the F# side
 ***
 ### Ecosystem: What we use now
 
+These tools are all open source.
+
 * FsCheck
 * Fake
 * Compiler Services
-
----
-
-### Future
-
-* Ferop
-* Paket           
 
 ***
 ### Property Testing with FsCheck

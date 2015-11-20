@@ -287,7 +287,7 @@ or
 * Integrates with CI Server.
 
 ---
-### Hello world!
+### Hello FooBar
 
     // include Fake lib
     #r @"tools\FAKE\tools\FakeLib.dll"
@@ -320,7 +320,6 @@ or
 * File watcher
 * Code in any editor :)
 * Compiler Services call to fsc
-* Future -> live coding
 
 
 [repo](https://github.com/BraveSirAndrew/DualityScripting)

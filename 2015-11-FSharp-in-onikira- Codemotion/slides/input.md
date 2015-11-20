@@ -30,7 +30,7 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 
 ## OniKira: Demon Killer
 
-Available on Steam
+Available on Steam, coming soon to consoles...
 
 ![](images/onikira.jpg)
 
@@ -103,7 +103,9 @@ Available on Steam
 Visit **F# for Fun and Profit** for more examples and knowledge
 
 ---
-#### What we use
+## What we use
+
+---
 
 ![pattern-matching](images/pm.png)
 
@@ -195,7 +197,7 @@ and the F# side
 
 ---
 
-#### F# consuming C# code
+## F# consuming C# code
 
     module MathTest =
 
@@ -302,7 +304,7 @@ or
     RunTargetOrDefault "Foo"
 
 ---
-### Example 
+### Example
 
 
 ***
@@ -310,6 +312,7 @@ or
 ##Compiler.Services
 
 ' explain what is compiler services
+
 ---
 ## Duality.Scripting
 

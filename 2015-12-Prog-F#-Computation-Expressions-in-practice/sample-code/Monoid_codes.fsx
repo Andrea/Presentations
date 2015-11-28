@@ -1,12 +1,10 @@
 ﻿#r "packages/FsCheck.2.2.3/lib/net45/FsCheck.dll"
-#r "packages/FsCheck.NUnit.2.2.3/lib/net45/FsCheck.NUnit.Addin.dll"
-#r "packages/FsCheck.NUnit.2.2.3/lib/net45/FsCheck.NUnit.dll"
 #r "packages/NUnit.Runners.2.6.4/tools/lib/nunit.core.dll"
 #r "packages/NUnit.Runners.2.6.4/tools/lib/nunit.core.interfaces.dll"
-#r "packages/NUnit.2.6.4/lib/nunit.framework.dll"
+
 
 open NUnit.Framework
-open FsCheck.NUnit
+open FsCheck
 
 type Monoid<'a> = 
     {

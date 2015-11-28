@@ -1,4 +1,7 @@
 ﻿namespace ComputationExpressionsInPractice
+
+open NUnit.Framework
+
 module Simplest =
     
     type OnlyContinueBuilder () =
@@ -10,9 +13,12 @@ module Simplest =
 
     let x =onlyContinue 
             {
-                // Bindings NEVER fail, yeehaw!
                 let! foo = "bar"
                 let! bar = "baz"
                 let! fooBar = foo + bar
                 return fooBar
             }
+
+    [<Test>]
+    let Some () =
+        Assert.AreEqual( 3 ,3)

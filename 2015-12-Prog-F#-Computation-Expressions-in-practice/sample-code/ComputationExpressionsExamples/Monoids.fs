@@ -1,6 +1,6 @@
 ﻿module MonoidsExample
 
-open FsCheck.NUnit
+open FsCheck
 open System
 
 type Colour = 
@@ -56,15 +56,15 @@ let M = colourAdd
 let Z = M.neutral
 let (++) = M.op
 
-[<Property>]
+
 let `` Z is the neutral element`` (v : T) = Z ++ v = v && v ++ Z = v
 
-[<Property>]
+
 let ``The operation is commutative`` (a : T, b : T, c : T) = a ++ (b ++ c) = (a ++ b ++ c)
 
 
 module ``intMax with check`` = 
-    open FsCheck.NUnit
+    open FsCheck
     open System
     
     let intMax : Monoid<int> = 
@@ -77,8 +77,8 @@ module ``intMax with check`` =
     let Z = M.neutral
     let (++) = M.op
     
-    [<Property>]
+    
     let `` Z is the neutral element`` (v : T) = Z ++ v = v && v ++ Z = v
     
-    [<Property>]
+    
     let ``The operation is commutative`` (a : T, b : T, c : T) = a ++ (b ++ c) = (a ++ b ++ c)

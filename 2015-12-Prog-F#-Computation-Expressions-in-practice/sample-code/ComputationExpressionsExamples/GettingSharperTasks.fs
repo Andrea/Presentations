@@ -1,4 +1,5 @@
 ﻿namespace WhatTheMonekey
+open FsCheck
 
 type Monoid<'a> = 
     {
@@ -12,19 +13,18 @@ module ``Check monoid axioms for list``=
             neutral = []
             op      = fun a b -> a @ b
         }
-
-    open FsCheck.NUnit
+    
 
     type T = List<int>
     let M = listM<int>
     let Z = M.neutral
     let (++) = M.op
 
-    [<Property>]
+    
     let `` Z is the neutral element``(v:T) =
         Z ++ v = v && v ++ Z = v
 
-    [<Property>]
+    
     let ``The operation is commutative``(a:T, b:T, c:T)=
         a ++( b ++ c) = (a ++ b ++ c)
 
@@ -35,24 +35,23 @@ module  ``Check monoid axioms for  int multiplication`` =
             neutral = 1
             op = (*)
         }
-    open FsCheck.NUnit
+
 
     type T = int
     let M = intMult
     let Z = M.neutral
     let (++) = M.op
 
-    [<Property(Verbose = true)>]
-    let `` Z is the neutral element``(v:T) =
-        Z ++ v = v && v ++ Z = v
-
-    [<Property>]
+    
+    let `` Z is the neutral element``(v:T) = Z ++ v = v && v ++ Z = v
+    Check.Quick `` Z is the neutral element`` 
+    
     let ``The operation is commutative``(a:T, b:T, c:T)=
         a ++( b ++ c) = (a ++ b ++ c)
 
 module `` Check monoid axioms for  int addition `` =
 
-    open FsCheck.NUnit
+    
 
     let intPlus : Monoid<int> = 
         {
@@ -65,11 +64,11 @@ module `` Check monoid axioms for  int addition `` =
     let Z = M.neutral
     let (++) = M.op
 
-    [<Property(Verbose = true)>]
+    
     let `` Z is the neutral element``(v:T) =
         Z ++ v = v && v ++ Z = v
 
-    [<Property>]
+    
     let ``The operation is commutative``(a:T, b:T, c:T)=
         a ++( b ++ c) = (a ++ b ++ c)
 
@@ -103,25 +102,25 @@ module ``stringys``=
 
 module ``String is a monoid   or is it? `` =
 
-    open FsCheck.NUnit
-    open FsCheck
+  open FsCheck
 
-    type T = string
+  type StringIsMonoid() =
+    
     let M = ``stringys``.stringies
     let Z = M.neutral
     let (++) = M.op
 
-    let isNotNull (x:string) = not (x = null) 
-
-    [<Property(Verbose = true)>]
-    let `` Z is taahe neutral element``() =
+    let isNotNull (x:string) = (x <> null) 
+    
+    member __.`` Z is taahe neutral element``() =
         true ==> (1 = 1)
 
-    //watch out, a string can be null!!
-    [<Property(Verbose = true)>]
-    let `` Z is the neutral element``(v:T) =
+   
+    member __.`` Z is the neutral element``(v:string) =
         (isNotNull v) ==> (Z ++ v = v && v ++ Z = v)
 
-    [<Property>]
-    let ``The operation is commutative``(a:T, b:T, c:T)=
+
+    member __.``The operation is commutative``(a:string, b:string, c:string)=
         a ++( b ++ c) = (a ++ b ++ c)
+
+  Check.QuickAll<StringIsMonoid>()

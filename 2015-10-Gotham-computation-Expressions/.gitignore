@@ -180,3 +180,6 @@ output
 paket-files
 release.cmd
 *.bak
+paket.exe
+.fake/
+*.suo

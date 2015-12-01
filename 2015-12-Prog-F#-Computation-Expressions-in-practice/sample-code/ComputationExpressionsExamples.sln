@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5DE561E4-A9EE-494E-95AB-A7FE9EB592F2}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,11 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5DE561
 	EndProjectSection
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ComputationExpressionExamples", "ComputationExpressionsExamples\ComputationExpressionExamples.fsproj", "{AA9AD666-6B3A-4AAE-9FA5-75A3B0461091}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3270FE7D-7ABF-4CD4-AF7C-2B140903259D}"
-	ProjectSection(SolutionItems) = preProject
-		Monoid_codes.fsx = Monoid_codes.fsx
-	EndProjectSection
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ComputationExpressionsInPractice", "ComputationExpressionsInPractice\ComputationExpressionsInPractice.fsproj", "{AF08E9F5-F973-45BD-9979-808D81A478FE}"
 EndProject

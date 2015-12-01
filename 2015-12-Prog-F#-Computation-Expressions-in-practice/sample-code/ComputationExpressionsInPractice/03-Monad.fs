@@ -8,7 +8,7 @@ type MaybeBuilder() =
             | None -> None
         
         member __.Return value = Some value
-        member this.ReturnFrom value = this.Bind(value, this.Return)
+        //member this.ReturnFrom value = this.Bind(value, this.Return)
     
 
 module ``divide `` = 
@@ -73,8 +73,8 @@ module InventoryExample =
     
     type Inventory() = 
         let inv = new Dictionary<ProductId, Price>()
-        member this.Stock (id : ProductId) (price : Price) = inv.Add(id, price)
-        member this.Price(id : ProductId) = 
+        member this.Stock id price = inv.Add(id, price)
+        member this.Price id = 
             try 
                 Some(inv.[id])
             with :? KeyNotFoundException -> None
@@ -84,7 +84,7 @@ module InventoryExample =
     let (|@|) p1 p2 = maybe { 
         let! v1 = p1
         let! v2 = p2
-        return! Some(v1 + v2) }
+        return v1 + v2 }
     
     let reporter priceSum  = 
         match priceSum with
@@ -122,73 +122,73 @@ module InventoryExample =
 
 module Results = 
 
-type DbResult<'a> = 
-    | Success of 'a
-    | Error of string
+  type DbResult<'a> = 
+      | Success of 'a
+      | Error of string
 
-let getCustomerId name =
-    if (name = "") 
-    then Error "getCustomerId failed"
-    else Success "Cust42"
+  let getCustomerId name =
+      if (name = "") 
+      then Error "getCustomerId failed"
+      else Success "Cust42"
 
-let getLastOrderForCustomer custId =
-    if (custId = "") 
-    then Error "getLastOrderForCustomer failed"
-    else Success "Order31415"
+  let getLastOrderForCustomer custId =
+      if (custId = "") 
+      then Error "getLastOrderForCustomer failed"
+      else Success "Order31415"
 
-let getLastProductForOrder orderId =
-    if (orderId  = "") 
-    then Error "getLastProductForOrder failed"
-    else Success "Product27182"
+  let getLastProductForOrder orderId =
+      if (orderId  = "") 
+      then Error "getLastProductForOrder failed"
+      else Success "Product27182"
 
-type EitherBuilder() = 
+  type EitherBuilder() =
+  
+          member __.Bind(value, func) = 
+              match value with
+              | Success a -> 
+                  printfn "Success since -2001 %A" a
+                  func a
+              | Error _ -> value
         
-        member __.Bind(value, func) = 
-            match value with
-            | Success a -> 
-                printfn "Tracing success since -2001 %A" a
-                func a
-            | Error _ -> value
-        
-        member __.Return value = Success value
+          member __.Return value = Success value
        
-let dbResult = new EitherBuilder()
-let product' = 
-    dbResult {
-        let! custId = getCustomerId "Alice"
-        let! orderId = getLastOrderForCustomer custId
-        let! productId = getLastProductForOrder "" 
-        printfn "Product is %s" productId
-        return productId
-        }
-printfn "%A" product'
+  let dbResult = new EitherBuilder()
+  let product' = 
+      dbResult {
+          let! custId = getCustomerId "Alice"
+          let! orderId = getLastOrderForCustomer custId
+          let! productId = getLastProductForOrder orderId 
+          printfn "Product is %s" productId
+          return productId
+          }
+  printfn "%A" product'
 
 module Statefulness = 
 
-type StringCheckerBuilder() =         
-        member __.Bind(value, func) = 
-            match value with
-            | Some i  ->             
-                func i
-            | None -> 0
+  type StringCheckerBuilder() =
+          member __.Bind(value, func) = 
+              match value with
+              | Some i  ->
+                  func i
+              | None -> 0
         
-        member __.Return value = value
+          member __.Return value = value
         
-let strToInt (s: string) = 
-    match System.Int32.TryParse s with
-    | true, i -> Some i
-    | false, _ -> None
+  let strToInt (s: string) = 
+      match System.Int32.TryParse s with
+      | true, i -> Some i
+      | false, _ -> None
                         
-let stringCheck = StringCheckerBuilder()
-let stringAddWorkflow x y z = 
-    stringCheck 
-        {
-        let! a = strToInt x
-        let! b = strToInt y
-        let! c = strToInt z
-        return a + b + c
-        }    
+  let stringCheck = StringCheckerBuilder()
+  let stringAddWorkflow x y z = 
+      stringCheck 
+          {
+          let! a = strToInt x
+          let! b = strToInt y
+          let! c = strToInt z
+          return a + b + c
+          }
 
  
-let good = stringAddWorkflow "12" "3" "2"
-let bad = stringAddWorkflow "12" "xyz" "2"
+  let good = stringAddWorkflow "12" "3" "2"
+  let bad = stringAddWorkflow "12" "xyz" "2"

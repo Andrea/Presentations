@@ -60,16 +60,34 @@
   <ItemGroup>
     <Compile Include="01-Monoids.fs" />
     <Compile Include="02-Simplest.fs" />
-    <Compile Include="03-Monad.fs" />
-    <Compile Include="04-State-Machine.fs" />
+    <Compile Include="04-EitherMonad.fs" />
+    <Compile Include="05-coroutine.fs" />
     <Content Include="packages.config" />
     <Compile Include="10-Sample-Computation-Expressions.fs" />
+    <Compile Include="03-Monad.fs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <Reference Include="FsCheck">
+      <HintPath>..\packages\FsCheck.2.2.3\lib\net45\FsCheck.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FSharp.Control.AsyncSeq">
+      <HintPath>..\packages\FSharp.Control.AsyncSeq.1.13\lib\net40\FSharp.Control.AsyncSeq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.3.1.2.5\lib\net40\FSharp.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FSharpx.Async">
+      <HintPath>..\packages\FSharpx.Async.1.12.0\lib\net40\FSharpx.Async.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FSharpx.Collections">
+      <HintPath>..\packages\FSharpx.Collections.1.10.1\lib\net40\FSharpx.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>

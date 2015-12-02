@@ -32,22 +32,25 @@ And now
 
 ![workday](images/wd-logo.gif)
 
+***
 
+> Computation: study of algorithmic processes that describe the transformation of information
 
 ***
+- data-background: images/hilbert.jpg
 
 ## David Hilbert 
 
-<small>( 23 January 1862 – 14 February 1943)</small>
+' 23 January 1862 – 14 February 1943
+
+---
+
+ >"I do not see that the sex of the candidate is an argument against her admission as a Privatdozent. After all, the university senate is not a bathhouse."
 
 ---
 
 > We must know.
 > We will know.
-
----
-
- >"I do not see that the sex of the candidate is an argument against her admission as a Privatdozent. After all, the university senate is not a bathhouse."
 
 --- 
 
@@ -55,13 +58,21 @@ And now
 
 ![q](images/question-cat.png)
 
+---
+
+### Can we device a process to determine in a finite number of operations, whether a first order logic statement is valid?
+
 ***
+- data-background: images/turing.jpg
+
 ## Alan Turing
 
 ---
 
 Answer: Turing Machine 
 
+' Turing machines, first described by Alan Turing in (Turing 1937), are simple abstract computational devices intended to help investigate the extent and limitations of what can be computed.
+' what does it mean a task is computable
 
 ***
 

@@ -120,7 +120,7 @@ FLOW-MATIC
 
 ### Resources
 
-
+* [This has happened before and will happen again](https://www.youtube.com/watch?v=jmRE5pXFi04)
 * [David Hilbert](http://lotsasplainin.blogspot.ie/2007/09/david-hilbert.html)
 * [Alan Kay: Computer Applications: A Dynamic Medium for Creative Thought 1972](https://www.youtube.com/watch?v=WJzi9R_55Iw)
 

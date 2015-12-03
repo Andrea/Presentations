@@ -69,7 +69,7 @@ And now
 
 ---
 
-### Can we device a process to determine in a finite number of operations, whether a first order logic statement is valid?
+### Can we devise a process to determine in a finite number of operations, whether a first order logic statement is valid?
 
 ***
 - data-background: images/turing.jpg
@@ -196,6 +196,7 @@ FLOW-MATIC
 * Elixir
 * Idris
 * Elm
+* Rust
 
 ***
 - data-background: images/otter-question.jpg

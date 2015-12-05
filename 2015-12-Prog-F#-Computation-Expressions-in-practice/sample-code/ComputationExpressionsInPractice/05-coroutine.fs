@@ -1,5 +1,6 @@
-﻿module StateMachine 
-
+﻿module Coroutine
+(* https://github.com/fsprojects/FSharpx.Extras/blob/master/src/FSharpx.Extras/ComputationExpressions/Continuation.fs
+*)
 open System
 
 open System.Collections.Generic

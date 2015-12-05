@@ -1,4 +1,4 @@
-﻿namespace Monoids
+﻿namespace ComputationExpressionsInPractice
 
 open FsCheck
 open System

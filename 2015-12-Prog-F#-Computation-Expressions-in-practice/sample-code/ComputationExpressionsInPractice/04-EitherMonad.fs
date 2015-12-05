@@ -1,5 +1,4 @@
-﻿namespace WhatTheMonkey
-    
+﻿namespace ComputationExpressionsInPractice    
 
 module Results = 
 

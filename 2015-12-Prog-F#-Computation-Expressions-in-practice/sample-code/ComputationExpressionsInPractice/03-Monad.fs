@@ -1,4 +1,4 @@
-﻿namespace WhatTheMonkey
+﻿namespace ComputationExpressionsInPractice
     
 type MaybeBuilder() = 
         
@@ -11,7 +11,7 @@ type MaybeBuilder() =
         //member this.ReturnFrom value = this.Bind(value, this.Return)
     
 
-module ``divide `` = 
+module ``Divide by zero `` = 
     let random = new System.Random()
     
     let division a b c d = 
@@ -119,49 +119,6 @@ module InventoryExample =
 // Example from https://alfredodinapoli.wordpress.com/2012/04/02/humbly-simple-f-maybe-monad-application-scenario/
 // but using local Maybe definition 
 
-
-module Results = 
-
-  type DbResult<'a> = 
-      | Success of 'a
-      | Error of string
-
-  let getCustomerId name =
-      if (name = "") 
-      then Error "getCustomerId failed"
-      else Success "Cust42"
-
-  let getLastOrderForCustomer custId =
-      if (custId = "") 
-      then Error "getLastOrderForCustomer failed"
-      else Success "Order31415"
-
-  let getLastProductForOrder orderId =
-      if (orderId  = "") 
-      then Error "getLastProductForOrder failed"
-      else Success "Product27182"
-
-  type EitherBuilder() =
-  
-          member __.Bind(value, func) = 
-              match value with
-              | Success a -> 
-                  printfn "Success since -2001 %A" a
-                  func a
-              | Error _ -> value
-        
-          member __.Return value = Success value
-       
-  let dbResult = new EitherBuilder()
-  let product' = 
-      dbResult {
-          let! custId = getCustomerId "Alice"
-          let! orderId = getLastOrderForCustomer custId
-          let! productId = getLastProductForOrder orderId 
-          printfn "Product is %s" productId
-          return productId
-          }
-  printfn "%A" product'
 
 module Statefulness = 
 

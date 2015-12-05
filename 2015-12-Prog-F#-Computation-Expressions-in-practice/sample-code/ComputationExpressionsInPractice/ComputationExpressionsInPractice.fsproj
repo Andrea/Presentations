@@ -58,13 +58,13 @@
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
   <ItemGroup>
-    <Compile Include="01-Monoids.fs" />
-    <Compile Include="02-Simplest.fs" />
+    <Compile Include="01-Simplest.fs" />
+    <Compile Include="02-Monoids.fs" />
+    <Compile Include="03-Monad.fs" />
     <Compile Include="04-EitherMonad.fs" />
     <Compile Include="05-coroutine.fs" />
-    <Content Include="packages.config" />
     <Compile Include="10-Sample-Computation-Expressions.fs" />
-    <Compile Include="03-Monad.fs" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsCheck">

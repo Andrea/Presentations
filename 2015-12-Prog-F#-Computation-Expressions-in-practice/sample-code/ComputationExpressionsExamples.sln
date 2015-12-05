@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5DE561
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ComputationExpressionExamples", "ComputationExpressionsExamples\ComputationExpressionExamples.fsproj", "{AA9AD666-6B3A-4AAE-9FA5-75A3B0461091}"
-EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ComputationExpressionsInPractice", "ComputationExpressionsInPractice\ComputationExpressionsInPractice.fsproj", "{AF08E9F5-F973-45BD-9979-808D81A478FE}"
 EndProject
 Global
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AA9AD666-6B3A-4AAE-9FA5-75A3B0461091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA9AD666-6B3A-4AAE-9FA5-75A3B0461091}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA9AD666-6B3A-4AAE-9FA5-75A3B0461091}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA9AD666-6B3A-4AAE-9FA5-75A3B0461091}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF08E9F5-F973-45BD-9979-808D81A478FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF08E9F5-F973-45BD-9979-808D81A478FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF08E9F5-F973-45BD-9979-808D81A478FE}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,13 +1,7 @@
 ﻿namespace ComputationExpressionsInPractice
-
 open FsCheck
-open System
 
-type Monoid<'a> = 
-    { Neutral : 'a
-      Operation : 'a -> 'a -> 'a }
-module MonoidsExample =
-
+module MonoidSetup =
   type Colour = 
       { r : byte
         g : byte
@@ -20,6 +14,19 @@ module MonoidsExample =
         b = c1.b + c2.b
         a = c1.a + c2.a }
 
+  let neutral = { 
+        r = 0uy
+        g = 0uy
+        b = 0uy
+        a = 0uy }
+
+
+  let c1 = { neutral with g = 254uy }
+  let c2 = { neutral with r = 254uy }
+
+module AddingTwoColours =
+  open MonoidSetup
+
   let addColours (colours : Colour list) = 
       let mutable res = 
           { r = 0uy
@@ -30,57 +37,60 @@ module MonoidsExample =
           res <- addTwo res i
       res
 
-  let neutral = { 
-        r = 0uy
-        g = 0uy
-        b = 0uy
-        a = 0uy }
 
-  let colourAdd : Monoid<Colour> = 
-      { Neutral = neutral
-        Operation = (addTwo) }
+  type Monoid<'a> = 
+      { neutral : 'a
+        op : 'a -> 'a -> 'a }
 
-  let c1 = { neutral with g = 254uy }
-  let c2 = { neutral with r = 254uy }
+
   let l = [ c1; c2; neutral ] |> List.reduce (addTwo)
 
   let (+++) = addTwo
   let x = c1 +++ c2 +++ { c2 with a = 254uy }
 
-  type T = Colour
+  type TColour = Colour
+  let colourAdd : Monoid<Colour> = 
+    { neutral = neutral
+      op = (addTwo) }
 
   let M = colourAdd
-  let Z = M.Neutral
-  let (++) = M.Operation
+  let Z = M.neutral
+  let (++) = M.op
 
-  (* FsCheck tests *)
+  let `` Z is the neutral element`` (v : TColour) = Z ++ v = v && v ++ Z = v
 
-  let `` Z is the neutral element`` (v : T) = Z ++ v = v && v ++ Z = v
+  let ``The operation is commutative`` (a : TColour, b : TColour, c : TColour) = a ++ (b ++ c) = (a ++ b ++ c)
 
-  let ``The operation is commutative`` (a : T, b : T, c : T) = a ++ (b ++ c) = (a ++ b ++ c)
+  Check.Quick `` Z is the neutral element`` 
+  Check.Quick ``The operation is commutative``
 
-  Check.Quick `` Z is the neutral element``
-  Check.Quick ``The operation is commutative`` 
-
-module ``intMax with check`` =
-    
-    let intMax : Monoid<int> = 
-        { Neutral = Int32.MinValue
-          Operation = (max) }
-    
-    type T = int
-    
-    let M = intMax
-    let Z = M.Neutral
-    let (++) = M.Operation
-        
-    let `` Z is the neutral element`` (v : T) = Z ++ v = v && v ++ Z = v
-    
-    let ``The operation is commutative`` (a : T, b : T, c : T) = a ++ (b ++ c) = (a ++ b ++ c)
-
-    Check.Quick `` Z is the neutral element``
-    Check.Quick ``The operation is commutative`` 
-
-module MonoidsWithComputationExpressions =
-
+module MonoidsWithComputationExpressions = 
+  open MonoidSetup
   
+
+  type MonoidBuilder ()= 
+    member this.Zero() = neutral
+
+    member this.Combine(x, y) = addTwo x  y
+    
+    member x.For(sequence, body) =
+        let combine a b = x.Combine(a, body b)
+        let Z = x.Zero()
+        Seq.fold combine Z sequence
+    member x.Yield (a) = a
+
+
+  let monoid = new MonoidBuilder()
+
+  let monAdd xs= monoid {
+       for x in xs do
+         yield x
+       }
+  
+  let ``Adding colours in reverse result in the same colour``(xs : Colour list) = 
+    let sxs = List.ofSeq xs
+    monAdd sxs = monAdd (List.rev sxs)
+  
+  Check.Quick ``Adding colours in reverse result in the same colour``
+
+ 

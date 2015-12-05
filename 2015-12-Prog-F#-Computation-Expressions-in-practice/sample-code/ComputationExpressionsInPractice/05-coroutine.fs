@@ -1,7 +1,7 @@
 ﻿namespace ComputationExpressionsInPractice
 
 
-module Coroutine
+module Coroutine =
 (* https://github.com/fsprojects/FSharpx.Extras/blob/master/src/FSharpx.Extras/ComputationExpressions/Continuation.fs
 *)
 open System

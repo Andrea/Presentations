@@ -28,7 +28,7 @@ And now
 - data-background : images/phone.jpg
 - data-background-size : 1500px
 
-' first interests and computing is about both software and hardware 
+' first interests and computing is about both software and hardware
 # Definitely does compute
 
 ### Girl Geek Dinners - December 2015
@@ -46,10 +46,10 @@ And now
 ***
 - data-background: images/hilbert.jpg
 
-## David Hilbert 
+## David Hilbert
 
 ' 23 January 1862 – 14 February 1943
-' Students: Emmy Noether, Alonzo Church, 
+' Students: Emmy Noether, Alonzo Church,
 ' assistant John Von Neumann (hardware)
 
 ---
@@ -61,7 +61,7 @@ And now
 > We must know.
 > We will know.
 
---- 
+---
 
 ' It all started with a question
 
@@ -78,7 +78,7 @@ And now
 
 ---
 
-Turing Machine 
+Turing Machine
 
 ' Turing machines, first described by Alan Turing in (Turing 1937), are simple abstract computational devices intended to help investigate the extent and limitations of what can be computed.
 ' what does it mean a task is computable
@@ -86,7 +86,7 @@ Turing Machine
 ***
 - data-background: images/church.jpg
 
-## Alonzo Church 
+## Alonzo Church
 
 
 ' June 14, 1903 – August 11, 1995
@@ -95,7 +95,7 @@ Turing Machine
 
 λ Calculus
 
-' add good description 
+' add good description
 
 ***
 
@@ -115,7 +115,7 @@ Church-Turing Thesis
 
 ---
 
-FLOW-MATIC 
+FLOW-MATIC
 ' influencial in cobol as a technical consultant
 
 ***
@@ -153,7 +153,7 @@ FLOW-MATIC
 * APL
 * BASIC
 * LOGO
-* Smalltalk 
+* Smalltalk
 
 ***
 ## '70s
@@ -168,18 +168,18 @@ FLOW-MATIC
 * Erlang
 * SQL
 * Miranda
-* C++ 
+* C++
 
 ***
 ## '90s
 
 * Haskell
-
 * Delphi
 * Java
-* Python 
+* Python
 * Ruby
 * Visual Basic
+* Javascript
 
 ***
 ## '00s
@@ -201,7 +201,16 @@ FLOW-MATIC
 ***
 - data-background: images/otter-question.jpg
 
+> We must know. We Will know
 
+
+***
+### Thanks :D
+
+![thanks](images/otter-laughing.jpg)
+
+- @SilverSpoon
+- [roundcrisis.com](roundcrisis.com)
 
 ***
 
@@ -211,14 +220,6 @@ FLOW-MATIC
 
 * [Functional Kats](http://www.meetup.com/nyc-fsharp/)
 * Other user groups about programming languages that have no cats with capes on their logos :D
-
-***
-### Thanks :D
-
-![thanks](images/otter-laughing.jpg)
-
-- @SilverSpoon
-- [roundcrisis.com](roundcrisis.com)
 
 
 ***
@@ -236,5 +237,5 @@ FLOW-MATIC
 ### Photo credits
 
 * [Phone](https://www.flickr.com/photos/barteko/6127853053)
-* "Alonzo Church" by Princeton University. Licensed under Fair use via 
+* "Alonzo Church" by Princeton University. Licensed under Fair use via
 [Wikipedia](https://en.wikipedia.org/wiki/File:Alonzo_Church.jpg#/media/File:Alonzo_Church.jpg)

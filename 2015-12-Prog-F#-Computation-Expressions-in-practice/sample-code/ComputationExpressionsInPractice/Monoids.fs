@@ -76,8 +76,8 @@ module MonoidsWithComputationExpressions =
 
     member this.Combine(x, y) = addColour x  y
     
-    member x.For(sequence, body) =
-        let combine a b = x.Combine(a, body b)
+    member x.For(sequence, f) =
+        let combine a b = x.Combine(a, f b)
         let Z = x.Zero()
         Seq.fold combine Z sequence
 

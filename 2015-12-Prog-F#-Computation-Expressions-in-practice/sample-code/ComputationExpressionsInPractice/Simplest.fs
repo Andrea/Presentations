@@ -7,9 +7,11 @@ module Simplest =
 *)
   open System
 
-  type SimplestBuilder () =  
+  type SimplestBuilder () =
       member this.Bind(x,f) = 
         printfn "Bind begin  %A %s " (DateTime.Now.TimeOfDay)  (x.ToString()) 
+(* 2. What is f? 
+*)
         let y = f x
         printfn "Bind end  %A %s " (DateTime.Now.TimeOfDay)  (x.ToString()) 
         y

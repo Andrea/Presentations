@@ -10,13 +10,9 @@
 - data-background-size : 1500px
 
 ' first interests and computing is about both software and hardware
-# A brief history of programming languages
+## A brief history of programming languages
 
 ### Spelunking - January 2016
-
-***
-
-> Computation: study of algorithmic processes that describe the transformation of information
 
 
 ***
@@ -33,6 +29,8 @@
 > We must know.
 > We will know.
 
+' repeals the limitation of science
+
 ---
 
 ' It all started with a question
@@ -41,7 +39,7 @@
 
 ---
 
-### Can we devise a process to determine in a finite number of operations, whether a first order logic statement is valid?
+> Can we devise a process to determine in a finite number of operations, whether a first order logic statement is valid?
 
 ***
 - data-background: images/turing.jpg
@@ -50,9 +48,10 @@
 
 ---
 
-Turing Machine
+## Turing Machine
 
-' Turing machines, first described by Alan Turing in (Turing 1937), are simple abstract computational devices intended to help investigate the extent and limitations of what can be computed.
+' Turing machines, first described by Alan Turing in (Turing 1937), are simple abstract 
+' computational devices intended to help investigate the extent and limitations of what can be computed.
 ' what does it mean a task is computable
 
 ***
@@ -78,6 +77,10 @@ Turing Machine
 ## Church-Turing Thesis
 
 ***
+
+## Germany during the time of war
+
+***
 - data-background: images/hopper.jpg
 
 ## Grace Hopper
@@ -87,7 +90,6 @@ Turing Machine
 ---
 
 ## The first compiler: A-0
-
 
 ---
 
@@ -138,6 +140,11 @@ OTHERWISE GO TO OPERATION 2.
 
 ' add some Fortran here
 
+---
+
+## Speedcoding
+
+
 ***
 - data-background: images/mccarthy.jpg
 
@@ -154,7 +161,7 @@ OTHERWISE GO TO OPERATION 2.
 
 ***
 - data-background: images/history50-70.png
-- data-background-size : 1000px
+- data-background-size : 900px
 
 ' Algol importance
 
@@ -162,10 +169,10 @@ OTHERWISE GO TO OPERATION 2.
 
 ## '50s
 
-* ALGOL
-* COBOL
-* FORTRAN
-* LISP
+* ALGOL (58)
+* COBOL (59)
+* FORTRAN (57)
+* LISP (59)
 
 ---
 ## LISP
@@ -188,11 +195,16 @@ OTHERWISE GO TO OPERATION 2.
 ***
 ## '60s
 
-* APL
-* BASIC
-* LOGO
-* Smalltalk
-* Pascal
+* APL (62)
+* BASIC (64)
+* LOGO (67) 
+* Pascal (69)
+
+
+' APL 1962 functional
+' BASIC 1964 - 
+' LOGO 1967 functional
+' Pascal 69 - Wirth
 
 ---
 ### APL
@@ -206,56 +218,128 @@ $ (~T \in T \circ.×T)/T←1 \downarrow ⍳R $
 ' many primitives for algebra calculation
 ' makes you think differently about program and data structure'
 
----
-### BASIC
-
-###LOGO
-
-###SMALLTALKK
-
 
 ***
 ## '70s
 
-* ML
-* Prolog
-* C
+* Smalltalk  (72)
+* ML (73)
+* Prolog (72)
+* C (72)
+
+---
+
+### Prolog
+
+
+```
+mother_child(trude, sally).
+ 
+father_child(tom, sally).
+father_child(tom, erica).
+father_child(mike, tom).
+ 
+sibling(X, Y)      :- parent_child(Z, X), parent_child(Z, Y).
+ 
+parent_child(X, Y) :- father_child(X, Y).
+parent_child(X, Y) :- mother_child(X, Y).
+```
 
 ***
+
 ## '80s
 
-* Erlang
-* SQL
-* Miranda
-* C++
+* Erlang (86)
+* SQL (83)
+* Miranda (85)
+* C++ (83)
+
+---
+
+###Erlang
+
+```
+-module(mymath).
+-export([square/1,fib/1]).
+
+square(Value) -> Value*Value.
+
+fib(0) -> 0;
+fib(1) -> 1;
+fib(N) when N>1 -> fib(N-1) + fib(N-2).
+```
 
 ***
 ## '90s
 
-* Haskell
-* Delphi
-* Java
-* Python
-* Ruby
-* Visual Basic
-* Javascript
+* Haskell (90)
+* Delphi (95)
+* Java (95)
+* Ruby (95)
+* Visual Basic (91)
+* Javascript (95)
+
+---
+
+## Javascript
+
+```
+function factorial(n) {
+    if (n == 0) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+```
+
 
 ***
 ## '00s
 
-* C#
-* Scala
-* F#
-* Clojure
-* D
+* C# (00)
+* Scala (04)
+* F# (05)
+* Clojure (07)
+* D (01)
+
+---
+
+## D
+
+```
+ulong factorial(ulong n)
+{
+    if (n<2)
+        return 1;
+    else
+        return n * factorial(n-1);
+}
+```
 
 ***
 ## '10s
 
-* Elixir
-* Idris
-* Elm
-* Rust
+* Elixir (12)
+* Idris (12)
+* Elm (12)
+* Rust (10)
+
+---
+
+## Idris 
+
+```
+data Vect : Nat -> Type -> Type where
+  Nil  : Vect 0 a
+  (::) : (x : a) -> (xs : Vect n a) -> Vect (n + 1) a
+
+total
+append : Vect n a -> Vect m a -> Vect (n + m) a
+append Nil       ys = ys
+append (x :: xs) ys = x :: append xs ys
+
+```
+
 
 ***
 - data-background: images/otter-question.jpg

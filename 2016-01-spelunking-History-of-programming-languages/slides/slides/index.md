@@ -77,6 +77,7 @@
 ## Church-Turing Thesis
 
 ***
+- data-background: images/ww2.jpg
 
 ## Germany during the time of war
 

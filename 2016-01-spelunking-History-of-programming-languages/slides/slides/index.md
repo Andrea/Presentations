@@ -323,6 +323,7 @@ ulong factorial(ulong n)
 * Idris (12)
 * Elm (12)
 * Rust (10)
+* Pony (14)
 
 ---
 

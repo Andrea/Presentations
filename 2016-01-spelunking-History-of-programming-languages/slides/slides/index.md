@@ -211,7 +211,7 @@ OTHERWISE GO TO OPERATION 2.
 ### APL
 
 
-$ (~T \in T \circ.×T)/T←1 \downarrow ⍳R $
+ $ (~T \in T \circ.×T)/T←1 \downarrow ⍳R $
 
 ' matrix only programming
 ' evaluates right to left
@@ -344,7 +344,10 @@ append (x :: xs) ys = x :: append xs ys
 
 
 ***
-- data-background: images/otter-question.jpg
+- data-background: images/influences.jpg
+- data-background-size : 900px
+
+***
 
 > We must know. We Will know
 

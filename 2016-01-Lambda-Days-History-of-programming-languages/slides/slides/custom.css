@@ -1,0 +1,14 @@
+.reveal section img {
+  border: none;
+  margin: 0px;
+}
+
+table.pre, pre.fssnip, pre{
+  background-color: #fff;   
+  color:#4C1485; 
+  border: none;  
+}
+
+span.i { 
+  color:#258585; 
+}

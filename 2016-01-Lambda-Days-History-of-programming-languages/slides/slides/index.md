@@ -6,14 +6,18 @@
 
 
 ***
-- data-background : images/phone.jpg
+- data-background : images/history.png
 - data-background-size : 1500px
 
 ' first interests and computing is about both software and hardware
 ## A brief history of programming languages
 
-### Spelunking - January 2016
+### Lambda days - February 2016
 
+---
+
+## Andrea Magnorsky
+### @silverspoon | roundcrisis.com
 
 ***
 - data-background: images/hilbert.jpg
@@ -42,17 +46,13 @@
 > Can we devise a process to determine in a finite number of operations, whether a first order logic statement is valid?
 
 ***
-- data-background: images/turing.jpg
+- data-background: images/godel.jpg
 
-## Alan Turing
+## Kurt Gödel
 
 ---
 
-## Turing Machine
-
-' Turing machines, first described by Alan Turing in (Turing 1937), are simple abstract 
-' computational devices intended to help investigate the extent and limitations of what can be computed.
-' what does it mean a task is computable
+### Nope
 
 ***
 - data-background: images/church.jpg
@@ -67,15 +67,32 @@
 λ Calculus
 
 ' formal system for expressing computation by way of variable binding and substitution
-' an expression in λ calculus can be 
+' An expression in λ calculus can be :
 ' a variable x
 ' a function λx . x
 ' function application x  y 
 
 ***
+- data-background: images/turing.jpg
+
+## Alan Turing
+
+---
+
+## Turing Machine
+
+' Turing machines, first described by Alan Turing in (Turing 1937), are simple abstract 
+' computational devices intended to help investigate the extent and limitations of what can be computed.
+
+
+
+
+***
 
 ## Church-Turing Thesis
 
+
+' If a problem can be solved by one system, then it can be solved in another, and vice-versa.
 ***
 - data-background: images/ww2.jpg
 
@@ -344,8 +361,18 @@ append (x :: xs) ys = x :: append xs ys
 
 
 ***
-- data-background: images/influences.jpg
+- data-background: images/programming-languges-graph.png
 - data-background-size : 900px
+
+***
+
+![paradigms](https://www.info.ucl.ac.be/~pvr/paradigmsDIAGRAMeng108.jpg)
+
+***
+<div style="border: 0px; overflow: hidden; max-width: 900px;">
+<iframe scrolling="no" src="http://exploringdata.github.io/vis/programming-languages-influence-network" style="border: 0px none; margin-left: -85px; height: 700px; margin-top: -33px; width: 926px;">
+</iframe>
+</div>
 
 ***
 
@@ -380,11 +407,15 @@ append (x :: xs) ys = x :: append xs ys
 * [David Hilbert](http://lotsasplainin.blogspot.ie/2007/09/david-hilbert.html)
 * [Alan Kay: Computer Applications: A Dynamic Medium for Creative Thought 1972](https://www.youtube.com/watch?v=WJzi9R_55Iw)
 * [The APL Programming Language Source Code](http://www.computerhistory.org/atchm/the-apl-programming-language-source-code/)
-
+* [Roots of computer languages through the ages](http://www.digibarn.com/collections/posters/tongues/ComputerLanguagesChart.png)
+* [Principal programming paradigms](https://www.info.ucl.ac.be/~pvr/paradigmsDIAGRAMeng108.jpg)
+* [Visualizing influence relations of programming languages](http://exploringdata.github.io/info/programming-languages-influence-network/)
+* [Freebase programming language collection](http://www.freebase.com/view/computer/programming_language)
+* [Turing on computable numbers](http://swizec.com/blog/week-1-turings-on-computable-numbers/swizec/6375)
 ---
 
 ### Photo credits
 
-* [Phone](https://www.flickr.com/photos/barteko/6127853053)
+* [history main starting the talk](http://rigaux.org/language-study/diagram.html)
 * "Alonzo Church" by Princeton University. Licensed under Fair use via
 [Wikipedia](https://en.wikipedia.org/wiki/File:Alonzo_Church.jpg#/media/File:Alonzo_Church.jpg)

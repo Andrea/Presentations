@@ -9,24 +9,27 @@
 - data-background : images/history.png
 - data-background-size : 1500px
 
-' first interests and computing is about both software and hardware
 ## A brief history of programming languages
 
 ### Lambda days - February 2016
 
----
+***
+- data-background : images/roundcrisis.jpg
+- data-background-size : 900px
 
-## Andrea Magnorsky
-### @silverspoon | roundcrisis.com
+. 
+
 
 ***
 - data-background: images/hilbert.jpg
 
 ## David Hilbert
 
+' Invariant theory and the axiomatization of geometry.
+' foundations of mathematics 
 ' 23 January 1862 – 14 February 1943
-' Students: Emmy Noether, Alonzo Church,
-' assistant John Von Neumann (hardware)
+' interesting social circle: Emmy Noether, Alonzo Church, Haskell Curry 
+' assistant John Von Neumann 
 
 ---
 
@@ -34,10 +37,11 @@
 > We will know.
 
 ' repeals the limitation of science
+' Emil du Bois Reymond 
+' "we do not know and will not know", stood for a position on the limits of scientific knowledge
 
 ---
 
-' It all started with a question
 
 ![q](images/question-cat.png)
 
@@ -48,11 +52,15 @@
 ***
 - data-background: images/godel.jpg
 
-## Kurt Gödel
+### Nope
+
+
 
 ---
 
-### Nope
+## Kurt Gödel
+
+' with Aristotle and Frege one of the most significant logicians
 
 ***
 - data-background: images/church.jpg
@@ -64,7 +72,7 @@
 
 ---
 
-λ Calculus
+## λ Calculus
 
 ' formal system for expressing computation by way of variable binding and substitution
 ' An expression in λ calculus can be :
@@ -84,7 +92,7 @@
 ' Turing machines, first described by Alan Turing in (Turing 1937), are simple abstract 
 ' computational devices intended to help investigate the extent and limitations of what can be computed.
 
-
+![q](images/turing-machine.jpg)
 
 
 ***
@@ -93,10 +101,11 @@
 
 
 ' If a problem can be solved by one system, then it can be solved in another, and vice-versa.
+
 ***
 - data-background: images/ww2.jpg
 
-## Germany during the time of war
+## World war II
 
 ***
 - data-background: images/hopper.jpg
@@ -161,7 +170,7 @@ OTHERWISE GO TO OPERATION 2.
 ---
 
 ## Speedcoding
-
+## BNF
 
 ***
 - data-background: images/mccarthy.jpg
@@ -178,10 +187,19 @@ OTHERWISE GO TO OPERATION 2.
 
 
 ***
+- data-background: images/algol.png
+
+
+##ALGOL
+
+' John McCarthy (LISP), Fritz Bauer, Joe Wegstein (COBOL). Bottom row: John Backus (FORTRAN), Peter Naur, Alan Perlis
+
+***
 - data-background: images/history50-70.png
 - data-background-size : 900px
 
 ' Algol importance
+' destruction as a creative form 68
 
 ***
 
@@ -294,6 +312,7 @@ fib(N) when N>1 -> fib(N-1) + fib(N-2).
 * Delphi (95)
 * Java (95)
 * Ruby (95)
+* Python(91)
 * Visual Basic (91)
 * Javascript (95)
 

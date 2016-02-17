@@ -54,8 +54,6 @@
 
 ### Nope
 
-
-
 ---
 
 ## Kurt Gödel
@@ -92,7 +90,7 @@
 ' Turing machines, first described by Alan Turing in (Turing 1937), are simple abstract 
 ' computational devices intended to help investigate the extent and limitations of what can be computed.
 
-![q](images/turing-machine.jpg)
+![q](images/turing-machine.jpg)[sauce](http://aturingmachine.com/)
 
 
 ***
@@ -172,6 +170,10 @@ OTHERWISE GO TO OPERATION 2.
 ## Speedcoding
 ## BNF
 
+---
+
+![fortran](images/fortran.jpg)
+
 ***
 - data-background: images/mccarthy.jpg
 
@@ -179,7 +181,7 @@ OTHERWISE GO TO OPERATION 2.
 
 ---
 
-## ALGOL , Lisp
+## Lisp
 ' ALGOrithmic Language
 ' LISt Processing
 
@@ -192,7 +194,8 @@ OTHERWISE GO TO OPERATION 2.
 
 ##ALGOL
 
-' John McCarthy (LISP), Fritz Bauer, Joe Wegstein (COBOL). Bottom row: John Backus (FORTRAN), Peter Naur, Alan Perlis
+' John McCarthy (LISP), Fritz Bauer, Joe Wegstein (COBOL). 
+' John Backus (FORTRAN), Peter Naur, Alan Perlis
 
 ***
 - data-background: images/history50-70.png
@@ -246,13 +249,21 @@ OTHERWISE GO TO OPERATION 2.
 ### APL
 
 
- $ (\sim T \in T \circ.×T)/T←1 \downarrow ⍳R $
+ $ (\sim T \in T \circ.×T)/T←1 \downarrow \iota R $
 
 ' matrix only programming
 ' evaluates right to left
 ' automatically creates vectors and arrays
 ' many primitives for algebra calculation
-' makes you think differently about program and data structure'
+' makes you think differently about program and data structure
+' 1 Select the highest number in desired range, and assign to R 
+' 2 Generate vector of all integers 1 thru R [iota function]
+' 3 Drop first element from the vector (drop: 1, [down arrow function]
+' 4 Set R to the vector  [left arrow function]
+' 5 Generate "outer product" of R multiplied by R 
+' 6 Build a vector the same length as R, but with 1 in each place where the corresponding number in R is in the table [true=1], and 0 where the corresponding number is not [false=0] (0, 0, 1, 0, 1). [set inclusion function]
+' 7 Logically negate the values in the vector (change zeros to ones and ones to zeros) (1, 1, 0, 1, 0). [negation function]
+' 8 Select the items in R, for which the corresponding element in vector from #7 is one (2, 3, 5). [slash function, evaluated now due to parentheses] -- Done!
 
 
 ***
@@ -262,6 +273,14 @@ OTHERWISE GO TO OPERATION 2.
 * ML (73)
 * Prolog (72)
 * C (72)
+
+
+---
+
+### Prolog
+
+> Prolog is the best thing since smoked cheese
+
 
 ---
 
@@ -275,10 +294,11 @@ father_child(tom, sally).
 father_child(tom, erica).
 father_child(mike, tom).
  
-sibling(X, Y)      :- parent_child(Z, X), parent_child(Z, Y).
+sibling(X, Y) :- parent_child(Z, X), parent_child(Z, Y).
  
 parent_child(X, Y) :- father_child(X, Y).
 parent_child(X, Y) :- mother_child(X, Y).
+
 ```
 
 ***
@@ -338,29 +358,43 @@ function factorial(n) {
 * F# (05)
 * Clojure (07)
 * D (01)
+* Go(07)
 
 ---
 
 ## D
 
 ```
-ulong factorial(ulong n)
+void Quack(Animal)(Animal a)
+    if( __traits(compiles, a.Quack()))
 {
-    if (n<2)
-        return 1;
-    else
-        return n * factorial(n-1);
+    a.Quack();        
 }
+
+struct Duck { void Quack(){ "Quack".writeln; }}
+
+int main(string[] argv) { 
+    Duck d;
+    Quack(d); // good
+    Quack(5); // compile time error
+}
+
 ```
+
+'  if there before the body of the function is a template constraint, is using one of D's weird features 
+' - __traits(compiles, code)  the compiler will check to see if the code you write there is compilable with 
+' the type that was passed in, if it cannot compile it then it breaks during compilation
+
+
 
 ***
 ## '10s
 
 * Elixir (12)
-* Idris (12)
 * Elm (12)
 * Rust (10)
 * Pony (14)
+* Idris (12)
 
 ---
 
@@ -381,7 +415,7 @@ append (x :: xs) ys = x :: append xs ys
 
 ***
 - data-background: images/programming-languges-graph.png
-- data-background-size : 900px
+
 
 ***
 
@@ -428,9 +462,14 @@ append (x :: xs) ys = x :: append xs ys
 * [The APL Programming Language Source Code](http://www.computerhistory.org/atchm/the-apl-programming-language-source-code/)
 * [Roots of computer languages through the ages](http://www.digibarn.com/collections/posters/tongues/ComputerLanguagesChart.png)
 * [Principal programming paradigms](https://www.info.ucl.ac.be/~pvr/paradigmsDIAGRAMeng108.jpg)
+
+---
+
 * [Visualizing influence relations of programming languages](http://exploringdata.github.io/info/programming-languages-influence-network/)
 * [Freebase programming language collection](http://www.freebase.com/view/computer/programming_language)
 * [Turing on computable numbers](http://swizec.com/blog/week-1-turings-on-computable-numbers/swizec/6375)
+* [A Programming Language](http://www.users.cloud9.net/~bradmcc/APL.html)
+
 ---
 
 ### Photo credits

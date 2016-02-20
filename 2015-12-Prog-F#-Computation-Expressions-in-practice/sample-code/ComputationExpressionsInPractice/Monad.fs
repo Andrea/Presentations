@@ -2,7 +2,7 @@
     
 type MaybeBuilder() = 
 (*
-2. For this step you will need to implement Bind
+3. For this step you will need to implement Bind
 *)
       member __.Bind(maybeValue: 'a option, func) = 
           match maybeValue with

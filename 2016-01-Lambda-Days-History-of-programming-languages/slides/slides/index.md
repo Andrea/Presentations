@@ -217,19 +217,48 @@ OTHERWISE GO TO OPERATION 2.
 ## LISP
 
 ```
-(defun sieve-of-eratosthenes (maximum)
-  (loop
-     with sieve = (make-array (1+ maximum)
-                              :element-type 'bit
-                              :initial-element 0)
-     for candidate from 2 to maximum
-     when (zerop (bit sieve candidate))
-     collect candidate
-     and do (loop for composite from (expt candidate 2) 
-               to maximum by candidate
-               do (setf (bit sieve composite) 1))))
+(defun eval. (e a)
+  (cond
+    ((atom e) (assoc. e a))
+    ((atom (car e))
+     (cond
+       ((eq (car e) 'quote) (cadr e))
+       ((eq (car e) 'atom)  (atom   (eval. (cadr e) a)))
+       ((eq (car e) 'eq)    (eq     (eval. (cadr e) a)
+                                    (eval. (caddr e) a)))
+       ((eq (car e) 'car)   (car    (eval. (cadr e) a)))
+       ((eq (car e) 'cdr)   (cdr    (eval. (cadr e) a)))
+       ((eq (car e) 'cons)  (cons   (eval. (cadr e) a)
+                                    (eval. (caddr e) a)))
+```
+
+---
+
+```
+       ((eq (car e) 'cond)  (evcon. (cdr e) a))
+       ('t (eval. (cons (assoc. (car e) a)
+                        (cdr e))
+                  a))))
+    ((eq (caar e) 'label)
+     (eval. (cons (caddar e) (cdr e))
+            (cons (list. (cadar e) (car e)) a)))
+    ((eq (caar e) 'lambda)
+     (eval. (caddar e)
+            (append. (pair. (cadar e) (evlis. (cdr e) a))
+                     a)))))
 ```   
 
+---
+
+```
+(defun is-prime (n)
+  (cond ((= 2 n) t) 
+        ((= 3 n) t) 
+        ((evenp n) nil) 
+        (t 
+           (loop for i from 3 to (isqrt n) by 2
+                 never (zerop (mod n i))))))
+```
 
 ***
 ## '60s
@@ -415,7 +444,7 @@ append (x :: xs) ys = x :: append xs ys
 
 ***
 - data-background: images/programming-languges-graph.png
-
+- data-background-size : 800px
 
 ***
 

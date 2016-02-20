@@ -50,6 +50,8 @@ Digital Furnace Games  ▀  BatCat Games  ▀  GameCraft Foundation
 
 ---
 
+' record of operations that define the semantics and syntax
+
 ![builder](images/otter-builder.jpg)
 
 ---
@@ -303,13 +305,6 @@ Some ``not-useful-right-away`` info
 ' what is happening here ?
 ' Monads apply a function that returns a wrapped value to a wrapped value. Monads have a function >>= (pronounced “bind”) to do this.
 
----
-
-## lets decompose that a little bit
-
----
-### Magic?, Illusion Michael
-' de sugarize the comp expression
 
  
 ---
@@ -428,7 +423,7 @@ Computation expressions have been available in F# since 2007 and they are fully 
 ***
 ### Thanks :D
 
-![onikira](images/onikira.jpg)
+![onikira](images/otter-laughing.jpg)
 
 - @SilverSpoon
 - [roundcrisis.com](roundcrisis.com)

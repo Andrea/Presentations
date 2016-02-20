@@ -378,7 +378,7 @@ int main(string[] argv) {
     Quack(d); // good
     Quack(5); // compile time error
 }
-
+ 
 ```
 
 '  if there before the body of the function is a template constraint, is using one of D's weird features 
@@ -419,7 +419,7 @@ append (x :: xs) ys = x :: append xs ys
 
 ***
 
-![paradigms](https://www.info.ucl.ac.be/~pvr/paradigmsDIAGRAMeng108.jpg)
+![paradigms](images/paradigms-ctcp.jpg)
 
 ***
 <div style="border: 0px; overflow: hidden; max-width: 900px;">

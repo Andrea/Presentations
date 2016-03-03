@@ -8,9 +8,9 @@
 
 open FSharp.Data
 open System
-open TypeProviderExample
 
-//type GiphyTP = JsonProvider<"http://api.giphy.com/v1/gifs/search?q=monkey+cat&rating=pg-13&api_key=dc6zaTOxFJmzC"> /// special F# thing from Giphy
+
+type GiphyTP = JsonProvider<"http://api.giphy.com/v1/gifs/search?q=monkey+cat&rating=pg-13&api_key=dc6zaTOxFJmzC"> /// special F# thing from Giphy
 let baseUrl = "http://api.giphy.com/v1/gifs/search"
 let key = "dc6zaTOxFJmzC"
 
@@ -25,7 +25,6 @@ let searchGif searchString size =
 
 
 searchGif "lol monkeys"
-Array.head (searchGif "otter")
 
-// show image somehow
+
 

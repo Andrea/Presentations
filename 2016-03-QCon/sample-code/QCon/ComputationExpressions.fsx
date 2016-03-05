@@ -91,14 +91,15 @@ asyncProcess path identity
 open System.IO
 open System.Net
 
-let getHtml(url:string) =
+let getHtml(url:string) =  //slow and blocks
       let req = WebRequest.Create url
       let response = req.GetResponse()
       use streatm = response.GetResponseStream()
       use reader = new StreamReader(streatm)
-      reader.ReadToEnd()
+      reader.ReadToEnd().Length
 
-let getHtmlAsync (url:string) = 
+
+let getHtmlAsync (url:string) = //can be slow and not block
   async{
     printfn "Starting to do stuff"  
     let req = WebRequest.Create url
@@ -106,10 +107,12 @@ let getHtmlAsync (url:string) =
     use streatm = response.GetResponseStream()
     use reader = new StreamReader(streatm)
     let r = reader.ReadToEndAsync().Result
-    System.Threading.Thread.Sleep 1000
+    Threading.Thread.Sleep 2000
     printfn "lenght %A " r.Length
   }
-
+// how to have a wait handle example
+// getHtmlAsync "http://www.eff.org/"  |> Async.AwaitIAsyncResult()
+printfn "hi"
 
 let sites = [
   "http://www.eff.org/"  
@@ -121,7 +124,7 @@ let sites = [
   ]
 sites
 |> List.map (getHtmlAsync)
-|>Async.Parallel
+|> Async.Parallel
 |> Async.RunSynchronously
 
 let getHtmlAsyncTry (url:string) = 
@@ -144,7 +147,7 @@ let getHtmlAsyncTry (url:string) =
         printfn "IO exc %A" ae.Message
         return 0
   }
-
+  // why is this different from c#?
 let ss url = 
   getHtmlAsyncTry url   
   |> Async.Catch  
@@ -190,15 +193,14 @@ cancelToken.Cancel()
 
 // A builder
 
-type MaybeBuilder() = 
-        
+type MaybeBuilder() =         
     member __.Bind(value, func) = 
         match value with
         | Some value -> func value
         | None -> None
         
     member __.Return value = Some value
-    member this.ReturnFrom value = this.Bind(value, this.Return)
+    member __.ReturnFrom value = __.Bind(value, __.Return)
    
 module DivideExample = 
     

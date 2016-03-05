@@ -64,10 +64,88 @@ let openFile' path =
   | Extension ".md" -> openText path
   | _ -> "oh noes"
 
+
+//An even better example 
+open System.IO
+let (|FileExtension|) filePath = Path.GetExtension(filePath)
+
+let (|FileName|) filePath = Path.GetFileNameWithoutExtension(filePath)
+
+let (|FileLocation|) filePath = Path.GetDirectoryName(filePath)
+
+let determineFileType filePath =
+    match filePath with
+    | FileExtension (".jpg" | ".png" | ".gif")    
+    | FileName "logo"
+    | FileLocation "c:\images"
+        -> printfn "It is on possibly an image."
+    | FileName "readme"
+        -> printfn "It is a Read Me file"
+    | ext
+        -> printfn "Unknown [%s]" filePath
+
 // ----
+type Key =
+  | Space = 0
+  | A = 1
+  | I = 2
+  | Left =3
+  | Right =4
+  
+type KeyboardInput() =   
+   
+  member this.KeyPressed (key: Key) :bool =
+    if key = Key.Space then 
+      true
+    else
+      false
+  member this.KeyPressedFor(key:Key, milis:int) : bool =
+    key = Key.A && milis > 0
+
+type DualityApp ()=
+  static let mutable  keyboard: KeyboardInput = KeyboardInput()
+
+  static member Keyboard 
+        with get() = keyboard
+        and   set(value) = keyboard <- value
+type Action =
+  | Jump
+  | DoubleJump  
+  | Idle        
+  | Left
+  | Right
+    
+let playerGo action = 
+  printfn "Player game object does a %A" action
+
+let (|SpaceKey|) (keyboard:KeyboardInput) = 
+    keyboard.KeyPressed(Key.Space)
+
+let (|``Hold I 100ms``|) (keyboard:KeyboardInput) = 
+    keyboard.KeyPressedFor(Key.I, 100)  
+
+let doSomething =   // the problem with static
+  match DualityApp.Keyboard with        
+  | SpaceKey true & ``Hold I 100ms`` false -> playerGo Jump
+  | SpaceKey true & ``Hold I 100ms`` true -> playerGo DoubleJump
+  | _ -> playerGo Idle
 
 
-// sometimes validating data can be hard, 
+let (|LeftKey|RightKey|OtherKey|) (keyboard:KeyboardInput) = 
+  if keyboard.KeyPressed(Key.Left) then LeftKey
+  elif keyboard.KeyPressed(Key.Right) then RightKey
+  else OtherKey "Hi, you pressed a key...well that alright"
+
+
+let onUpdate()=    
+
+  match DualityApp.Keyboard with            
+  | LeftKey  -> playerGo Left
+  | RightKey-> playerGo Right
+  | OtherKey s-> ()
+
+
+// Working with data can be hard 
 
 let dateTime = DateTime.Now
 let date2, time2 = dateTime.Date, dateTime.TimeOfDay
@@ -91,6 +169,7 @@ let myFunction (d:DateTime) =
 let myFunctionDate (Date d) =
   sprintf "%A" d
 
+myFunctionDate dateTime
 
 let myFunctionDateAndTime (Date d & Time t & Hour h) =
   printfn "Date:%A Time: %A Hour  %A" d t h
@@ -121,7 +200,7 @@ let aFunction(NonEmpty name) =
 let (|ParseOr0|) v =   
   match Int32.TryParse v with
   | true, r ->  r
-  | false,_ ->  0
+  | _,_ ->  0
   
 let contrivedAdd (ParseOr0 c) = c + 5
 

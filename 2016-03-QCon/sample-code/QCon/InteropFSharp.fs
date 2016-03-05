@@ -13,9 +13,9 @@ type Order =
   member this.OrderInfo =
     match this with 
     | GoldOrder -> ""
-    | PlatinumOrder(extraInfo ) -> "A foamy latte"
+    | PlatinumOrder(extraInfo ) -> "A foamy latte"  + extraInfo
 
 type Customer =
-  | DragonCustomer of string
-  | Cat
+  | Dragon of string
+  | Cat 
   | Monkey

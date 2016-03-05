@@ -11,12 +11,12 @@ type Days =
   | Saturday
   | Sunday
 
-// Equivalent 
-let weekDays day = 
-  match day with
-
+// Alternative way to define functions that have a pattern match
 //let weekDays =
 //  function
+
+let weekDays day = 
+  match day with
   | Monday -> "is blue."
   | Tuesday | Wednesday -> "grey."
   | Thursday -> "doesn't even start."
@@ -25,15 +25,18 @@ let weekDays day =
   | Sunday -> "always come too late"
 
 
-let moreDays day =
-  match day with
-  | firstWeek when day > 0 && day < 7 -> 
-      sprintf "First week %A" firstWeek
-  | secondWeek when day > 6 && day < 14 -> 
-      sprintf "First week %A" secondWeek
-  | _ -> "not really a day the month, maybe a star date?"
+// When pattern matching gets kind of unruly
+//let moreDays day =
+//  match day with
+//  | firstWeek when day > 0 && day < 7 -> 
+//      sprintf "First week %A" firstWeek
+//  | secondWeek when day > 6 && day < 14 -> 
+//      sprintf "First week %A" secondWeek
+//  | _ -> "not really a day the month, maybe a star date?"
+//
+//moreDays 7
 
-//----
+//-Active Patterns
 
 let openPictures path =
   sprintf "gimp.exe %s" path
@@ -68,9 +71,7 @@ let openFile' path =
 //An even better example 
 open System.IO
 let (|FileExtension|) filePath = Path.GetExtension(filePath)
-
 let (|FileName|) filePath = Path.GetFileNameWithoutExtension(filePath)
-
 let (|FileLocation|) filePath = Path.GetDirectoryName(filePath)
 
 let determineFileType filePath =
@@ -84,7 +85,8 @@ let determineFileType filePath =
     | ext
         -> printfn "Unknown [%s]" filePath
 
-// ----
+// Handling input 
+
 type Key =
   | Space = 0
   | A = 1
@@ -94,11 +96,8 @@ type Key =
   
 type KeyboardInput() =   
    
-  member this.KeyPressed (key: Key) :bool =
-    if key = Key.Space then 
-      true
-    else
-      false
+  member this.KeyPressed (key: Key) :bool = key = Key.Space     
+      
   member this.KeyPressedFor(key:Key, milis:int) : bool =
     key = Key.A && milis > 0
 
@@ -124,7 +123,7 @@ let (|SpaceKey|) (keyboard:KeyboardInput) =
 let (|``Hold I 100ms``|) (keyboard:KeyboardInput) = 
     keyboard.KeyPressedFor(Key.I, 100)  
 
-let doSomething =   // the problem with static
+let doSomething =  
   match DualityApp.Keyboard with        
   | SpaceKey true & ``Hold I 100ms`` false -> playerGo Jump
   | SpaceKey true & ``Hold I 100ms`` true -> playerGo DoubleJump
@@ -145,7 +144,8 @@ let onUpdate()=
   | OtherKey s-> ()
 
 
-// Working with data can be hard 
+// More uses of Active patterns, without a patern match
+// Every let binding and parameter is a pattern match
 
 let dateTime = DateTime.Now
 let date2, time2 = dateTime.Date, dateTime.TimeOfDay
@@ -154,27 +154,15 @@ let (|Date|) (d:DateTime) = d.Date
 let (|Time|) (d:DateTime) = d.TimeOfDay
 let (|Hour|) (d:DateTime) = d.TimeOfDay.Hours
 
-//active patterns without pattern matching, because every elt binding and parameter
-// is a pattern match
-
-let Date date1 = dateTime
-let Time time1 = dateTime
-
-let Date date & Time time = dateTime
-
 
 let myFunction (d:DateTime) =
   sprintf "%A" d
 
-let myFunctionDate (Date d) =
-  sprintf "%A" d
-
-myFunctionDate dateTime
-
 let myFunctionDateAndTime (Date d & Time t & Hour h) =
-  printfn "Date:%A Time: %A Hour  %A" d t h
+  printfn "Date:%A Time: %A Hour: %A" d t h
 
-myFunctionDate DateTime.Now
+myFunction dateTime
+myFunctionDateAndTime dateTime
 
 //---
 
@@ -193,19 +181,37 @@ let (|GreaterThan|) reference value =
 let aFunction(NonEmpty name) = 
   sprintf "Hello %A" name
 
-// problem is failures are exceptions and that sucks 
+// Driving it home
 
+let (|DoubleP|_|) value =    
+  match Double.TryParse value with
+  | true, r ->  Some(r)
+  | _,_ ->  None
 
+let (|IntP|_|) value =   
+  match Int32.TryParse value with
+  | true, r ->  Some(r)
+  | _,_ ->  None
 
-let (|ParseOr0|) v =   
-  match Int32.TryParse v with
+let addFiveP value = 
+  match value with
+  | IntP i ->  i + 5
+  | DoubleP i -> (int i) + 5
+  | _ -> 0
+
+addFiveP "5"
+addFiveP "1.2788"
+addFiveP "Monkeys"
+
+let (|Int|) value =   
+  match Int32.TryParse value with
   | true, r ->  r
   | _,_ ->  0
   
-let contrivedAdd (ParseOr0 c) = c + 5
+let addFive (Int value) = value + 5
 
-contrivedAdd "457"
-contrivedAdd "Monkeys"
+addFive "455"
+addFive "Monkeys"
 
 
 
@@ -226,6 +232,9 @@ f "aaa" None
 f null (Some 5)
 
 
+
+// Some more obscure cases
+
 let eirik =
   match Some(41 , fun i -> Some(i+1)) with
   | Some( y, (|Pattern|_|)) ->
@@ -235,14 +244,14 @@ let eirik =
   | None -> ()
 
 let myFn (): Choice<int, Exception> =
-  //Choice1Of2(1)
-  Choice2Of2(new Exception("ba lind"))
+  Choice1Of2(1)
+  //Choice2Of2(new Exception("error"))
 
 let run (|Success|Failure|) =
   match () with
   | Success t -> t
   | Failure e -> 
-        printfn "before raising"
+        printfn "Before raising"
         raise e
 
 run myFn

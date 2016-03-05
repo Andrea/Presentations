@@ -58,12 +58,16 @@
     <None Include="ComputationExpressions.fsx" />
     <Compile Include="TypeProviderExample.fs" />
     <None Include="TypeProvider.fsx" />
-    <Content Include="packages.config" />
     <None Include="CompilerServices.fsx" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsCheck">
       <HintPath>packages\FsCheck.2.2.4\lib\net45\FsCheck.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FSharp.Compiler.Service">
+      <HintPath>packages\FSharp.Compiler.Service.2.0.0.6\lib\net45\FSharp.Compiler.Service.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Core">

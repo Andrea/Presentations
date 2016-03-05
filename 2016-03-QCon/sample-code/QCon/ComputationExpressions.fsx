@@ -56,8 +56,7 @@ let searchGif searchString size =
 
 let flyingCat = searchGif "Picard" Downsized |> Seq.head 
 
-if flyingCat.Rating = "g" then  
-  ShowGif flyingCat.Url
+ShowGif flyingCat.Url
 
 
 // async workflows great for IO bound computations
@@ -221,10 +220,12 @@ module DivideExample =
       | _ -> Some(a / b)
   let maybe = MaybeBuilder()
 
-  let divisionM a b c d = maybe { let! x = divide a b
-                                  let! y = divide x c
-                                  let! z = divide y d
-                                  return z }
+  let divisionM a b c d = 
+    maybe { 
+        let! x = divide a b
+        let! y = divide x c
+        let! z = divide y d
+        return z }
 
    
 module Desugared =
@@ -240,17 +241,17 @@ module Desugared =
     let maybe = new OtterMaybeBuilder()
     let sugared =
         maybe {
-            let x = 42
-            let! y = Some 2016
-            let! z = Some 2
+            let x = 10
+            let! y = Some 13
+            let! z = Some 11
             return x + y + z
         }
-    
+    sugared    
     let desugared = 
         maybe.Delay(fun () ->
-            let x = 42
-            maybe.Bind(Some 2016, fun y ->
-                maybe.Bind(Some 2, fun z ->
+            let x = 10
+            maybe.Bind(Some 13, fun y ->
+                maybe.Bind(Some 11, fun z ->
                     maybe.Return(x + y + z)
                     )
                 )

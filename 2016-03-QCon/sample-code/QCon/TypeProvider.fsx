@@ -26,7 +26,7 @@ let searchGif searchString =
   giphy.Data
   |> Seq.map( fun x -> Uri(x.Images.DownsizedMedium.Url))    
 
-
+let searchString = "omg cat"
 searchGif "omg cat" |> Seq.head |> ShowGif
 
 // More things you can do with results

@@ -5,6 +5,14 @@
 - transition : default
 
 ***
+- data-background : images/roundcrisis.jpg
+- data-background-size : 800px
+
+
+' thanks for coming to my talk :D
+' thanks to Amanda and QCon for inviting me
+
+***
 - data-background : images/egg.jpg
 - data-background-size : 1500px
 
@@ -13,22 +21,33 @@
 ### QCon London - March 2016
 
 ***
-- data-background : images/roundcrisis.jpg
-- data-background-size : 800px
+- data-background : images/onikira-poster.png
+
+
+## Killing demons for fun and profit
+
+***
+- data-background : images/oni1.png
+
+***
+- data-background : images/oni2.jpg
 
 
 ***
 
-## F# you say?
+## Obvious code is good code.
 
-## F# is a general purpose language that runs on .net
+' don't make it about familiarity
 
-***
 ' it is easy to consume F# code from C# ( even F# specific features)
 ' there are very simple ways to deal with the
 
 
 ***
+## F# is a general purpose language.
+
+***
+
 ## Pattern matching
 
     let openFile (filePath) =
@@ -46,7 +65,7 @@
 
 ---
 
-## too many when -> makes kitty sad
+## Too many when guards
 
 ![](http://cdn.abclocal.go.com/content/creativecontent/images/cms/831727_630x354.jpg)
 
@@ -74,12 +93,12 @@
 ---
 ## Neat trick
 
-    let (|ParseOr0|) v =   
+    let (|Int|) v =   
       match Int32.TryParse v with
       | true, r ->  r
       | false,_ ->  0
 
-    let contrivedAdd (ParseOr0 c) = c + 5
+    let contrivedAdd (Int c) = c + 5
 
 
 ' Active patterns without pattern matching, because every let binding and parameter
@@ -87,38 +106,15 @@
 
 
 ---
-### Bannana Operator
-
->    (|
->    |)        
-
----
+## (| Bannana Operator |)
 
 ![banana](https://s-media-cache-ak0.pinimg.com/564x/b9/5f/3f/b95f3f0446635cb37f6022ee3b6bddaf.jpg)
 
-***
-
-### Complex selection logic
-
-
-```
-let monkeys = 33
-type Monkeys =
-  | RedArse
-  | Happy
-```
-
----
-
-## Active patterns
-
-
-' unaplly/ extractor object  in scala
-' 2006 , paper 2007 Don syme
 
 ***
-
-![](http://i.imgur.com/7yyj1r2.jpg)
+- data-background
+- data-background-size : 800px
+![1](http://i.imgur.com/7yyj1r2.jpg)
 
 
 ***

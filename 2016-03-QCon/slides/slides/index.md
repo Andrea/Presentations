@@ -19,7 +19,7 @@
 ![mentor](images/cat-fsharp.png)
 
 ---
-## fsharp.org/mentorships
+## fsharp.org/mentorship
 
 ![](images/fsmentorship.png)
 
@@ -66,7 +66,8 @@
 
 ' cross platofrm
 ' Functional first
-
+' open source
+' great libraries created by the comunity 
 
 ***
 
@@ -157,8 +158,11 @@ type Order =
 
 ## Type Providers
 
+![babel](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_(Vienna)_-_Google_Art_Project_-_edited.jpg/800px-Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_(Vienna)_-_Google_Art_Project_-_edited.jpg)
+
 ' does not necessarily contain any types itself; it is a component for generating
 ' descriptions of types, methods and their implementations.
+ 
 
 * Get data from diverse sources and generate types for them.
 * Use type providers to:
@@ -178,41 +182,63 @@ type Order =
 
 ' No callbacks :D
 
-* Inspired async await in C#
-* Great for IO bound operations (not cpu bound, use TPL lib)
-* Avoid blocking threads
-* Cancellation is easier
+![](images/waiting.gif)
+
+' Inspired async await in C#
+' Great for IO bound operations (not cpu bound, use TPL lib)
+' Avoid blocking threads
+' Cancellation is easier
 
 ***
 
 ## Computation expressions
 
 * Perfect for some heavy lifting behind the scenes
-* let! do! all operation with bang are implemented using CPS. Declared in a `Builder` (A builder is a type that has certain methods implemented)
-* Think of the importance of the signature of the functions Bind, Return, etc.
-* Given the signature of the functions, we can combine them
+
+---
+
+##Familiar 
+
+![](https://theowlunderground.files.wordpress.com/2013/04/jean-luc-picard-jean-luc-picard-21977733-694-530.jpg)
+
+---
+
+![](images/locutus.jpg)
+' let! do! all operation with bang are implemented using CPS. Declared in a `Builder` (A builder is a type that has certain methods implemented)
+
+---
+
+![shapes](images/shapes.gif)
+
+' Think of the importance of the signature of the functions Bind, Return, etc.
+' Given the signature of the functions, we can combine them
+
 
 ***
 
 ## Compiler Serivices
 
-* Slow monolith? why not use a plug in architecture and compile code on the fly
-
-***
-## Lessons learned
-
-*  F# as a developer best friend becomes evident in the space between
-absolute purity and OO, closer to FP
-* F#
+![hot-swap](http://www.storagereview.com/images/QNAP-TS-879-Pro-Hot-Swap.jpg)
+' Slow monolith? why not use a plug in architecture and compile code on the fly
 
 ***
 
-### Thanks :D
+* Make easy things easy, and dificult things possible
+
+* Split the logic of how to deal with some input, from what the input does
+* Features of dynamic languages with type safety
+* Ease your way into asynchronous code
+* Tame difficulty of some code, give it an easy to understand usage.
+* Attack big projects with compiler services 
+
+***
 
 ![thanks](images/otter-laughing.jpg)
 
 - @SilverSpoon
 - [roundcrisis.com](roundcrisis.com)
+
+### https://github.com/Andrea/UnfryingYourBrain
 
 ***
 

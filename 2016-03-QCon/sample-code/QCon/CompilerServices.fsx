@@ -9,7 +9,7 @@ open Microsoft.FSharp.Compiler
 open System.IO  
 open Microsoft.FSharp.Compiler.SimpleSourceCodeServices
 
-let reactToErrors (errors:FSharpErrorInfo []) exitCode=
+let showResults (errors:FSharpErrorInfo []) exitCode=
   let errorString = 
     errors 
     |> Seq.fold(fun acc x -> 
@@ -29,7 +29,7 @@ let dllCompile path =
   
   let errors, exitCode = scs.Compile([| "fsc.exe"; "-o"; dllPath; "-a"; path |])
   printfn "The file %s exists: %b" dllPath (File.Exists(dllPath))
-  reactToErrors errors exitCode
+  showResults errors exitCode
 
 let dynamicCompile sourceFile=
   let dllPath = Path.ChangeExtension(sourceFile, ".dll")
@@ -38,7 +38,7 @@ let dynamicCompile sourceFile=
   let errors, exitCode, dynAssembly = scs.CompileToDynamicAssembly([| "-o"; dllPath; "-a"; sourceFile |], execute=None)
   printfn "The file %s exists: %b" dllPath (File.Exists(dllPath))
   printfn "The Assembly %s exists: %b" (dynAssembly.Value.GetName().Name ) dynAssembly.IsSome
-  reactToErrors errors exitCode
+  showResults errors exitCode
 
 
 let watch =   

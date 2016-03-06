@@ -13,6 +13,8 @@ open FSharp.Data
 open System
 open TypeProviderGiphy
 
+let searchString = "flying cat"
+
 let searchGif searchString =
   let searchTerm = String.map(fun c ->  if (c = ' ' )then '+' else c ) searchString
 
@@ -26,8 +28,8 @@ let searchGif searchString =
   giphy.Data
   |> Seq.map( fun x -> Uri(x.Images.DownsizedMedium.Url))    
 
-let searchString = "omg cat"
-searchGif "omg cat" |> Seq.head |> ShowGif
+
+searchGif "caturday" |> Seq.head |> ShowGif
 
 // More things you can do with results
-//searchGif "omg cat" |> Seq.skip(10) |> Seq.map(ShowGif)
+searchGif "omg otter" |> Seq.map(ShowGif)

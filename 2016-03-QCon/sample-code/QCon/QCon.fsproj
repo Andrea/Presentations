@@ -54,10 +54,9 @@
     <Compile Include="Utils.fs" />
     <Compile Include="InteropFSharp.fs" />
     <None Include="ActivePatterns.fsx" />
-    <None Include="Parser.fsx" />
-    <None Include="ComputationExpressions.fsx" />
     <Compile Include="TypeProviderExample.fs" />
     <None Include="TypeProvider.fsx" />
+    <None Include="ComputationExpressions.fsx" />
     <None Include="CompilerServices.fsx" />
     <Content Include="packages.config" />
   </ItemGroup>

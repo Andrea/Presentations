@@ -13,7 +13,7 @@ namespace QConConsole
 
 
             // Using a discriminated union
-            var platinumOrder = Order.NewPlatinumOrder("Something");
+            var platinumOrder = Order.NewPlatinumOrder( "Something");
             Console.WriteLine("Is platinum? " +platinumOrder.IsPlatinumOrder);
             Console.WriteLine("Extra info " +platinumOrder.OrderInfo);
             
@@ -21,7 +21,7 @@ namespace QConConsole
             Console.WriteLine("Is platinum? " + goldOrder.IsPlatinumOrder);
 
             //Another Discriminated uniong without the helper
-            var customer = Customer.NewDragonCustomer("Dragon Treats"); 
+            var customer = Customer.NewDragon("Dragon Treats"); 
             Console.WriteLine("Is a cat? " + customer.IsCat);
             // no access to dragon customer info
 

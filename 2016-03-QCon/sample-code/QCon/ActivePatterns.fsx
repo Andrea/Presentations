@@ -21,9 +21,10 @@ let weekDays day =
   | Tuesday | Wednesday -> "grey."
   | Thursday -> "doesn't even start."
   | Friday -> "I am in love"
-  | Saturday -> "Caturday"  //yes I know, not part of the song but you get the drift
+  | Saturday -> "Caturday"  //yes I know, not part of the song :D
   | Sunday -> "always come too late"
 
+weekDays Friday
 
 // When pattern matching gets kind of unruly
 //let moreDays day =
@@ -44,15 +45,15 @@ let openText path =
   sprintf "emacs.exe %s" path
 
 
-// When guards :( 
+// When guards :( on an API you don't own
+
 let openFile (filePath) =
   match filePath with
   | path when Path.GetExtension(path) = ".txt" ||
               Path.GetExtension(path) = ".md" -> openText path
   | path when Path.GetExtension(path) = ".jpg" ||
               Path.GetExtension(path) = ".png" ||
-              Path.GetExtension(path) = ".gif" -> openText path
-  
+              Path.GetExtension(path) = ".gif" -> openPictures path  
   | _ -> "oh noes"
 
 // A better way
@@ -85,63 +86,9 @@ let determineFileType filePath =
     | ext
         -> printfn "Unknown [%s]" filePath
 
+
+determineFileType "qcon"
 // Handling input 
-
-type Key =
-  | Space = 0
-  | A = 1
-  | I = 2
-  | Left =3
-  | Right =4
-  
-type KeyboardInput() =   
-   
-  member this.KeyPressed (key: Key) :bool = key = Key.Space     
-      
-  member this.KeyPressedFor(key:Key, milis:int) : bool =
-    key = Key.A && milis > 0
-
-type DualityApp ()=
-  static let mutable  keyboard: KeyboardInput = KeyboardInput()
-
-  static member Keyboard 
-        with get() = keyboard
-        and   set(value) = keyboard <- value
-type Action =
-  | Jump
-  | DoubleJump  
-  | Idle        
-  | Left
-  | Right
-    
-let playerGo action = 
-  printfn "Player game object does a %A" action
-
-let (|SpaceKey|) (keyboard:KeyboardInput) = 
-    keyboard.KeyPressed(Key.Space)
-
-let (|``Hold I 100ms``|) (keyboard:KeyboardInput) = 
-    keyboard.KeyPressedFor(Key.I, 100)  
-
-let doSomething =  
-  match DualityApp.Keyboard with        
-  | SpaceKey true & ``Hold I 100ms`` false -> playerGo Jump
-  | SpaceKey true & ``Hold I 100ms`` true -> playerGo DoubleJump
-  | _ -> playerGo Idle
-
-
-let (|LeftKey|RightKey|OtherKey|) (keyboard:KeyboardInput) = 
-  if keyboard.KeyPressed(Key.Left) then LeftKey
-  elif keyboard.KeyPressed(Key.Right) then RightKey
-  else OtherKey "Hi, you pressed a key...well that alright"
-
-
-let onUpdate()=    
-
-  match DualityApp.Keyboard with            
-  | LeftKey  -> playerGo Left
-  | RightKey-> playerGo Right
-  | OtherKey s-> ()
 
 
 // More uses of Active patterns, without a patern match
@@ -212,6 +159,66 @@ let addFive (Int value) = value + 5
 
 addFive "455"
 addFive "Monkeys"
+
+
+// Example of handling input (removed the real dependencies)
+
+type Key =
+  | Space = 0
+  | A = 1
+  | I = 2
+  | Left =3
+  | Right =4
+  
+type KeyboardInput() =   
+   
+  member this.KeyPressed (key: Key) :bool = key = Key.Space     
+      
+  member this.KeyPressedFor(key:Key, milis:int) : bool =
+    key = Key.A && milis > 0
+
+type DualityApp ()=
+  static let mutable  keyboard: KeyboardInput = KeyboardInput()
+
+  static member Keyboard 
+        with get() = keyboard
+        and   set(value) = keyboard <- value
+type Action =
+  | Jump
+  | DoubleJump  
+  | Idle        
+  | Left
+  | Right
+    
+let playerGo action = 
+  printfn "Player game object does a %A" action
+
+let (|SpaceKey|) (keyboard:KeyboardInput) = 
+    keyboard.KeyPressed(Key.Space)
+
+let (|``Hold I 100ms``|) (keyboard:KeyboardInput) = 
+    keyboard.KeyPressedFor(Key.I, 100)  
+
+let doSomething =  
+  match DualityApp.Keyboard with        
+  | SpaceKey true & ``Hold I 100ms`` false -> playerGo Jump
+  | SpaceKey true & ``Hold I 100ms`` true -> playerGo DoubleJump
+  | _ -> playerGo Idle
+
+
+let (|LeftKey|RightKey|OtherKey|) (keyboard:KeyboardInput) = 
+  if keyboard.KeyPressed(Key.Left) then LeftKey
+  elif keyboard.KeyPressed(Key.Right) then RightKey
+  else OtherKey "Hi, you pressed a key...well that alright"
+
+
+let onUpdate()=    
+
+  match DualityApp.Keyboard with            
+  | LeftKey  -> playerGo Left
+  | RightKey-> playerGo Right
+  | OtherKey s-> ()
+
 
 
 

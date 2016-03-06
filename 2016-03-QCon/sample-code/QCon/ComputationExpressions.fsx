@@ -1,92 +1,10 @@
 ﻿#I __SOURCE_DIRECTORY__
-#r "packages/FSharp.Data.2.2.5/lib/net40/FSharp.Data.dll"
-#r "System.Core.dll"
-#r "System.dll"
-#r "System.Numerics.dll"
-#r "System.Xml.Linq.dll"
+
 #load "Utils.fs"
 
-open FSharp.Data
 open System
-open System.IO
 open System.Threading
 open Utils
-
-type GiphyTP2 = JsonProvider<"http://api.giphy.com/v1/gifs/search?q=monkey+cat&rating=pg-13&api_key=dc6zaTOxFJmzC"> /// special F# thing from Giphy
-let baseUrl = "http://api.giphy.com/v1/gifs/search"
-let key = "dc6zaTOxFJmzC"
-
-type GifSize =
-  | Downsized
-  | FixedHeight
-  | FixedWidth
-  | Original
-type GifData ={
-    Url : Uri
-    Size: int
-    Rating: String
-  }
-
-// More on the erased types
-//let getBySize images size rating = 
-//  let gifUrl =match size with // find by size
-//              | Downsized -> images.DownsizedMedium.Url, images.Downsized.Size
-//              | FixedHeight -> images.FixedHeight.Url, images.FixedHeight.Size
-//              | FixedWidth -> images.FixedWidth.Url, images.FixedWidth.Size
-//              | Original -> images.Original.Url,  images.Original.Size
-//  {Url =Uri(fst gifUrl); Size= snd gifUrl; Rating= rating}    
-
-let searchGif searchString size =
-  let searchTerm = String.map(fun c ->  if (c = ' ' )then '+' else c ) searchString
-  let query = ["api_key", key; "q", searchTerm]
-  let response = Http.RequestString (baseUrl,  query)  
-  
-  let giphy = GiphyTP2.Parse(response)
-  printfn "Status of the request %A" giphy.Meta.Msg
-  giphy.Data
-  |> Seq.map( fun x ->      
-      let gifUrl = 
-        match size with // find by size
-        | Downsized -> x.Images.DownsizedMedium.Url, x.Images.Downsized.Size
-        | FixedHeight -> x.Images.FixedHeight.Url, x.Images.FixedHeight.Size
-        | FixedWidth -> x.Images.FixedWidth.Url, x.Images.FixedWidth.Size
-        | Original -> x.Images.Original.Url,  x.Images.Original.Size
-      {Url =Uri(fst gifUrl); Size= snd gifUrl; Rating= x.Rating})    
-
-
-let flyingCat = searchGif "Picard" Downsized |> Seq.head 
-
-ShowGif flyingCat.Url
-
-
-// async workflows great for IO bound computations
-
-let asyncProcess (path:string) doSomething = 
-  async {
-    printfn "Processing file %A" (Path.GetFileName path)
-
-    use stream = new FileStream(path, FileMode.Open)
-    let toRead = int stream.Length
-
-    let! data = stream.AsyncRead(toRead)
-    printfn "Read %i bytes " data.Length
-
-    let data' = doSomething data
-    use result = new FileStream (path+".results", FileMode.Create)
-    do! result.AsyncWrite (data', 0, data'.Length)
-
-  } |> Async.Start
-
-let path = System.IO.Path.Combine(__SOURCE_DIRECTORY__,"AssemblyInfo.fs")  
-let identity bytes =   
-  System.Threading.Thread.Sleep 10
-  printfn "a"
-  bytes
-
-asyncProcess path identity
-
-//let asyncWF = async {    }
-
 open System.IO
 open System.Net
 
@@ -105,13 +23,13 @@ let getHtmlAsync (url:string) = //can be slow and not block
     let! response = req.AsyncGetResponse()
     use streatm = response.GetResponseStream()
     use reader = new StreamReader(streatm)
-    let r = reader.ReadToEndAsync().Result
-    Threading.Thread.Sleep 2000
-    printfn "lenght %A " r.Length
+    let result = reader.ReadToEndAsync().Result
+//    Thread.Sleep 2000
+    printfn "lenght %A " result.Length
+    return result.Length
   }
 // how to have a wait handle example
 // getHtmlAsync "http://www.eff.org/"  |> Async.AwaitIAsyncResult()
-printfn "hi"
 
 let sites = [
   "http://www.eff.org/"  
@@ -146,16 +64,17 @@ let getHtmlAsyncTry (url:string) =
         printfn "IO exc %A" ae.Message
         return 0
   }
-  // why is this different from c#?
-let ss url = 
-  getHtmlAsyncTry url   
+  
+let myFunction url = 
+  
+  getHtmlAsyncTry url  
   |> Async.Catch  
-  |> Async.RunSynchronously   //TODO: how to run this in parallel?
+  |> Async.RunSynchronously     
   |> function 
       | Choice1Of2 result -> printfn "all good %A" result
       | Choice2Of2 (ex:exn) -> printfn "Errors :( %A" ex.Message
 
-let s = List.map(ss) sites 
+let s = List.map(myFunction) sites 
 
 // Cancellation 
 

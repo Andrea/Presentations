@@ -5,12 +5,27 @@
 - transition : default
 
 ***
-- data-background : images/roundcrisis.jpg
+- data-background : images/roundcrisis.png
 - data-background-size : 800px
 
 
 ' thanks for coming to my talk :D
 ' thanks to Amanda and QCon for inviting me
+
+***
+
+
+## F# Mentorship Programe
+![mentor](images/cat-fsharp.png)
+
+---
+## fsharp.org/mentorships
+
+![](images/fsmentorship.png)
+
+' online one to one mentorship
+' 8 weeks
+' a goal they define
 
 ***
 - data-background : images/egg.jpg
@@ -29,6 +44,10 @@
 ***
 - data-background : images/oni1.png
 
+' portion of the game in F#
+' we started uptaking in build, tests
+' and then scripting
+
 ***
 - data-background : images/oni2.jpg
 
@@ -38,7 +57,6 @@
 ## Obvious code is good code.
 
 ' don't make it about familiarity
-
 ' it is easy to consume F# code from C# ( even F# specific features)
 ' there are very simple ways to deal with the
 
@@ -46,8 +64,32 @@
 ***
 ## F# is a general purpose language.
 
+' cross platofrm
+' Functional first
+
+
 ***
 
+![egg](http://www.publicdomainpictures.net/pictures/10000/nahled/egg-871282749217Q6v0.jpg)
+
+***
+## Interop
+
+
+```fsharp
+type Order =
+  | GoldOrder
+  | PlatinumOrder of string
+
+  member this.OrderInfo =
+    match this with
+    | GoldOrder -> ""
+    | PlatinumOrder(extraInfo ) -> "A foamy latte"
+
+```    
+
+
+***
 ## Pattern matching
 
     let openFile (filePath) =
@@ -73,10 +115,8 @@
 
 ### Active patterns
 
-
-'    open System.IO
-'    let openPictures path = sprintf "gimp.exe %s" path
-'    let openText path = sprintf "emacs.exe %s" path
+' pattern matching -> against literal values
+' AP -> less when guards, match agains elements of a string | collection
 
     let (|Extension|) (path: string) =
        Path.GetExtension <| path.ToLower()
@@ -91,19 +131,16 @@
      | _ -> "oh noes"
 
 ---
-## Neat trick
+## Active patterns
 
-    let (|Int|) v =   
-      match Int32.TryParse v with
-      | true, r ->  r
-      | false,_ ->  0
-
-    let contrivedAdd (Int c) = c + 5
-
+* Should not be expensive or cause side effects.
+* You can
+    * Use them outside of a match expression
+    * Pass parameters
+    * Nest them and combine them
 
 ' Active patterns without pattern matching, because every let binding and parameter
 ' is a pattern match
-
 
 ---
 ## (| Bannana Operator |)
@@ -112,79 +149,59 @@
 
 
 ***
-- data-background
-- data-background-size : 800px
-![1](http://i.imgur.com/7yyj1r2.jpg)
 
+![cat-birthday](images/cat-birthday.jpg)
+
+
+***
+
+## Type Providers
+
+' does not necessarily contain any types itself; it is a component for generating
+' descriptions of types, methods and their implementations.
+
+* Get data from diverse sources and generate types for them.
+* Use type providers to:
+      * Write to databases
+      * Run other languages like R or python
+      * Choose your own adventure
+
+' You might be thinking, well I can codegen that however type providers provider a simpler
+'  process, (less potential errors, no extra tools). They also tend to scale better (think of ' something huge like Freebase)
+
+***
+
+## Asynchronous Workflows
+
+' Asynchronous? Is something that started, and will execute on the background and terminate later
+' Can use tasks
+
+' No callbacks :D
+
+* Inspired async await in C#
+* Great for IO bound operations (not cpu bound, use TPL lib)
+* Avoid blocking threads
+* Cancellation is easier
 
 ***
 
 ## Computation expressions
 
-* problems it solves
-* async | mbrace
-
-***
-## Monoids?
-
-
-' understand monoids, the reason for that is that they made me think about program flow  
-' why bother?
-
-* Convert pairwise operations into work in collections
-* Parallelization and Incrementalism
-
----
-
-## Monoids
-
-* Closures  $  a' \rightarrow  a' \rightarrow  a'  $ (example  int -> int -> int   )
-* Identity   $ x + I  = x $
-* Associativity  $ x + (y + z) = (x + y ) + z $
-
----
-
-    type Colour = { r: byte; g: byte; b: byte; a: byte }
-
-    let addTwo c1 c2 = {
-        r = c1.r + c2.r
-        g = c1.g + c2.g
-        b = c1.b + c2.b
-        a = c1.a + c2.a
-    }
----
-
-    type Monoid<'a> =
-        { neutral : 'a
-          op : 'a -> 'a -> 'a }
-
----
-
-
-* understanding monoids. why?
-
-
-***
-## Type providers
-
-what they do
+* Perfect for some heavy lifting behind the scenes
+* let! do! all operation with bang are implemented using CPS. Declared in a `Builder` (A builder is a type that has certain methods implemented)
+* Think of the importance of the signature of the functions Bind, Return, etc.
+* Given the signature of the functions, we can combine them
 
 ***
 
-sample xml
+## Compiler Serivices
 
-***
-
-sample R
-
-***
-
-how they work
+* Slow monolith? why not use a plug in architecture and compile code on the fly
 
 ***
 ## Lessons learned
 
-* Language features are great, the true power of F# as a developer best friend becomes evident in the space between
+*  F# as a developer best friend becomes evident in the space between
 absolute purity and OO, closer to FP
 * F#
 

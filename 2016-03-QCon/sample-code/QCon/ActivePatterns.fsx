@@ -2,7 +2,7 @@
 open System.IO
 open System.Threading
 
-type Days =
+type WeekDays =
   | Monday
   | Tuesday
   | Wednesday
@@ -56,6 +56,12 @@ let openFile (filePath) =
               Path.GetExtension(path) = ".gif" -> openPictures path  
   | _ -> "oh noes"
 
+//     /\___/\
+//    (  o o  )
+//   ===  v  ===
+//      )   (
+//      ooooo
+
 // A better way
 let (|Extension|) (path: string) = Path.GetExtension <| path.ToLower()
 
@@ -68,6 +74,7 @@ let openFile' path =
   | Extension ".md" -> openText path
   | _ -> "oh noes"
 
+openFile "sdfsd"
 
 //An even better example 
 open System.IO
@@ -87,7 +94,7 @@ let determineFileType filePath =
         -> printfn "Unknown [%s]" filePath
 
 
-determineFileType "qcon"
+determineFileType "qcon.jpg"
 // Handling input 
 
 
@@ -128,7 +135,7 @@ let (|GreaterThan|) reference value =
 let aFunction(NonEmpty name) = 
   sprintf "Hello %A" name
 
-// Driving it home
+// Partial case active patterns
 
 let (|DoubleP|_|) value =    
   match Double.TryParse value with
@@ -216,8 +223,8 @@ let onUpdate()=
 
   match DualityApp.Keyboard with            
   | LeftKey  -> playerGo Left
-  | RightKey-> playerGo Right
-  | OtherKey s-> ()
+  | RightKey -> playerGo Right
+  | OtherKey s -> ()
 
 
 

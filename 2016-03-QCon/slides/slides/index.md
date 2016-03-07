@@ -131,23 +131,24 @@ type Order =
      | Extension ".md" -> openText path
      | _ -> "oh noes"
 
----
-## Active patterns
-
-* Should not be expensive or cause side effects.
-* You can
-    * Use them outside of a match expression
-    * Pass parameters
-    * Nest them and combine them
-
-' Active patterns without pattern matching, because every let binding and parameter
-' is a pattern match
 
 ---
 ## (| Bannana Operator |)
 
 ![banana](https://s-media-cache-ak0.pinimg.com/564x/b9/5f/3f/b95f3f0446635cb37f6022ee3b6bddaf.jpg)
 
+
+---
+## Active patterns
+
+
+* Use them outside of a match expression
+* Pass parameters
+* Nest them and combine them
+* Should not be expensive or cause side effects.
+
+' Active patterns without pattern matching, because every let binding and parameter
+' is a pattern match
 
 ***
 
@@ -160,16 +161,13 @@ type Order =
 
 ![babel](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_(Vienna)_-_Google_Art_Project_-_edited.jpg/800px-Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_(Vienna)_-_Google_Art_Project_-_edited.jpg)
 
-' does not necessarily contain any types itself; it is a component for generating
+' does not contain any types itself; it is a component for generating
 ' descriptions of types, methods and their implementations.
- 
-
-* Get data from diverse sources and generate types for them.
-* Use type providers to:
-      * Write to databases
-      * Run other languages like R or python
-      * Choose your own adventure
-
+' Get data from diverse sources and generate types for them.
+' Use type providers to:
+'      * Write to databases
+'      * Run other languages like R or python
+'      * Choose your own adventure
 ' You might be thinking, well I can codegen that however type providers provider a simpler
 '  process, (less potential errors, no extra tools). They also tend to scale better (think of ' something huge like Freebase)
 
@@ -193,7 +191,7 @@ type Order =
 
 ## Computation expressions
 
-* Perfect for some heavy lifting behind the scenes
+' Perfect for some heavy lifting behind the scenes
 
 ---
 
@@ -223,13 +221,30 @@ type Order =
 
 ***
 
-* Make easy things easy, and dificult things possible
 
-* Split the logic of how to deal with some input, from what the input does
-* Features of dynamic languages with type safety
-* Ease your way into asynchronous code
-* Tame difficulty of some code, give it an easy to understand usage.
-* Attack big projects with compiler services 
+### Separate how to deal with data, from what the data does
+
+---
+
+### Enjoy dynamic like features with type safety
+' Feels like a scripting language 
+
+---
+
+### Ease your way into asynchronous code
+
+---
+
+### When you need to do something dificult show the right patterns with familiar idioms
+' Tame difficulty of some code, give it an easy to understand usage.
+
+---
+
+
+' Attack big projects with compiler services 
+
+## Make easy things easy, and dificult things possible
+
 
 ***
 

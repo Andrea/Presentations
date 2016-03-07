@@ -9,7 +9,7 @@ namespace QConConsole
         static void Main(string[] args)
         {
             // Instanciating an F# Record
-            var cat = new Animal("Cat", 4, FSharpOption<int>.None);
+            var monkey = new Animal("Monkey", 4, FSharpOption<int>.None, "Bananas");
 
 
             // Using a discriminated union

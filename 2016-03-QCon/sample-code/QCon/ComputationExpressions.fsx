@@ -15,6 +15,15 @@ let getHtml(url:string) =  //slow and blocks
       use reader = new StreamReader(streatm)
       reader.ReadToEnd().Length
 
+let url = "http://www.eff.org"
+let getHtmlA(url:string) =  
+  async{
+      let req = WebRequest.Create url
+      let! response = req.AsyncGetResponse()
+      use streatm = response.GetResponseStream()
+      use reader = new StreamReader(streatm)
+      return reader.ReadToEnd().Length
+      }
 
 let getHtmlAsync (url:string) = //can be slow and not block
   async{
@@ -28,8 +37,7 @@ let getHtmlAsync (url:string) = //can be slow and not block
     printfn "lenght %A " result.Length
     return result.Length
   }
-// how to have a wait handle example
-// getHtmlAsync "http://www.eff.org/"  |> Async.AwaitIAsyncResult()
+
 
 let sites = [
   "http://www.eff.org/"  
@@ -67,7 +75,7 @@ let getHtmlAsyncTry (url:string) =
   
 let myFunction url = 
   
-  getHtmlAsyncTry url  
+  getHtmlAsync url  
   |> Async.Catch  
   |> Async.RunSynchronously     
   |> function 
@@ -109,7 +117,24 @@ Async.Start(comp, cancelToken.Token)
 cancelToken.Cancel()
 
 
-// A builder
+// Not magic!!
+
+
+let division a b c d = 
+    match b with
+    | 0 -> None
+    | _ -> 
+        match c with
+        | 0 -> None
+        | _ -> 
+            match d with
+            | 0 -> None
+            | _ -> Some(((a / b) / c) / d)
+    
+let divide a b = 
+    match b with
+    | 0 -> None
+    | _ -> Some(a / b)
 
 type MaybeBuilder() =         
     member __.Bind(value, func) = 
@@ -120,31 +145,15 @@ type MaybeBuilder() =
     member __.Return value = Some value
     member __.ReturnFrom value = __.Bind(value, __.Return)
    
-module DivideExample = 
     
-  let division a b c d = 
-      match b with
-      | 0 -> None
-      | _ -> 
-          match c with
-          | 0 -> None
-          | _ -> 
-              match d with
-              | 0 -> None
-              | _ -> Some(((a / b) / c) / d)
-    
-  let divide a b = 
-      match b with
-      | 0 -> None
-      | _ -> Some(a / b)
-  let maybe = MaybeBuilder()
+let maybe = MaybeBuilder()
 
-  let divisionM a b c d = 
-    maybe { 
-        let! x = divide a b
-        let! y = divide x c
-        let! z = divide y d
-        return z }
+let divisionM a b c d = 
+  maybe { 
+      let! x = divide a b
+      let! y = divide x c
+      let! z = divide y d
+      return z }
 
    
 module Desugared =

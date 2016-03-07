@@ -4,6 +4,7 @@ type Animal = {
   Name: string
   NumberOfLegs: int
   NumberOfWings : int option
+  PreferedFood: string
 }
 
 type Order =

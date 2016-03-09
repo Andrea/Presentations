@@ -171,6 +171,18 @@ type Order =
 ' You might be thinking, well I can codegen that however type providers provider a simpler
 '  process, (less potential errors, no extra tools). They also tend to scale better (think of ' something huge like Freebase)
 
+---
+
+
+    
+    type GiphyTP = JsonProvider<"http://api.giphy.com/API/link">
+    let query = ["api_key", key; "q", searchTerm]
+    let response = Http.RequestString (baseUrl,  query)
+    
+    let giphy = GiphyTP.Parse(response)
+
+
+
 ***
 
 ## Asynchronous Workflows
@@ -180,12 +192,42 @@ type Order =
 
 ' No callbacks :D
 
-![](images/waiting.gif)
+![die-waiting](images/waiting.gif)
 
 ' Inspired async await in C#
 ' Great for IO bound operations (not cpu bound, use TPL lib)
 ' Avoid blocking threads
 ' Cancellation is easier
+
+---
+
+    let getHtml(url:string) =  
+      let req = WebRequest.Create url
+
+      let response = req.GetResponse()
+      use streatm = response.GetResponseStream()
+      use reader = new StreamReader(streatm)
+      
+      reader.ReadToEnd().Length
+
+---
+
+    let getHtmlA(url:string) =  
+      async{
+          let req = WebRequest.Create url
+          let! response = req.AsyncGetResponse() // ding!
+          use streatm = response.GetResponseStream()
+          use reader = new StreamReader(streatm)
+          return reader.ReadToEndAsync().Length // ding!
+          }
+
+---
+
+    sites
+    |> List.map (getHtmlAsync)
+    |> Async.Parallel
+    |> Async.RunSynchronously
+
 
 ***
 
@@ -210,6 +252,35 @@ type Order =
 
 ' Think of the importance of the signature of the functions Bind, Return, etc.
 ' Given the signature of the functions, we can combine them
+
+---
+
+    let division a b c d = 
+        match b with
+        | 0 -> None
+        | _ -> 
+            match c with
+            | 0 -> None
+            | _ -> 
+                match d with
+                | 0 -> None
+                | _ -> Some(((a / b) / c) / d)
+
+--- 
+
+    let divide a b = 
+        match b with
+        | 0 -> None
+        | _ -> Some(a / b)
+
+    type MaybeBuilder() =         
+        member __.Bind(value, func) = 
+            match value with
+            | Some value -> func value
+            | None -> None
+            
+        member __.Return value = Some value
+        member __.ReturnFrom value = __.Bind(value, __.Return)
 
 
 ***

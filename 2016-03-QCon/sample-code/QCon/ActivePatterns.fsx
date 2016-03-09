@@ -74,7 +74,7 @@ let openFile' path =
   | Extension ".md" -> openText path
   | _ -> "oh noes"
 
-openFile "sdfsd"
+openFile "ttt.png"
 
 //An even better example 
 open System.IO

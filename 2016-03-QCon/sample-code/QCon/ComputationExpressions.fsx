@@ -16,15 +16,8 @@ let getHtml(url:string) =  //slow and blocks
       reader.ReadToEnd().Length
 
 let url = "http://www.eff.org"
-let getHtmlA(url:string) =  
-  async{
-      let req = WebRequest.Create url
-      let! response = req.AsyncGetResponse()
-      use streatm = response.GetResponseStream()
-      use reader = new StreamReader(streatm)
-      return reader.ReadToEnd().Length
-      }
 
+getHtml url
 let getHtmlAsync (url:string) = //can be slow and not block
   async{
     printfn "Starting to do stuff"  

@@ -19,20 +19,51 @@
 
 ## Andrea Magnorsky
 
+#### @SilverSpoon
+#### [roundcrisis.com](roundcrisis.com)
+
 ![wd](images/wd-logo.gif)
 
-<div style={color: black}>
-* @SilverSpoon
-* [roundcrisis.com](roundcrisis.com)
-</div>
-
 ***
-
 - data-background: images/otter-question.jpg
 
 ' introduce comp expressions
 
 ## Computation Expressions
+
+---
+
+    let getHtml(url:string) =  
+      let req = WebRequest.Create url
+      let response = req.GetResponse()
+      use streatm = response.GetResponseStream()
+      use reader = new StreamReader(streatm)
+      
+      reader.ReadToEnd().Length
+
+---
+
+    let getHtmlA(url:string) =  
+      async{
+          let req = WebRequest.Create url
+          let! response = req.AsyncGetResponse() // ding!
+          use streatm = response.GetResponseStream()
+          use reader = new StreamReader(streatm)
+          return reader.ReadToEndAsync().Length // ding!
+          }
+
+---
+
+    let getHtmlA(url:string) =  
+      //async{
+          let req = WebRequest.Create url
+          let (*! *) response = req.AsyncGetResponse() 
+          use streatm = response.GetResponseStream()
+          use reader = new StreamReader(streatm)
+          (*return *) reader.ReadToEndAsync().Length 
+      //    }
+
+
 
 ***
 
@@ -46,7 +77,6 @@
         }
 
 ' Block of code  that represent a computation with a non standard aspect
-' build your own
 ' code inside the block is reinterpreted using a computation builder
 
 ---
@@ -54,6 +84,19 @@
 ' record of operations that define the semantics and syntax
 
 ![builder](images/otter-builder.jpg)
+
+---
+
+  type SimplestBuilder () =
+
+      member this.Bind(x,f) = 
+        printfn "Bind begin  %A %s " (DateTime.Now.TimeOfDay)  (x.ToString()) 
+        let y = f x
+        printfn "Bind end  %A %s " (DateTime.Now.TimeOfDay)  (x.ToString()) 
+        y
+      member this.Return(x) = 
+          printfn "Return %A %s"  (DateTime.Now.TimeOfDay) (x.ToString())
+          x
 
 ---
 
@@ -98,7 +141,7 @@
              makeJob i |> cluster.CreateProcess ]
 
 
-[example source](http://www.m-brace.net/starterkit/HandsOnTutorial/3-cloud-parallel-cpu-intensive.html)
+[example source](https://github.com/mbraceproject/MBrace.StarterKit/blob/master/HandsOnTutorial/3-cloud-parallel-cpu-intensive.fsx)
 
 
 ***
@@ -143,13 +186,10 @@ Some ``not-useful-right-away`` info
 
 ***
 
-## Monoids
+# Monoids
 
-' understand monoids, the reason for that is that they made me think about program flow  
-' why bother?
-
-* Convert pairwise operations into work in collections
-* Parallelization and Incrementalism
+'  Convert pairwise operations into work in collections
+' Parallelization and Incrementalism
 
 ---
 
@@ -306,8 +346,6 @@ Some ``not-useful-right-away`` info
 ' what is happening here ?
 ' Monads apply a function that returns a wrapped value to a wrapped value. Monads have a function >>= (pronounced “bind”) to do this.
 
-
-
 ---
 ' oh, oh! and you can also property check a monad (tho a little harder to read than the monoids)
 
@@ -346,7 +384,42 @@ Some ``not-useful-right-away`` info
 
 ## let, for and try .. with, but with a different semantics
 
+***
+
+## Monoids again
+
+
+	  type Colour = { r : byte; g : byte; b : byte; a : byte }
+
+	  let addColour c1 c2 = 
+	      { r = c1.r + c2.r
+	        g = c1.g + c2.g
+	        b = c1.b + c2.b
+	        a = c1.a + c2.a }
+
+	  let neutral = { r = 0uy; g = 0uy; b = 0uy; a = 0uy }
+
 ---
+
+	  type MonoidBuilder ()= 
+	    member this.Zero() = neutral
+	    member this.Combine(x, y) = addColour x  y    
+	    member x.For(sequence, f) =
+	        let combine a b = x.Combine(a, f b)
+	        let Z = x.Zero()
+	        Seq.fold combine Z sequence
+	    member x.Yield (a) = a
+
+---
+
+	  let monoid = new MonoidBuilder()
+
+	  let monoidAdd xs= monoid {
+	       for x in xs do
+	         yield x
+	       }
+
+***
 
 ### Computation expressions or workflows
 
@@ -355,35 +428,7 @@ Computation expressions have been available in F# since 2007 and they are fully 
 * Abstract computations
 * Handling of effects
 
-
 ---
-
-## async
-
-    open System
-
-    let sleepWorkflow  = async{
-        printfn "Starting sleep workflow at %O" DateTime.Now.TimeOfDay
-        do! Async.Sleep 2000
-        printfn "Finished sleep workflow at %O" DateTime.Now.TimeOfDay
-        }
-
-    Async.RunSynchronously sleepWorkflow      
-
-
----
-
-## mbrace
-
-    let job =
-        cloud {
-            return sprintf
-            "run in the cloud on worker '%s' " Environment.MachineName }
-        |> runtime.CreateProcess
-
-
----
-
 
 ## Maybe problems
 
@@ -392,6 +437,11 @@ Computation expressions have been available in F# since 2007 and they are fully 
 * Operator overuse
 
 ' nesting of expression
+
+---
+
+![otter](images/math_otter.png)
+
 
 ***
 
@@ -402,21 +452,15 @@ Computation expressions have been available in F# since 2007 and they are fully 
 * [Railway Oriented Programming](http://fsharpforfunandprofit.com/rop/#monads)
 * [Chessie](https://fsprojects.github.io/Chessie/)
 
-***
-- data-background : images/otter_king.jog.jpg
-- data-background-size : 600px
-
----
-
-## It doesn't matter what things are
-
 
 ***
+- data-background: images/roundcrisis.png
+- data-background-size: 900px
 
-![otter](images/math_otter.png)
-
-- @SilverSpoon
-- [roundcrisis.com](roundcrisis.com)
+## Thanks
+ 
+#### @SilverSpoon
+#### [roundcrisis.com](roundcrisis.com)
 
 
 ***

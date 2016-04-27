@@ -1,19 +1,131 @@
 ﻿namespace ComputationExpressionsInPractice
 
-module AsynExamples =
+
+module Samples =
+  open System
+  open System.Threading
+  open System.IO
+  open System.Net
+
+  let getHtml(url:string) =               //slow and blocks
+        let req = WebRequest.Create url
+        let response = req.GetResponse()
+        use streatm = response.GetResponseStream()
+        use reader = new StreamReader(streatm)
+        printfn "Page length is %A." <| reader.ReadToEnd().Length
+
+  let url = "http://www.eff.org"
+
+  getHtml url
+  let getHtmlAsync (url:string) = //can be slow and not block
+    async{
+      printfn "Starting to do stuff"  
+      let req = WebRequest.Create url
+      let! response = req.AsyncGetResponse()
+      use streatm = response.GetResponseStream()
+      use reader = new StreamReader(streatm)
+      let result = reader.ReadToEndAsync().Result
+      Thread.Sleep 2000
+      printfn "lenght %A " result.Length
+      return result.Length
+    }
+
+  let sites = [
+    "http://www.eff.org/"  
+    "http://www.ted.com/talks/edward_snowden_here_s_how_we_take_back_the_internet#t-704593"  
+    "http://freedom.press/"
+    "http://imgur.com"
+    "http://theguardian.com"
+    "http://rte.ie"
+    ]
+  sites
+  |> List.map (getHtmlAsync)
+  |> Async.Parallel
+  |> Async.RunSynchronously
+
+  let getHtmlAsyncTry (url:string) = 
+    async{
+      printfn "Starting to do stuff" 
+      try 
+        let req = WebRequest.Create url
+        let! response = req.AsyncGetResponse()
+        use streatm = response.GetResponseStream()
+        use reader = new StreamReader(streatm)
+        let r = reader.ReadToEndAsync().Result
+        System.Threading.Thread.Sleep 1000
+        printfn "lenght %A " r.Length
+        return r.Length
+      with
+      | :? IOException as io -> 
+          printfn "IO exc %A" io.Message 
+          return 0
+      | :? ArgumentException as ae -> 
+          printfn "IO exc %A" ae.Message
+          return 0
+    }
+  
+  let myFunction url = 
+  
+    getHtmlAsync url  
+    |> Async.Catch  
+    |> Async.RunSynchronously     
+    |> function 
+        | Choice1Of2 result -> printfn "all good %A" result
+        | Choice2Of2 (ex:exn) -> printfn "Errors :( %A" ex.Message
+
+  let s = List.map(myFunction) sites 
+
+  // Cancellation 
+
+  let cancelableTask =
+    async {
+      printfn "Waiting"
+      for i = 1 to 42 do
+      printfn "Counting %d" i
+      do! Async.Sleep(1000)
+      printfn "Done"
+    }
+  let notCancelableTask =
+    async {    
+      for i = 1 to 42 do
+      printfn "Don't cancel Counting %d" i
+      do! Async.Sleep(1000)
+    } |> Async.RunSynchronously
+
+  let handler (ex) = printfn "Cancelled %A" ex
+
+  Async.TryCancelled( cancelableTask, handler)
+  |> Async.Start
+
+  Async.CancelDefaultToken() // if there are other tasks running it blocks :(
+
+
+  let comp = Async.TryCancelled(cancelableTask, handler)
+  let cancelToken = new CancellationTokenSource()
+
+  Async.Start(comp, cancelToken.Token)
+
+  cancelToken.Cancel()
+
+
+
+module AsycExamples =
 
   open System
 
   let sleepAndPrint x = 
       printfn "sleeping and printing"
       Async.Sleep x
+
   let sleepWorkflow  = async{
       printfn "Starting sleep workflow at %O" DateTime.Now.TimeOfDay
       do! sleepAndPrint 2000
       printfn "Finished sleep workflow at %O" DateTime.Now.TimeOfDay
       }
 
+  
   Async.RunSynchronously sleepWorkflow
+  Async.Start sleepWorkflow
 
 module LoggingExamples =
   type LoggingBuilder() =

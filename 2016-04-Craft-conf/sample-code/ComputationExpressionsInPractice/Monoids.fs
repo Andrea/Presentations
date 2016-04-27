@@ -50,7 +50,7 @@ module AddingTwoColours =
   let (+++) = addColour
   let x = c1 +++ c2 +++ { c2 with a = 254uy }
 
-  type TColour = Colour
+  
   let colourAdd : Monoid<Colour> = 
     { neutral = neutral
       op = (addColour) }
@@ -59,10 +59,10 @@ module AddingTwoColours =
   let Z = M.neutral
   let (++) = M.op
 
-  let `` Z is the neutral element`` (v : TColour) = 
+  let `` Z is the neutral element`` (v : Colour) = 
     Z ++ v = v && v ++ Z = v
 
-  let ``The operation is commutative`` (a : TColour, b : TColour, c : TColour) = 
+  let ``The operation is commutative`` (a : Colour, b : Colour, c : Colour) = 
     a ++ (b ++ c) = (a ++ b ++ c)
 
   Check.Quick `` Z is the neutral element`` 

@@ -104,8 +104,8 @@
 
 ## Turing Machine
 
-' Turing machines, first described by Alan Turing in (Turing 1937), are simple abstract
-' computational devices intended to help investigate the extent and limitations of what can be computed.
+' simple abstract computational devices intended to investigate the limitations
+' of what can be computed.
 
 ![q](images/turing-machine.jpg)[sauce](http://aturingmachine.com/)
 
@@ -113,7 +113,6 @@
 ***
 
 ## Church-Turing Thesis
-
 
 ' If a problem can be solved by one system, then it can be solved in another, and vice-versa.
 
@@ -180,12 +179,12 @@ OTHERWISE GO TO OPERATION 2.
 
 ## John Backus
 
-' add some Fortran here
 
 ---
 
 ## Speedcoding
 ## BNF
+## FORTRAN
 
 ' BNF: formal definition of a language
 
@@ -221,6 +220,7 @@ OTHERWISE GO TO OPERATION 2.
 - data-background-size : 900px
 
 ' Algol influence
+' THIS is about PEOPLE
 ' So much more activity
 
 ***
@@ -443,22 +443,23 @@ append (x :: xs) ys = x :: append xs ys
 </div>
 
 ***
+- data-background: images/herding-cats.jpg
 
-## Emerging trends
 
----
-
-> Attention to tooling and developer productivity.
+# Herding the cats
 
 ---
 
-> Tension between "good langauges" and "getting stuff done" languages.
+> Extra Attention to tooling & developer productivity.
+
+---
+
+> Tension between "good languages" and "getting stuff done".
 
 ---
 
 > People (and communities) developing languages... how to get funding???
 
----
 
 ' generally people comment on popularity of languages
 ' funding for the programming languges, lets find trends
@@ -470,7 +471,7 @@ append (x :: xs) ys = x :: append xs ys
 ' we all heard it before, "getting shit done" vs "thinking about it"
 ' heroes vs people that don't get recognized because noone noticed that the thing was working correctly only because someone
 ' took a lot of time trying to figure out how to make sure that the thing was working right
-' ksksk
+
 
 ***
 
@@ -481,12 +482,11 @@ append (x :: xs) ys = x :: append xs ys
 - data-background: images/cat-birthday.jpg
 - data-background-size : 800px
 
-### Thanks :D
+# Thanks
 
---![thanks](images/cat-birthday.jpg)
+--
 
-- @SilverSpoon
-- [roundcrisis.com](roundcrisis.com)
+# @SilverSpoon - [roundcrisis.com](roundcrisis.com)
 
 ***
 
@@ -499,15 +499,17 @@ append (x :: xs) ys = x :: append xs ys
 * [Alan Kay: Computer Applications: A Dynamic Medium for Creative Thought 1972](https://www.youtube.com/watch?v=WJzi9R_55Iw)
 * [The APL Programming Language Source Code](http://www.computerhistory.org/atchm/the-apl-programming-language-source-code/)
 * [Roots of computer languages through the ages](http://www.digibarn.com/collections/posters/tongues/ComputerLanguagesChart.png)
-* [Principal programming paradigms](https://www.info.ucl.ac.be/~pvr/paradigmsDIAGRAMeng108.jpg)
+* [A Science of Operations, M. Priestley-  Book](http://dl.acm.org/citation.cfm?id=1972501)
 
 ---
 
 * [Some History of Functional Programming Languages - D. A. Turner](https://www.cs.kent.ac.uk/people/staff/dat/tfp12/tfp12.pdf)
+* [History of ML -  David McQueen](https://www.youtube.com/watch?v=NVEgyJCTee4)
 * [Visualizing influence relations of programming languages](http://exploringdata.github.io/info/programming-languages-influence-network/)
 * [Freebase programming language collection](http://www.freebase.com/view/computer/programming_language)
 * [Turing on computable numbers](http://swizec.com/blog/week-1-turings-on-computable-numbers/swizec/6375)
 * [A Programming Language](http://www.users.cloud9.net/~bradmcc/APL.html)
+* [Principal programming paradigms](https://www.info.ucl.ac.be/~pvr/paradigmsDIAGRAMeng108.jpg)
 
 ---
 

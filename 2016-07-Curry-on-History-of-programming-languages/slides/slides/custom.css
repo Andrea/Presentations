@@ -26,3 +26,7 @@ span.s {
   color: #4C1485;
   background: rgba(253, 246, 227, 0.65);
 }
+
+.reveal blockquote {
+  background: rgba(253, 246, 227, 0.65);
+}

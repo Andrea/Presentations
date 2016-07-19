@@ -9,9 +9,7 @@
 - data-background : images/roundcrisis.jpg
 - data-background-size : 600px
 
----
-
-# You should know that
+.
 
 ---
 
@@ -137,7 +135,7 @@
 
 ---
 
-# FLOW-MATIC
+## FLOW-MATIC
 ' influencial in cobol as a technical consultant
 
 ---
@@ -446,6 +444,22 @@ append (x :: xs) ys = x :: append xs ys
 
 ***
 
+## Emerging trends
+
+---
+
+> Attention to tooling and developer productivity.
+
+---
+
+> Tension between "good langauges" and "getting stuff done" languages.
+
+---
+
+> People (and communities) developing languages... how to get funding???
+
+---
+
 ' generally people comment on popularity of languages
 ' funding for the programming languges, lets find trends
 ' the trend seems to go the way of funcitional non pure functional languages
@@ -464,9 +478,12 @@ append (x :: xs) ys = x :: append xs ys
 
 
 ***
+- data-background: images/cat-birthday.jpg
+- data-background-size : 800px
+
 ### Thanks :D
 
-![thanks](images/cat-birthday.jpg)
+--![thanks](images/cat-birthday.jpg)
 
 - @SilverSpoon
 - [roundcrisis.com](roundcrisis.com)

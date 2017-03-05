@@ -1,0 +1,28 @@
+.reveal section img {
+  border: none;
+  margin: 0px;
+}
+
+table.pre, pre.fssnip, pre{
+  background-color: #fff;
+  color:#4C1485;
+  border: none;
+}
+
+span.i {
+  color:#258585;
+}
+
+span.f {
+  color:#852525;
+}
+
+span.s {
+  color:#258525;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  margin: 0 0 20px 0;
+  color: #4C1485;
+  background: rgba(253, 246, 227, 0.65);
+}

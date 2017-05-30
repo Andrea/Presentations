@@ -10,7 +10,7 @@
 - data-background-size : 800px
 
 <div class="fragment">
-Thank you 
+s 
 </div>
 
 ***
@@ -37,8 +37,15 @@ Disclaimer:
 is really important for most of the assertions here. So please stay in context.
 
 
+---
+
+## Irish-isms ahead
+
+Craic, eejit, and arse are totally ok words
+' eejit, craic, and arse are totally irish words
+
 ***
-- data-background : #FF7777
+- data-background : #AAFF66
 
 
 ' Bacon decided to learn FP, after many years of Imperative and Object Oriented programming
@@ -49,7 +56,7 @@ is really important for most of the assertions here. So please stay in context.
 
 
 ---
-- data-background : #FF7777
+- data-background : #AAFF66
 
 #### Delphi
 <div class="fragment">
@@ -68,19 +75,19 @@ is really important for most of the assertions here. So please stay in context.
 </div>
 
 ---
-- data-background : #FF7777
+- data-background : #AAFF66
 
 ' <img class="plain"  src="images/bacon.jpg"/>
 
-### Referencial transparency 
+### Referential transparency 
 ### less mutable state!!
-### No exepcions for flow control!!
+### No exceptions for flow control!!
 ###.. and more
 
 
 
 ---
-- data-background : #FF7777
+- data-background : #AAFF66
 
 <div class="fragment">
 ### Bacon's friends felt awkward
@@ -88,9 +95,10 @@ is really important for most of the assertions here. So please stay in context.
 
 ![tweet](images/bacon-tweet.png)
 
+' the way that sounded to anyone listen is like Bacon was some sort of self centered elitist ivory tower eejit 
 
 ---
-- data-background : #FF7777
+- data-background : #AAFF66
 
 ## Bacon's  FP
 
@@ -104,7 +112,7 @@ is really important for most of the assertions here. So please stay in context.
 ' how does this evolve?
 
 ---
-- data-background : #FF7777
+- data-background : #AAFF66
 
 ## Problems with FP as Bacon understands it
 
@@ -112,20 +120,20 @@ is really important for most of the assertions here. So please stay in context.
 * Type tetris
 * Complicated concepts 
 
-' Are monad transformers really necessary
+' Are monad transformers really necessary ?
 ' surely these problems supported by the language
 ' that their peers are not groking (choice or not)
 
 ... is it worth it?... is it the best way?
 
 ---
-- data-background : #FF7777
+- data-background : #AAFF66
 
 ## Bacon dreams of well structured programs
 
 
 > Well-structured software is easy to write and to debug, and provides a collection of modules that can be reused
-to reduce future programming costs. (Why FP matters. John Hughes)
+to reduce future programming costs. [Why FP matters. John Hughes]
 
 
 
@@ -140,11 +148,13 @@ to reduce future programming costs. (Why FP matters. John Hughes)
 ---
 - data-background : #AAFFEE
 
+<div class="light">
 
 * Works with Bacon
 * Performance is everything
 * Curious about functional approach
 * SOLID looks FP-ish when you squint
+</div>
 
 ' but ooo is an owl, do they even squint
 
@@ -158,9 +168,9 @@ to reduce future programming costs. (Why FP matters. John Hughes)
 ---
 - data-background : #AAFFEE
 
-### "...especially its(Scala) focus on pragmatic choices that unify traditionally disparate programming-language philosophies (such as object-oriented and functional programming) [Odersky, Rompf April 2014](https://cacm.acm.org/magazines/2014/4/173220-unifying-functional-and-object-oriented-programming-with-scala/fulltext)
+### "...especially its (Scala) focus on pragmatic choices that unify traditionally disparate programming-language philosophies (such as object-oriented and functional programming) [Odersky, Rompf April 2014](https://cacm.acm.org/magazines/2014/4/173220-unifying-functional-and-object-oriented-programming-with-scala/fulltext)
 
-' this is not what Oooo sees when they talk to Bacon
+' this is not what Oooo sees when he talks to Bacon
 
 ---
 - data-background : #AAFFEE
@@ -169,16 +179,10 @@ to reduce future programming costs. (Why FP matters. John Hughes)
 
 ## SOLID looks a lot like FP when you squint 
 
-' example?
-
-
 ***
 
 # On Scala and F#/C# 
 (From it's creators)
-some pic to break it up
-
-' mention how scala and F#/C# have similar struggles
 
 
 ---
@@ -210,7 +214,7 @@ some pic to break it up
 - data-background : images/fight.jpg
 
 
-> When Oooo and Bacon talk, many times they disagree and call each others names
+> When Oooo and Bacon talk, they often disagree and call each other names
 
 ' the statements by Syme and Odersky are at odds with the reality of programmers
 
@@ -248,8 +252,6 @@ some pic to break it up
 </div>
 
 
-
-
 ***
 - data-background : #FFFFFF
 
@@ -257,8 +259,6 @@ some pic to break it up
 
 * Paradigms and how they interact
 * Paradigms and how they shift
-
-
 
 ***
 
@@ -270,7 +270,11 @@ principles.
 ' lets get some proper definitions
 
 ---
+- data-background : images/paradigms-ctcp.jpg
 
+_
+
+---
 
 >  All but the smallest toy problems require different sets of concepts for different parts. This is why programming languages should support many paradigms.
 
@@ -281,10 +285,10 @@ CTM - Peter Van Roy
 
 ---
 
-> A language should ideally support many concepts in a well-factored way, so that the programmer can choose the right concepts wheneverthey are needed without being encumbered by the others
+> A language should ideally support many concepts in a well-factored way, so that the programmer can choose the right concepts whenever they are needed without being encumbered by the others.
 
 
-
+' add citation
 ' called multiparadigm programming, 
 ' 'in our experience it is clear that it should be the normal way of programming
 
@@ -319,9 +323,9 @@ CTM - Peter Van Roy
 
 Every langauge is adding functional features:
 
-* function passing
-* expression oriented programming
-* inmutable data structures
+* lambdas
+* functional data structures
+* pattern matching, etc
 
 C++, Java, C# 
 
@@ -344,20 +348,41 @@ C++, Java, C#
 <small> Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Edition (p. 88). University of Chicago Press. Kindle Edition. 
 </small>
 
+---
+- data-background : #BBBBBB
+
+' why the choice between competing paradigms regularly raises questions that cannot be resolved by the criteria of normal science.
+
+
+> "... two scientific schools disagree about what is a problem and what a solution, they will inevitably talk through each other when debating the relative merits of their respective paradigms."
+
+<small>
+Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Edition (p. 109). University of Chicago Press. Kindle Edition. </small> 
+
+' give historical context to the idea that some old stuff 
+' that was lurking on the back IPL, FP sudenly got more popular
+
+***
+- data-background : images/battlestar.jpg
+- data-background-size: 1200px
+
+
+<div class="fragment">
+
+## All this has happened before and it will happen again
+</div>
+
+
 ****
 
-# All these silver bullets
 
----
-
-In the end we need to get things done
-
-As a working professional we see/take part on
+' In the end we need to get things done
+# As programmers, we
 
 - cut corners
-- religious wars
+- for some reason we have religious wars
 - deal with terrible code
-- deal with other people's terrible code
+- deal with other people's terrible code (the wurst!)
 - complain about the shortcommings of the current language we are using
 
 ***
@@ -371,17 +396,14 @@ b) it's been hard sometimes
 during this trip I have 
 
 - told people this new thing ( I am discovering, but it's not new) is great and how this other silly thing I was using before is subpar (in my case I was comparing F# to C#)
-the way that sounded is to anyone listen is
-probably like I was some sort of self centered elitist ivory tower eejit 
 I was truly, honestly trying to help, I felt like I should have known about thsi stuff before
 and maybe there was all this other people out there , that just needed to hear about it, the way I did.  
 Very soon I started seeing this in other people, and I could relate, but I also started seeing how it sounded like from outside of it
 
 
 
-introduce OOoo and Bacon as OO background person and FP person that doesn't know OO
+not only at a comunity level, also the same personal struggles, the same questions on the level of abstraction to work at .. talks about purity and lazyness and how haskell is great but idris is greater and when can we finally get a decent type system kind of sound the same like the clasification of angels
 
-not only at a comunity level, also the same personal struggles, the same questions on the level of abstraction to work at .. talks about purity and lazyness and how haskell is great but idris is greater and when can we finally get a decent type system
 because in the end while traversing the path to fp we had to figure
 
 - how to deal with dependencies?
@@ -403,55 +425,25 @@ abstractions levels keep raising trying to have good mental models for solutions
 the abstractions come , generally without the context
 
 
-***
-- data-background : images/battlestar.jpg
-- data-background-size: 1200px
-
-
-<div class="fragment">
-
-## All this has happened before and it will happen again
-</div>
-
-***
-
-## What is simplest?
-
-```
-var result = 0;
-for (int i = 0; myNumbers.Lenght; i++ )
-{
-    result += myNumbers[i];
-}
-```
-
-```
-myNumbers |> List.sum
-```
----
 
 
 ***
-when trying to get things done there is this two things that in my opinion are
-very important 
+' when trying to get things done there is this two things that in my opinion are
+' very important 
 
-- dependecies and how to manage them
-- fault tolerance / correctness
-
-
+* dependecies and how to manage them
+* fault tolerance / correctness
 
 
-***
-- data-background : images/Elm.png
-- data-background-size: 1200px
-
-...And in the beginning there was functions
-
-WE ll 
 ***
 
 brief intro with some history points
 
+Practical vs scientific aproaches to creting languages
+
+Bright + Alexandrescu -> creting D 
+    mix of practical and acadewmic
+    Bright no academic experience, 1st C++
 
 OO 
 
@@ -475,22 +467,39 @@ move to paradigms
 
 1978 Turing Award lecture by Floyd
 
-> To the designer of programming languages, I say: unless you can support the paradigms I use when I program, or at least support my extending your language
-into one that does support my programming methods, I
-don't need your shiny new languages; like an old car or
-house, the old language has limitations that I have learned to live with
+> To the designer of programming languages, I say: unless you can support the paradigms I use when I program, or at least support my extending your language into one that does support my programming methods, I don't need your shiny new languages; like an old car or house, the old language has limitations that I have learned to live with
 
-***
+---
 
+> To the teacher of programming, even more, I say: identify the paradigms you use, as fully as you can, then teach them explicitly. They will serve your students when Fortran has replaced Latin and Sanskrit as the archetypal dead language.
+
+---
+
+> to the serious programmer: spend a part of your working day examining and refining your own methods. Even though programmers
+are always struggling to meet some future or past dead-line, methodological abstraction is a wise long term investment.
 
 
 *** 
 
 ## Take aways
 
-You could argue that these problems have been solved already but, they are partial solutions
-I think a solution is one when everyone can play with all the toys...
-everyone is invited to the party
+---
+
+### People are part of the context, make them part of your context
+
+---
+
+### Paradigms are shifting, it is worth studying the "shiny" future, studying the past yields interesting results.
+
+' learn assembler, logic programming, lisp, stack based languages, experiences can not be described
+
+---
+
+### There are no silver bullets
+
+***
+
+Thank you
 
 ***
 

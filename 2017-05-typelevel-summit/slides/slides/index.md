@@ -84,6 +84,10 @@ Craic, eejit, and arse are totally ok words
 ### No exceptions for flow control!!
 ###.. and more
 
+' told people this new thing ( I am discovering, but it's not new) is great and how this other silly thing I was using before is subpar (in my case I was comparing F# to C#)
+' truly, honestly trying to help,  should have known about thsi stuff before
+' and maybe there was all this other people out there , that just needed to hear about it, the way I did.  
+' Very soon I started seeing this in other people, and I could relate, but I also started seeing how it sounded like from outside of it
 
 
 ---
@@ -148,15 +152,14 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 ---
 - data-background : #AAFFEE
 
-<div class="light">
 
 * Works with Bacon
 * Performance is everything
 * Curious about functional approach
-* SOLID looks FP-ish when you squint
-</div>
 
-' but ooo is an owl, do they even squint
+' - FP != Typed FP
+' - FP definition is loose, in the context of different languages FP means something different to each community 
+
 
 ---
 - data-background : #AAFFEE
@@ -179,6 +182,9 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 
 ## SOLID looks a lot like FP when you squint 
 
+' but ooo is an owl, do they even squint
+
+
 ***
 
 # On Scala and F#/C# 
@@ -199,6 +205,9 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 
 > "...[Scala] focus on pragmatic choices that unify traditionally disparate programming-language philosophies (such as object-oriented and functional programming). The key lesson is these philosophies need not be contradictory in practice. 
 
+<small>[Odersky, Rompf - April 2014]</small>
+
+
 ---
 
 
@@ -206,9 +215,13 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 
 <div class="fragment">
 
-> Choice also involves responsibility, and in many cases novice Scala programmers need guidance to develop an intuitive sense of how to structure programs effectively
-[Odersky, Rompf April 2014](https://cacm.acm.org/magazines/2014/4/173220-unifying-functional-and-object-oriented-programming-with-scala/fulltext)
+> Choice also involves responsibility, and in many cases novice Scala programmers need guidance to develop an intuitive sense of how to structure programs effectively.
+
+<small>[Odersky, Rompf - April 2014]</small>
 </div>
+
+' last statement at odds with multiparadigm without obstruction for each other?
+'  do we need more than one idiom within the language? 
 
 ***
 - data-background : images/fight.jpg
@@ -217,19 +230,22 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 > When Oooo and Bacon talk, they often disagree and call each other names
 
 ' the statements by Syme and Odersky are at odds with the reality of programmers
-
-
-' The chase for best practises perhaps removed the 
+' what is the impact of this in the systems we create?
+' what is the impact of best practises here?
 ' The way we see paradigms as working programmers perhaps is a little different from academics?
-' There is some elements of confusion here
-' 
-' - FP != Typed FP
-' - FP definition is loose, in the context of different languages FP means something different to each community
-' - so we talk past each other and not agree
-' - fomr both F#/ C# camps and within scala I see the same conflicts within the comunity
-' too busy trying to figure out who is right to try to find something that even the creators of the langues (oderski and Syme 
-' on camera) have been telling us for ever
-' Objects at large, functional at small
+
+***
+
+' brief intro with some history points
+
+Practical(?) vs mathematical(?) aproaches to creating languages
+
+' Bright + Alexandrescu -> creting D 
+'    mix of practical and acadewmic
+'    Bright no academic experience, 1st C++
+' Alan Kay ideas from Lisp to create OO (hilars)
+
+'  add Alan Kay Vs Dijstra approach here
 
 ***
 
@@ -251,6 +267,7 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 ### Context matters
 </div>
 
+' because when we assert a thing like FRP is better at GUIs we have a specif context in mind.
 
 ***
 - data-background : #FFFFFF
@@ -260,25 +277,29 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 * Paradigms and how they interact
 * Paradigms and how they shift
 
+'  
+' same fighs in Scala and  F#/ C# camps
+
 ***
 
 ## A programming paradigm 
 
 ...is an approach to programming a computer based on a mathematical theory or a coherent set of
 principles.
-
+<small>[Programming Paradigms for Dummies: What Every Programmer Should Know - Peter Van Roy] </small>
 ' lets get some proper definitions
 
 ---
 - data-background : images/paradigms-ctcp.jpg
 
-_
+-
 
 ---
 
 >  All but the smallest toy problems require different sets of concepts for different parts. This is why programming languages should support many paradigms.
 
-CTM - Peter Van Roy
+
+<small>[Programming Paradigms for Dummies: What Every Programmer Should Know - Peter Van Roy] </small>
 
 ' this agrees wit Odersky's statement and Syme statements
 ' object-oriented programming is best for problems with a large number of related data abstractions organized in a hierarchy
@@ -287,8 +308,8 @@ CTM - Peter Van Roy
 
 > A language should ideally support many concepts in a well-factored way, so that the programmer can choose the right concepts whenever they are needed without being encumbered by the others.
 
+<small>[Programming Paradigms for Dummies: What Every Programmer Should Know - Peter Van Roy] </small>
 
-' add citation
 ' called multiparadigm programming, 
 ' 'in our experience it is clear that it should be the normal way of programming
 
@@ -299,10 +320,7 @@ CTM - Peter Van Roy
 >  ...it is certainly not true that there is one “best” paradigm
 </div>
 
-***
-
-
-
+<small>[Programming Paradigms for Dummies: What Every Programmer Should Know - Peter Van Roy] </small>
 
 ***
 - data-background : images/kuhn.jpg
@@ -310,18 +328,20 @@ CTM - Peter Van Roy
 
 ## A paradigm shifts
 
+
+> "a proliferation of compelling articulations, the willingness to try anything, the expression of explicit discontent, the recourse to philosophy and to debate over fundamentals" 
+
+' the crisis is resolved by a revolutionary change
+
 ---
 - data-background : #BBBBBB
 
 
 ' yes, we are haivng a funcitonal revolution, it is necesary because the lunch has been over for a while
-' and many of us are actually having to deal with all this machines doing stuff at the same time and shared memory
-' is not a thing that will make sense for most
-
 ' a revolution requires the knowledge and the comunity to be ready to receive this new ideas
 
 
-Every langauge is adding functional features:
+Many langauges adding features generally associated with functional programming:
 
 * lambdas
 * functional data structures
@@ -372,96 +392,26 @@ Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Editi
 ## All this has happened before and it will happen again
 </div>
 
+' the way to deal with it is people dying (ratehr than changing their minds?)
 
-****
-
+***
 
 ' In the end we need to get things done
 # As programmers, we
 
 - cut corners
-- for some reason we have religious wars
+- have religious wars
 - deal with terrible code
 - deal with other people's terrible code (the wurst!)
 - complain about the shortcommings of the current language we are using
 
-***
-
-Learning a new paradigm has been great, open the world to many more paradigms out there
-easier to 
-but the impetus came from me, and 
-a) I still have a lot to learn
-b) it's been hard sometimes
- 
-during this trip I have 
-
-- told people this new thing ( I am discovering, but it's not new) is great and how this other silly thing I was using before is subpar (in my case I was comparing F# to C#)
-I was truly, honestly trying to help, I felt like I should have known about thsi stuff before
-and maybe there was all this other people out there , that just needed to hear about it, the way I did.  
-Very soon I started seeing this in other people, and I could relate, but I also started seeing how it sounded like from outside of it
-
-
-
-not only at a comunity level, also the same personal struggles, the same questions on the level of abstraction to work at .. talks about purity and lazyness and how haskell is great but idris is greater and when can we finally get a decent type system kind of sound the same like the clasification of angels
-
-because in the end while traversing the path to fp we had to figure
-
-- how to deal with dependencies?
-- how to interop with the other more imperative/oo side of the world (via libraries or via our own system that we are probably converting over to )
-- how do we make this weird thing work
-
-
-
-there are some interesting things happening
-
-***
-
-' getting things done is the important you'll just use whatever you know
-' so you better know a lot of stuff so you can get it done fast so we should learn lots 
-but not everyone does , not everyone learns the same things so in the end we wind up with 
-strange definitions of good
-this is the good we found 
-abstractions levels keep raising trying to have good mental models for solutions, however 
-the abstractions come , generally without the context
+' maybe lets use this energy for something else?
+' this is not science? or is it? harmony not really a thing
+' unite with the Kay  vs Dijstra thing, these things seem at odds but are different view of the same thing... programming 
 
 
 
 
-***
-' when trying to get things done there is this two things that in my opinion are
-' very important 
-
-* dependecies and how to manage them
-* fault tolerance / correctness
-
-
-***
-
-brief intro with some history points
-
-Practical vs scientific aproaches to creting languages
-
-Bright + Alexandrescu -> creting D 
-    mix of practical and acadewmic
-    Bright no academic experience, 1st C++
-
-OO 
-
-Simula 67 
-- C.A.R. Hoare , Ivan Sutherland
-
-- Alan Kay 
-ideas from Lisp to create OO (hilars)
-
-
-
----
-
-move to paradigms
-
-***
-
-> "a proliferation of compelling articulations, the willingness to try anything, the expression of explicit discontent, the recourse to philosophy and to debate over fundamentals"
 
 *** 
 
@@ -480,26 +430,46 @@ are always struggling to meet some future or past dead-line, methodological abst
 
 
 *** 
+- data-background: images/herding-cats.jpg
 
-## Take aways
+## There is generally a context attached to every statement, before grabbing the pitchfork, Is everyone talking about the same thing?
 
 ---
+- data-background: images/cats-hats.jpg
+
+' when building software 
 
 ### People are part of the context, make them part of your context
 
 ---
+- data-background: images/flyingcatrtbday.jpg
 
-### Paradigms are shifting, it is worth studying the "shiny" future, studying the past yields interesting results.
+### Paradigms are shifting, studying the past yields interesting results. 
 
+<div class="fragment">
+
+#### logic programming, assembly code, stack based languages all solve problems in very different ways
+
+</div>
+
+' if you begin loking at a problem thinking I got this hammer and I am using it...
 ' learn assembler, logic programming, lisp, stack based languages, experiences can not be described
 
 ---
+- data-background: images/herding-cats.jpg
 
-### There are no silver bullets
+## The party is programming ...everyone is invited.
 
 ***
+- data-background: images/roundcrisis.jpg
+- data-size: 900px
 
-Thank you
+## Thank you
+
+###Andrea Magnorsky
+
+#### @silverspoon
+
 
 ***
 
@@ -528,3 +498,4 @@ Thank you
 #### Images
 - Animal party [link](https://commons.wikimedia.org/wiki/File:Animal_Party.jpg)
 - Tea ceremony japan [link](https://commons.wikimedia.org/wiki/Commons:Featured_pictures#/media/File:Japan_tea_ceremony_1165.jpg)
+- Cats with hats [link](https://millioninches.wordpress.com/about/)

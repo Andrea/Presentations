@@ -10,7 +10,7 @@
 - data-background-size : 800px
 
 <div class="fragment">
-s 
+Thank you 
 </div>
 
 ***
@@ -41,7 +41,7 @@ is really important for most of the assertions here. So please stay in context.
 
 ## Irish-isms ahead
 
-Craic, eejit, and arse are totally ok words
+Craic, eejit, etc are totally ok words
 ' eejit, craic, and arse are totally irish words
 
 ***
@@ -108,10 +108,10 @@ Craic, eejit, and arse are totally ok words
 
 * **Typed** FP
 * FP everywhere 
-* Aspiring to purity / Total functions (but not always achieving it .. why?)
-* When dealing with OO aspects use a functional wrapper
+* Aspiring to purity / Total functions 
 
-
+' (but not always achieving it .. why?)
+' When dealing with OO aspects use a functional wrapper
 ' functional wrappers can work but they don't scale and sometimes the performance cost is not acceptable
 ' how does this evolve?
 
@@ -124,11 +124,13 @@ Craic, eejit, and arse are totally ok words
 * Type tetris
 * Complicated concepts 
 
+... is it worth it?... is it the best way?
+
+
 ' Are monad transformers really necessary ?
 ' surely these problems supported by the language
 ' that their peers are not groking (choice or not)
 
-... is it worth it?... is it the best way?
 
 ---
 - data-background : #AAFF66
@@ -178,10 +180,10 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 ---
 - data-background : #AAFFEE
 
-' maybe quote ? example
 
 ## SOLID looks a lot like FP when you squint 
 
+' maybe, are these orthogonal concepts?
 ' but ooo is an owl, do they even squint
 
 
@@ -235,21 +237,16 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 ' The way we see paradigms as working programmers perhaps is a little different from academics?
 
 ***
+- data-background: images/church-turing.jpg
 
-' brief intro with some history points
-
-Practical(?) vs mathematical(?) aproaches to creating languages
-
+### Doing + thinking
+' Turing machine vs lambda calculus
+' Practical(?) vs mathematical(?) aproaches to creating languages
 ' Bright + Alexandrescu -> creting D 
 '    mix of practical and acadewmic
-'    Bright no academic experience, 1st C++
-' Alan Kay ideas from Lisp to create OO (hilars)
-
-'  add Alan Kay Vs Dijstra approach here
+' how we solve problems
 
 ***
-
-' does it matter? we need to build stuff in the end
 
 #### We build Systems with:
 
@@ -269,15 +266,15 @@ Practical(?) vs mathematical(?) aproaches to creating languages
 
 ' because when we assert a thing like FRP is better at GUIs we have a specif context in mind.
 
+
 ***
 - data-background : #FFFFFF
 
-' At this point to types of questions come to mind, those related with
 
 * Paradigms and how they interact
 * Paradigms and how they shift
 
-'  
+  
 ' same fighs in Scala and  F#/ C# camps
 
 ***
@@ -382,6 +379,16 @@ Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Editi
 ' give historical context to the idea that some old stuff 
 ' that was lurking on the back IPL, FP sudenly got more popular
 
+---
+- data-background : #BBBBBB
+
+
+> "He argued that competing paradigms are "incommensurable": that is to say, there exists no objective way of assessing their relative merits."
+
+<small>
+Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Edition (p. 109). University of Chicago Press. Kindle Edition. </small> 
+
+
 ***
 - data-background : images/battlestar.jpg
 - data-background-size: 1200px
@@ -393,10 +400,10 @@ Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Editi
 </div>
 
 ' the way to deal with it is people dying (ratehr than changing their minds?)
+' since we are going to be dealing with change often, shouldn't we learn to deal with them better?
 
 ***
 
-' In the end we need to get things done
 # As programmers, we
 
 - cut corners
@@ -408,8 +415,6 @@ Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Editi
 ' maybe lets use this energy for something else?
 ' this is not science? or is it? harmony not really a thing
 ' unite with the Kay  vs Dijstra thing, these things seem at odds but are different view of the same thing... programming 
-
-
 
 
 
@@ -432,7 +437,7 @@ are always struggling to meet some future or past dead-line, methodological abst
 *** 
 - data-background: images/herding-cats.jpg
 
-## There is generally a context attached to every statement, before grabbing the pitchfork, Is everyone talking about the same thing?
+.
 
 ---
 - data-background: images/cats-hats.jpg

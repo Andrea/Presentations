@@ -204,7 +204,8 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 ' this is not what Oooo sees when he talks to Bacon
 
 ---
-- data-background : #AAFFEE
+- data-background : images/ooo.jpg
+
 
 
 ## SOLID looks a lot like FP when you squint 
@@ -301,10 +302,10 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 - data-background : #FFFFFF
 
 
-* Paradigms and how they interact
-* Paradigms and how they shift
+# Paradigms 
 
-  
+' and how they interact
+' Paradigms and how they shift
 ' same fighs in Scala and  F#/ C# camps
 
 
@@ -342,11 +343,12 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 >  ...it is certainly not true that there is one “best” paradigm
 <small>[Programming Paradigms for Dummies: What Every Programmer Should Know - Peter Van Roy] </small>
 
-
+' what is the impact of paradigms in a solution
 
 ***
 
-> If the need for pervasive modifications manifests itself, we can take this as a sign that there is a new concept waiting to be discovered. <small>[Programming Paradigms for Dummies: What Every Programmer Should Know - Peter Van Roy] </small>
+> If the need for pervasive modifications manifests itself, we can take this as a sign that there is a new concept waiting to be discovered. 
+<small>[Programming Paradigms for Dummies: What Every Programmer Should Know - Peter Van Roy] </small>
 
 
 ---
@@ -437,6 +439,7 @@ let simpleFuncAst = LAMBDA(ARG "bla",
 
 
 > "a proliferation of compelling articulations, the willingness to try anything, the expression of explicit discontent, the recourse to philosophy and to debate over fundamentals" 
+<small>Kuhn, Thomas S.. The Structure of Scientific Revolutions. </small>
 
 ' the crisis is resolved by a revolutionary change
 
@@ -444,7 +447,6 @@ let simpleFuncAst = LAMBDA(ARG "bla",
 - data-background : #BBBBBB
 
 
-' yes, we are haivng a funcitonal revolution, it is necesary because the lunch has been over for a while
 ' a revolution requires the knowledge and the comunity to be ready to receive this new ideas
 
 
@@ -464,16 +466,13 @@ C++, Java, C#
 - data-background : #BBBBBB
 
 > The decision to reject one paradigm is always simultaneously the decision to accept another, and the judgment leading to that decision involves the comparison of both paradigms with nature and with each other.
-
-<small>Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Edition (p. 78). University of Chicago Press. Kindle Edition. </small>
+<small>Kuhn, Thomas S.. The Structure of Scientific Revolutions. </small>
 
 ----
 - data-background : #BBBBBB
 
 > It is, I think, particularly in periods of acknowledged crisis that scientists have turned to philosophical analysis as a device for unlocking the riddles of their field. Scientists have not generally needed or wanted to be philosophers.
-
-<small> Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Edition (p. 88). University of Chicago Press. Kindle Edition. 
-</small>
+<small>Kuhn, Thomas S.. The Structure of Scientific Revolutions. </small>
 
 ---
 - data-background : #BBBBBB
@@ -482,9 +481,8 @@ C++, Java, C#
 
 
 > "... two scientific schools disagree about what is a problem and what a solution, they will inevitably talk through each other when debating the relative merits of their respective paradigms."
+<small>Kuhn, Thomas S.. The Structure of Scientific Revolutions. </small>
 
-<small>
-Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Edition (p. 109). University of Chicago Press. Kindle Edition. </small> 
 
 ' give historical context to the idea that some old stuff 
 ' that was lurking on the back IPL, FP sudenly got more popular
@@ -494,9 +492,7 @@ Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Editi
 
 
 > "He argued that competing paradigms are "incommensurable": that is to say, there exists no objective way of assessing their relative merits."
-
-<small>
-Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Edition (p. 109). University of Chicago Press. Kindle Edition. </small> 
+<small>Kuhn, Thomas S.. The Structure of Scientific Revolutions. </small>
 
 ---
 
@@ -511,10 +507,10 @@ Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Editi
 ---
 
 > Almost always the people who achieve these fundamental inventions of a new paradigm have been either very young or very new to the field whose paradigm they change .
- 
-Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Edition (p. 90). University of Chicago Press. Kindle Edition. 
+<small>Kuhn, Thomas S.. The Structure of Scientific Revolutions. </small> 
 
-' 1) paradigms are about a complete set of fuzyly defined but large beliefs
+
+' 1) paradigms are about a complete set of fuzzyly defined but large beliefs
 ' 2) it is possible to have more than one programming paradigm in your brain 
 ' 3) in kuhns paradigms QUOTE above
 
@@ -546,7 +542,7 @@ Kuhn, Thomas S.. The Structure of Scientific Revolutions: 50th Anniversary Editi
 ---
 - data-background: images/cats-hats.jpg
 
-' when building software 
+' people and their beliefs 
 
 ### People are part of the context, make them part of your context
 

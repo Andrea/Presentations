@@ -1,0 +1,7 @@
+*.svclog
+*.suo
+
+slides/output/*
+slides/.fake/*
+slides/.paket/*
+slides/packages*

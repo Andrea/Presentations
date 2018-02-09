@@ -181,9 +181,11 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 - data-background : #AAFFEE
 
 
+* C++
+* C#
 * Works with Bacon
 * Shipping is everything 
-* Curious about functional approach
+* Starting to do some functional programming
 
 ' - FP != Typed FP
 ' - FP definition is loose, in the context of different languages FP means something different to each community 
@@ -210,10 +212,11 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 
 ## SOLID looks a lot like FP when you squint 
 
+
 ' maybe, are these orthogonal concepts?
 ' Are these blurry limits the reason for the fights?
 ' did the designers created these langs with fights in mind, for their hilarity?
-
+' post by scott
 
 ***
 
@@ -265,16 +268,6 @@ to reduce future programming costs. [Why FP matters. John Hughes]
 ' what is the impact of best practises here?
 ' we see paradigms as working programmers perhaps different than academics?
 
-
-***
-- data-background: images/church-turing.jpg
-
-### Doing + thinking
-
-' Turing machine vs lambda calculus
-' Practical(?) vs mathematical(?) aproaches to creating languages
-' research by doing -> The structure of programming languages recolution , 
-' how we solve problems
 
 ***
 
@@ -415,29 +408,6 @@ let simpleFuncAst = LAMBDA(ARG "bla",
    ("😺_7", "INT->INT")]
 ```
 
----
-
-# ASI64 
-
-> Why write 6502 assembly when you can inline it in Racket?
-
-> https://github.com/pezipink/asi64
-
----
-
-```
-(define (clear-screen start character)
-  {	ldx @0
-        lda @character            
- :loop	(for ([i '(0 1 2 3)])
-           {sta (+ start (* i $100)) x})
-       	dex
-	bne loop-   })
-```
-
----
-
-![debugging](images/asi64.png)
 
 
 ***

@@ -1,2 +1,3 @@
 *.svclog
 *.suo
+.DS_Store
